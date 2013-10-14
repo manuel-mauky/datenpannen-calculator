@@ -1,0 +1,44 @@
+apply plugin: "java"
+apply plugin: "eclipse"
+apply plugin: "application"
+
+
+sourceCompatibility= 1.7
+def javaHome = "${System.properties['java.home']}"
+
+
+// Die Haupt-Klasse. Zum Starten: 'gradle run'
+mainClassName = "de.hszg.datenpannen.Main"
+
+
+// Task zum Erzeugen der Verzeichnis-Struktur für Java-Projekte.
+task "create-dirs" << {
+    sourceSets*.java.srcDirs*.each { it.mkdirs() }
+    sourceSets*.resources.srcDirs*.each { it.mkdir()}
+}
+
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+
+    // JavaFX ist erst ab Java 7 vernünftig verfügbar. Ältere Versionen von Java werden deshalb nicht unterstützt.
+    if(!JavaVersion.current().isJava7Compatible()){
+        throw new GradleException("Java wird mindestens in Version 7 benötigt. Gefunden wurde: ${System.getProperty('java.version')}");
+    }
+
+    // Bei Java 7 wird JavaFX beim JDK mitgeliefert, jedoch nicht automatisch auf den Classpath gelegt.
+    // Es muss deshalb per Hand als Abhängigkeit hinzugefügt werden.
+    if(JavaVersion.current().isJava7()){
+        runtime files("$javaHome/lib/jfxrt.jar")
+    }
+
+
+
+    // testing
+    testCompile "junit:junit:4.11"
+    testCompile "org.assertj:assertj-core:1.3.0"
+}
