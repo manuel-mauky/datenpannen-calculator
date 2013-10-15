@@ -33,7 +33,7 @@ dependencies {
     // Bei Java 7 wird JavaFX beim JDK mitgeliefert, jedoch nicht automatisch auf den Classpath gelegt.
     // Es muss deshalb per Hand als Abhängigkeit hinzugefügt werden.
     if(JavaVersion.current().isJava7()){
-        runtime files("$javaHome/lib/jfxrt.jar")
+        compile files("$javaHome/lib/jfxrt.jar")
     }
 
 
