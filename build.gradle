@@ -10,6 +10,8 @@ def javaHome = "${System.properties['java.home']}"
 // Die Haupt-Klasse. Zum Starten: 'gradle run'
 mainClassName = "de.hszg.datenpannen.Main"
 
+manifest.mainAttributes("Main-Class" : mainClassName)
+
 
 // Task zum Erzeugen der Verzeichnis-Struktur für Java-Projekte.
 task "create-dirs" << {
@@ -36,7 +38,8 @@ dependencies {
         compile files("$javaHome/lib/jfxrt.jar")
     }
 
-
+    // UI-Bibliothek für JavaFX
+    compile "com.airhacks:afterburner.fx:1.1"
 
     // testing
     testCompile "junit:junit:4.11"
