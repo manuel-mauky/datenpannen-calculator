@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Rectangle" id="1" x="27" y="31" width="550" height="450" measuredWidth="550" measuredHeight="450">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Chart" id="3" x="304" y="264" measuredWidth="200" measuredHeight="200"/>
+  <widgets xsi:type="model:Chart" id="4" x="304" y="48" measuredWidth="200" measuredHeight="200" chartType="line"/>
+  <widgets xsi:type="model:Combo" id="8" x="40" y="194" width="188" text="Industriezweig&#xA;" measuredWidth="188" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:List" id="9" x="40" y="264" text="[x] Third party error &#xA;[ ] Lost or stolen devices &#xA;[ ] Quick notification &#xA;[ ] Consultants engaged &#xA;[x] CISO appointment &#xA;[ ] incident management plan &#xA;[ ] Strong security posture" measuredWidth="198" measuredHeight="158" border="false" alpha="0">
+    <font/>
+    <items x="0" y="2" width="198" height="22" text="[x] Third party error "/>
+    <items x="0" y="24" width="198" height="22" text="[ ] Lost or stolen devices "/>
+    <items x="0" y="46" width="198" height="22" text="[ ] Quick notification "/>
+    <items x="0" y="68" width="198" height="22" text="[ ] Consultants engaged "/>
+    <items x="0" y="90" width="198" height="22" text="[x] CISO appointment "/>
+    <items x="0" y="112" width="198" height="22" text="[ ] incident management plan "/>
+    <items x="0" y="134" width="198" height="22" text="[ ] Strong security posture"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="11" x="40" y="168" text="Industriezweig auswählen:" measuredWidth="165" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="12" x="40" y="242" text="Zutreffendes auswählen:" measuredWidth="154" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="13" x="40" y="98" text="Wie viele Datensätze haben Sie?" measuredWidth="199" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="14" x="40" y="48" text="Kostenkalkulator" measuredWidth="121" measuredHeight="23">
+    <font bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:VLine" id="16" x="248" y="32" height="448" measuredWidth="6" measuredHeight="448"/>
+  <widgets xsi:type="model:Spinner" id="17" x="40" y="128" width="188" text="42" measuredWidth="188" measuredHeight="23">
+    <font/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>
