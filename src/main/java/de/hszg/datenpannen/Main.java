@@ -6,6 +6,9 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Einstiegspunkt in die Applikation.
+ */
 public class Main extends Application {
 
     public static void main(String... args) {
@@ -16,9 +19,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         stage.setTitle("Datenpannen-Kosten-Kalkulator");
 
-
         MainView mainView = new MainView();
-
         Scene scene = new Scene(mainView.getView());
 
         stage.setScene(scene);

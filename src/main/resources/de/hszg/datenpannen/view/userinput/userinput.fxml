@@ -2,16 +2,52 @@
 
 <?import java.lang.*?>
 <?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="-1.0" prefWidth="-1.0" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-1.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="-1.0" prefWidth="-1.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.hszg.datenpannen.view.userinput.UserinputPresenter">
   <children>
-    <VBox prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <VBox prefHeight="-1.0" prefWidth="-1.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-        <Label text="User Input" />
+        <VBox prefHeight="-1.0" prefWidth="-1.0" spacing="5.0">
+          <children>
+            <Label text="Wie viele Datensätze haben Sie?" VBox.vgrow="SOMETIMES" />
+            <TextField prefWidth="200.0" text="42" />
+          </children>
+        </VBox>
+        <VBox prefHeight="-1.0" prefWidth="-1.0" spacing="5.0">
+          <children>
+            <Label text="Industriezweig auswählen:" />
+            <ChoiceBox maxWidth="1.7976931348623157E308">
+              <items>
+                <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="Item 1" />
+                  <String fx:value="Item 2" />
+                  <String fx:value="Item 3" />
+                </FXCollections>
+              </items>
+            </ChoiceBox>
+          </children>
+        </VBox>
+        <VBox prefHeight="-1.0" prefWidth="-1.0" spacing="5.0">
+          <children>
+            <Label text="Zutreffendes auswählen:" />
+            <CheckBox mnemonicParsing="false" selected="true" text="Third party error" />
+            <CheckBox mnemonicParsing="false" text="Lost or stolen devices" />
+            <CheckBox mnemonicParsing="false" text="Quick notification" />
+            <CheckBox mnemonicParsing="false" text="Consultants engaged" />
+            <CheckBox mnemonicParsing="false" selected="true" text="CISO appointment" />
+            <CheckBox mnemonicParsing="false" text="incident management plan" />
+            <CheckBox mnemonicParsing="false" text="Strong security posture" />
+          </children>
+        </VBox>
       </children>
+      <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      </padding>
     </VBox>
   </children>
 </AnchorPane>
