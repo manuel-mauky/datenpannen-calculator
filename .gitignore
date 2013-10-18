@@ -15,5 +15,11 @@ out
 .project
 .settings
 
+<<<<<<< HEAD
+#netbeans
+/.nb-gradle/profiles/private/
+.nb-gradle-properties
+=======
 # JavaFX
 *.fxml.bak
+>>>>>>> de11c3087b2f15bc320623304cccab761d9164b8
