@@ -15,6 +15,14 @@ public class DistributionChartModel {
 
     private ObservableList<PieChart.Data> distribtutionData = FXCollections.observableArrayList();
 
+
+    public DistributionChartModel(){
+        title.set("Aufteilung der Kosten");
+        distribtutionData.addAll(new PieChart.Data("Malicious or criminal attack", 48),
+                new PieChart.Data("System Glich", 16),
+                new PieChart.Data("Human factor", 36));
+    }
+
     public StringProperty titleProperty(){
         return title;
     }
@@ -30,5 +38,4 @@ public class DistributionChartModel {
     public ObservableList<PieChart.Data> getDistribtutionData(){
         return distribtutionData;
     }
-
 }
