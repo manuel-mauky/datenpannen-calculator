@@ -14,7 +14,8 @@ Basis für die Berechnung sind bestimmte Statisische Auswertungen zu Datenpannen
 ## Technische Informationen
 
 Das Programm wird in Java entwickelt. Als Oberflächen-Technologie kommt [JavaFX](http://docs.oracle.com/javafx/)
-zum Einsatz.
+zum Einsatz. Zum einfachen Arbeiten mit JavaFX wird das Mini-Framework 
+[Afterburner.fx](https://github.com/AdamBien/afterburner.fx) eingesetzt.
 
 Als Build-System wird [Gradle](http://www.gradle.org/) eingegesetzt.
 
@@ -37,5 +38,5 @@ IntelliJ Idea kann von Hause aus mit Gradle-Projekten umgehen. Das Projekt kann 
 
 ### Arbeiten mit Netbeans
 
-Hinweise zu Netbeans müssen noch ergänzt werden.
+Netbeans kann per Plugin bereits mit Gradle-Projekten umgehen. Es sind keine weiteren Schritte notwendig.
 
