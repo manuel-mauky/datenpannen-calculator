@@ -6,7 +6,7 @@ import de.hszg.datenpannen.model.Sector;
 
 /**
  *
- * Schnittstelle fuer die Bereitstellung von Basisdaten. Wird vom BaseDataModel zum Laden der Basisdaten verwendet.
+ * Schnittstelle für die Bereitstellung von Basisdaten. Wird vom BaseDataModel zum Laden der Basisdaten verwendet.
  */
 public interface BaseDataProvider {
     

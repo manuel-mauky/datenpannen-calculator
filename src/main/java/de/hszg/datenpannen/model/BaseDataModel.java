@@ -1,13 +1,13 @@
 package de.hszg.datenpannen.model;
 
+import de.hszg.datenpannen.data.BaseDataDummyProvider;
 import de.hszg.datenpannen.data.BaseDataProvider;
-import de.hszg.datenpannen.data.BaseDataProviderImpl;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javax.annotation.PostConstruct;
 
 /**
- * Modell der statistischen Eingangsdaten
+ * DataModel für statistische Eingangsdaten.
  */
 public class BaseDataModel {
 
@@ -18,12 +18,11 @@ public class BaseDataModel {
 
     @PostConstruct
     void initialize() {
-        dataProvider = new BaseDataProviderImpl();
+        dataProvider = new BaseDataDummyProvider();
 
         setAvgLossCost(dataProvider.getAvgLossCost());
         setMaxLossCost(dataProvider.getMaxLossCost());
         setMinLossCost(dataProvider.getMinLossCost());
-
     }
 
     public DoubleProperty influencingFactorProperty(InfluencingFactor factor) {

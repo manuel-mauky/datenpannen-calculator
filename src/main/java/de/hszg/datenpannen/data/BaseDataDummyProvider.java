@@ -2,18 +2,18 @@ package de.hszg.datenpannen.data;
 
 import de.hszg.datenpannen.model.InfluencingFactor;
 import de.hszg.datenpannen.model.Sector;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 /**
- *
+ * Dummy Implementation des BaseDataProvider. 
  */
-public class BaseDataProviderImpl implements BaseDataProvider {
+public class BaseDataDummyProvider implements BaseDataProvider {
 
-    private Map<Sector, Double> lossCostPerSector = new HashMap<>();
-    private Map<InfluencingFactor, Double> factorValues = new HashMap<>();
+    private Map<Sector, Double> lossCostPerSector = new EnumMap<>(Sector.class);
+    private Map<InfluencingFactor, Double> factorValues = new EnumMap<>(InfluencingFactor.class);
 
-    public BaseDataProviderImpl() {
+    public BaseDataDummyProvider() {
         initLossCostPerSector();
         initFactorValues();
     }
@@ -60,16 +60,16 @@ public class BaseDataProviderImpl implements BaseDataProvider {
     @Override
     public double getValueOf(InfluencingFactor factor) {
         Double value = factorValues.get(factor);
-        if (value == null) {
-            return Double.NaN;
-        } else {
-            return value;
-        }
+        return checkValue(value);
     }
 
     @Override
     public double getLossCostOf(Sector sector) {
         Double value = lossCostPerSector.get(sector);
+        return checkValue(value);
+    }
+
+    private double checkValue(Double value) {
         if (value == null) {
             return Double.NaN;
         } else {
