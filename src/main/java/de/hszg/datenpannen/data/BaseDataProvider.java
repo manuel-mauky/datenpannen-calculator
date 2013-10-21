@@ -1,6 +1,7 @@
 
 package de.hszg.datenpannen.data;
 
+import de.hszg.datenpannen.model.CostDistribution;
 import de.hszg.datenpannen.model.InfluencingFactor;
 import de.hszg.datenpannen.model.Sector;
 
@@ -19,5 +20,7 @@ public interface BaseDataProvider {
     public double getValueOf(InfluencingFactor factor);
     
     public double getLossCostOf(Sector sector);
+    
+    public double getPercentage(CostDistribution distribution);
     
 }

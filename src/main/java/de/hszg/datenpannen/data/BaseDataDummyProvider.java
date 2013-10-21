@@ -1,21 +1,24 @@
 package de.hszg.datenpannen.data;
 
+import de.hszg.datenpannen.model.CostDistribution;
 import de.hszg.datenpannen.model.InfluencingFactor;
 import de.hszg.datenpannen.model.Sector;
 import java.util.EnumMap;
 import java.util.Map;
 
 /**
- * Dummy Implementation des BaseDataProvider. 
+ * Dummy Implementation des BaseDataProvider.
  */
 public class BaseDataDummyProvider implements BaseDataProvider {
 
     private Map<Sector, Double> lossCostPerSector = new EnumMap<>(Sector.class);
     private Map<InfluencingFactor, Double> factorValues = new EnumMap<>(InfluencingFactor.class);
+    private Map<CostDistribution, Double> costDistributions = new EnumMap<>(CostDistribution.class);
 
     public BaseDataDummyProvider() {
         initLossCostPerSector();
         initFactorValues();
+        initCostDistributions();
     }
 
     private void initLossCostPerSector() {
@@ -42,6 +45,20 @@ public class BaseDataDummyProvider implements BaseDataProvider {
         factorValues.put(InfluencingFactor.THIRD_PARTY_ERROR, 12.0);
     }
 
+    private void initCostDistributions() {
+        costDistributions.put(CostDistribution.INVESTIGATIONS_AND_FORENSICS, .34);
+        costDistributions.put(CostDistribution.LOST_CUSTOMER_BUSINESS, .29);
+        costDistributions.put(CostDistribution.AUDIT_AND_CONSULTING_SERVICES, .09);
+        costDistributions.put(CostDistribution.OUTBOUND_CONTACT_COSTS, .07);
+        costDistributions.put(CostDistribution.LEGAL_SERVICES_COMPLIANCE, .05);
+        costDistributions.put(CostDistribution.CUSTOMER_ACQUISITION_COST, .05);
+        costDistributions.put(CostDistribution.INBOUND_CONTACT_COSTS, .04);
+        costDistributions.put(CostDistribution.LEGAL_SERVICES_DEFENSE, .04);
+        costDistributions.put(CostDistribution.FREE_OR_DISCOUNTED_SERVICES, .02);
+        costDistributions.put(CostDistribution.IDENTITY_PROTECTION_SERVICES, .01);
+        costDistributions.put(CostDistribution.PUBLIC_RELATIONS_COMMUNICATIONS, .0);
+    }
+
     @Override
     public double getMinLossCost() {
         return 80.0;
@@ -66,6 +83,12 @@ public class BaseDataDummyProvider implements BaseDataProvider {
     @Override
     public double getLossCostOf(Sector sector) {
         Double value = lossCostPerSector.get(sector);
+        return checkValue(value);
+    }
+
+    @Override
+    public double getPercentage(CostDistribution distribution) {
+        Double value = costDistributions.get(distribution);
         return checkValue(value);
     }
 
