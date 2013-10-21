@@ -87,7 +87,7 @@ public class BaseDataDummyProvider implements BaseDataProvider {
     }
 
     @Override
-    public double getPercentage(CostDistribution distribution) {
+    public double getPercentageOf(CostDistribution distribution) {
         Double value = costDistributions.get(distribution);
         return checkValue(value);
     }

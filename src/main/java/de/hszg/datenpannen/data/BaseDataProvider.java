@@ -21,6 +21,6 @@ public interface BaseDataProvider {
     
     public double getLossCostOf(Sector sector);
     
-    public double getPercentage(CostDistribution distribution);
+    public double getPercentageOf(CostDistribution distribution);
     
 }

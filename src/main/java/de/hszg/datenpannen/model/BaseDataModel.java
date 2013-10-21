@@ -34,7 +34,7 @@ public class BaseDataModel {
     }
 
     public DoubleProperty costDistributionProperty(CostDistribution distribution) {
-        return new SimpleDoubleProperty(dataProvider.getPercentage(distribution));
+        return new SimpleDoubleProperty(dataProvider.getPercentageOf(distribution));
     }
 
     public DoubleProperty minLossCostProperty() {
