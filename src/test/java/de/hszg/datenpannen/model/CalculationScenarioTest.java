@@ -7,6 +7,9 @@ import static de.hszg.datenpannen.model.InfluencingFactor.THIRD_PARTY_ERROR;
 
 import static de.hszg.datenpannen.model.CostDistribution.*;
 
+import static org.assertj.core.api.Assertions.*;
+
+
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
@@ -24,12 +27,12 @@ public class CalculationScenarioTest {
     private UserinputModel userinputModel;
 
     @Before
-    public void setup(){
+    public void setup() {
         baseDataModel = new BaseDataModel();
         userinputModel = new UserinputModel();
 
 
-        result = new Result(baseDataModel,userinputModel);
+        result = new Result(baseDataModel, userinputModel);
     }
 
 
@@ -38,66 +41,40 @@ public class CalculationScenarioTest {
      */
     @Ignore
     @Test
-    public void testScenarioKleinesEnergieunternehmen(){
+    public void testScenarioKleinesEnergieunternehmen() {
 
-    	userinputModel.setNumberOfDataset(512);
-    	userinputModel.setSector(Sector.ENERGY);
-    	userinputModel.addInfluencingFactors(THIRD_PARTY_ERROR, QUICK_NOTIFICATION, CISO_APPOINTMENT, STRONG_SECURITY_POSTURE);
-    	
+        userinputModel.setNumberOfDataset(512);
+        userinputModel.setSector(Sector.ENERGY);
+        userinputModel.addInfluencingFactors(THIRD_PARTY_ERROR, QUICK_NOTIFICATION, CISO_APPOINTMENT, STRONG_SECURITY_POSTURE);
+
     	
     	/*
-    	 * Die Basisdaten zur Berechnung der Werte kommen aus der Klasse BaseDataDummyProvider, da die festen Werte im 
+         * Die Basisdaten zur Berechnung der Werte kommen aus der Klasse BaseDataDummyProvider, da die festen Werte im
     	 * Programmablauf nicht variabel sind.
     	*/
-    	
 
-    	
-    	assertEquals(103936.00, result.getAvgCost(),0);
-    	assertEquals(55546.91, result.getMinCost(),0);
-    	assertEquals(171408.11, result.getMaxCost(),0);
-    	
-    	assertEquals(36.89,result.getMinDistributionCost(INVESTIGATIONS_AND_FORENSICS),0);
-    	assertEquals(62.02,result.getAvgDistributionCost(INVESTIGATIONS_AND_FORENSICS),0);
-    	assertEquals(113.83,result.getMaxDistributionCost(INVESTIGATIONS_AND_FORENSICS),0);
-    	
-    	assertEquals(31.46,result.getMinDistributionCost(LOST_CUSTOMER_BUSINESS),0);
-    	assertEquals(58.87,result.getAvgDistributionCost(LOST_CUSTOMER_BUSINESS),0);
-    	assertEquals(97.09,result.getMaxDistributionCost(LOST_CUSTOMER_BUSINESS),0);
-    	
-    	assertEquals(9.76, result.getMinDistributionCost(AUDIT_AND_CONSULTING_SERVICES),0);
-    	assertEquals(18.27, result.getAvgDistributionCost(AUDIT_AND_CONSULTING_SERVICES),0);
-    	assertEquals(30.13, result.getMaxDistributionCost(AUDIT_AND_CONSULTING_SERVICES),0);
-    	
-    	assertEquals(7.59, result.getMinDistributionCost(OUTBOUND_CONTACT_COSTS),0);
-    	assertEquals(7.59, result.getAvgDistributionCost(OUTBOUND_CONTACT_COSTS),0);
-    	assertEquals(23.43, result.getMaxDistributionCost(OUTBOUND_CONTACT_COSTS),0);
-    	
-    	assertEquals(5.42, result.getMinDistributionCost(LEGAL_SERVICES_COMPLIANCE),0);
-    	assertEquals(10.15,result.getAvgDistributionCost(LEGAL_SERVICES_COMPLIANCE),0);
-    	assertEquals(16.74, result.getMaxDistributionCost(LEGAL_SERVICES_COMPLIANCE),0);
-    	
-    	assertEquals(5.42, result.getMinDistributionCost(CUSTOMER_ACQUISITION_COST),0);
-    	assertEquals(10.15,result.getAvgDistributionCost(CUSTOMER_ACQUISITION_COST),0);
-    	assertEquals(16.74, result.getMaxDistributionCost(CUSTOMER_ACQUISITION_COST),0);
-    	
-    	assertEquals(4.34, result.getMinDistributionCost(INBOUND_CONTACT_COSTS),0);
-    	assertEquals(8.12,result.getAvgDistributionCost(INBOUND_CONTACT_COSTS),0);
-    	assertEquals(13.39, result.getMaxDistributionCost(INBOUND_CONTACT_COSTS),0);
-    	
-    	assertEquals(4.34, result.getMinDistributionCost(LEGAL_SERVICES_DEFENSE),0);
-    	assertEquals(8.12,result.getAvgDistributionCost(LEGAL_SERVICES_DEFENSE),0);
-    	assertEquals(13.39, result.getMaxDistributionCost(LEGAL_SERVICES_DEFENSE),0);
-    	
-    	assertEquals(2.17, result.getMinDistributionCost(FREE_OR_DISCOUNTED_SERVICES),0);
-    	assertEquals(4.06, result.getAvgDistributionCost(FREE_OR_DISCOUNTED_SERVICES),0);
-    	assertEquals(6.70, result.getMaxDistributionCost(FREE_OR_DISCOUNTED_SERVICES),0);
-    	
-    	assertEquals(1.08, result.getMinDistributionCost(IDENTITY_PROTECTION_SERVICES),0);
-    	assertEquals(2.03, result.getAvgDistributionCost(IDENTITY_PROTECTION_SERVICES),0);
-    	assertEquals(3.35, result.getMaxDistributionCost(IDENTITY_PROTECTION_SERVICES),0);
-    	
-    	assertEquals(0.0,result.getMinDistributionCost(PUBLIC_RELATIONS_COMMUNICATIONS),0);
-    	assertEquals(0.0,result.getAvgDistributionCost(PUBLIC_RELATIONS_COMMUNICATIONS),0);
-    	assertEquals(0.0,result.getMaxDistributionCost(PUBLIC_RELATIONS_COMMUNICATIONS),0);
+
+        assertThat(result.getAvgCost()).isEqualTo(103936.00);
+        assertThat(result.getMinCost()).isEqualTo(55546.91);
+        assertThat(result.getMaxCost()).isEqualTo(171408.11);
+
+
+        assertDistribution(result, 36.89, 62.02, 113.83, INVESTIGATIONS_AND_FORENSICS);
+        assertDistribution(result, 31.46, 58.87, 97.09, LOST_CUSTOMER_BUSINESS);
+        assertDistribution(result, 9.76, 18.27, 30.13, AUDIT_AND_CONSULTING_SERVICES);
+        assertDistribution(result, 7.59, 7.59, 23.43, OUTBOUND_CONTACT_COSTS);
+        assertDistribution(result, 5.42, 10.15, 16.74, LEGAL_SERVICES_COMPLIANCE);
+        assertDistribution(result, 5.42, 10.15, 16.74, CUSTOMER_ACQUISITION_COST);
+        assertDistribution(result, 4.34, 8.12, 13.39, INBOUND_CONTACT_COSTS);
+        assertDistribution(result, 4.34, 8.12, 13.39, LEGAL_SERVICES_DEFENSE);
+        assertDistribution(result, 2.17, 4.06, 6.70, FREE_OR_DISCOUNTED_SERVICES);
+        assertDistribution(result, 1.08, 2.03, 3.35, IDENTITY_PROTECTION_SERVICES);
+        assertDistribution(result, 0.0, 0.0, 0.0, PUBLIC_RELATIONS_COMMUNICATIONS);
+    }
+
+    private void assertDistribution(Result result, double min, double avg, double max, CostDistribution distribution) {
+        assertThat(result.getMinDistributionCost(distribution)).isEqualTo(min);
+        assertThat(result.getAvgDistributionCost(distribution)).isEqualTo(avg);
+        assertThat(result.getMaxDistributionCost(distribution)).isEqualTo(max);
     }
 }
