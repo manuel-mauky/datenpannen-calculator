@@ -38,4 +38,37 @@ public class Result {
 
     }
 
+	public double getAvgCost() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public double getMinCost() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public double getMaxCost() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public double getMinDistributionCost(
+			CostDistribution distribution) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public double getAvgDistributionCost(
+			CostDistribution distribution) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public double getMaxDistributionCost(
+			CostDistribution distribution) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
