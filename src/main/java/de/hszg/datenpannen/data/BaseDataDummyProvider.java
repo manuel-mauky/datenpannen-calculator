@@ -92,6 +92,21 @@ public class BaseDataDummyProvider implements BaseDataProvider {
         return checkValue(value);
     }
 
+    @Override
+    public Map<InfluencingFactor, Double> getInfluencingFactorMap() {
+        return factorValues;
+    }
+
+    @Override
+    public Map<Sector, Double> getSectorMap() {
+        return lossCostPerSector;
+    }
+
+    @Override
+    public Map<CostDistribution, Double> getCostDistributionMap() {
+        return costDistributions;
+    }
+
     private double checkValue(Double value) {
         if (value == null) {
             return Double.NaN;

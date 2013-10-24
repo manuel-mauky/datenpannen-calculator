@@ -12,6 +12,8 @@ import static org.assertj.core.api.Assertions.*;
 
 import static org.junit.Assert.assertEquals;
 
+import de.hszg.datenpannen.data.BaseDataDummyProvider;
+import de.hszg.datenpannen.data.BaseDataProvider;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -28,9 +30,10 @@ public class CalculationScenarioTest {
 
     @Before
     public void setup() {
-        baseDataModel = new BaseDataModel();
-        userinputModel = new UserinputModel();
+        BaseDataProvider baseDataProvider = new BaseDataDummyProvider();
 
+        baseDataModel = new BaseDataModel(baseDataProvider);
+        userinputModel = new UserinputModel();
 
         result = new Result(baseDataModel, userinputModel);
     }
@@ -39,7 +42,6 @@ public class CalculationScenarioTest {
     /**
      * TODO Umbenennen und vernünftige Testschritte ergänzen.
      */
-    @Ignore
     @Test
     public void testScenarioKleinesEnergieunternehmen() {
 
@@ -47,17 +49,9 @@ public class CalculationScenarioTest {
         userinputModel.setSector(Sector.ENERGY);
         userinputModel.addInfluencingFactors(THIRD_PARTY_ERROR, QUICK_NOTIFICATION, CISO_APPOINTMENT, STRONG_SECURITY_POSTURE);
 
-    	
-    	/*
-         * Die Basisdaten zur Berechnung der Werte kommen aus der Klasse BaseDataDummyProvider, da die festen Werte im
-    	 * Programmablauf nicht variabel sind.
-    	*/
-
-
         assertThat(result.getAvgCost()).isEqualTo(103936.00);
         assertThat(result.getMinCost()).isEqualTo(55546.91);
         assertThat(result.getMaxCost()).isEqualTo(171408.11);
-
 
         assertDistribution(result, 36.89, 62.02, 113.83, INVESTIGATIONS_AND_FORENSICS);
         assertDistribution(result, 31.46, 58.87, 97.09, LOST_CUSTOMER_BUSINESS);

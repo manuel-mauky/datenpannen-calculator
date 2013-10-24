@@ -21,7 +21,7 @@ public class UserinputModel {
 
     private SetProperty<InfluencingFactor> influencingFactorsProperty =
             new SimpleSetProperty<>(FXCollections.observableSet(EnumSet.noneOf(InfluencingFactor.class)));
-    private IntegerProperty numberOfDatasetProperty = new SimpleIntegerProperty();
+    private IntegerProperty numberOfDatasetsProperty = new SimpleIntegerProperty();
     private ObjectProperty<Sector> sectorProperty = new SimpleObjectProperty<>(Sector.FINANCIAL);
 
     public SetProperty<InfluencingFactor> influencingFactorsProperty() {
@@ -57,15 +57,15 @@ public class UserinputModel {
     }
 
     public IntegerProperty numberOfDatasetProperty() {
-        return numberOfDatasetProperty;
+        return numberOfDatasetsProperty;
     }
 
     public int getNumberOfDataset() {
-        return numberOfDatasetProperty.get();
+        return numberOfDatasetsProperty.get();
     }
 
     public void setNumberOfDataset(int number) {
-        numberOfDatasetProperty.set(number);
+        numberOfDatasetsProperty.set(number);
     }
 
     public ObjectProperty<Sector> sectorProperty() {
