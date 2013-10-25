@@ -23,16 +23,8 @@ public class DistributionChartModel {
                 new PieChart.Data("Human factor", 36));
     }
 
-    public StringProperty titleProperty(){
+    public StringProperty title(){
         return title;
-    }
-
-    public void setTitle(String title){
-        this.title.set(title);
-    }
-
-    public String getTitle(){
-        return title.get();
     }
 
     public ObservableList<PieChart.Data> getDistribtutionData(){

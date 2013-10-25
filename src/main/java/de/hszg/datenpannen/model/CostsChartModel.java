@@ -16,7 +16,7 @@ public class CostsChartModel {
     private XYChart.Series regressionSeries = new XYChart.Series<>();
 
     public CostsChartModel(){
-        this.setTitle("Kosten");
+        this.title.set("Kosten");
 
         totalSeries.setName("Total");
         totalSeries.getData().add(new XYChart.Data(1,1000));
@@ -38,23 +38,15 @@ public class CostsChartModel {
         regressionSeries.getData().add(new XYChart.Data(31,8000));
     }
 
-    public StringProperty titleProperty(){
+    public StringProperty title(){
         return title;
     }
 
-    public void setTitle(String title){
-        this.title.set(title);
-    }
-
-    public String getTitle(){
-        return title.get();
-    }
-
-    public XYChart.Series totalSeriesProperty(){
+    public XYChart.Series totalSeries(){
         return totalSeries;
     }
 
-    public XYChart.Series regressionSeriesProperty(){
+    public XYChart.Series regressionSeries(){
         return regressionSeries;
     }
 }

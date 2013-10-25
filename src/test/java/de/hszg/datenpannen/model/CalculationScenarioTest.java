@@ -5,6 +5,8 @@ import static de.hszg.datenpannen.model.InfluencingFactor.QUICK_NOTIFICATION;
 import static de.hszg.datenpannen.model.InfluencingFactor.STRONG_SECURITY_POSTURE;
 import static de.hszg.datenpannen.model.InfluencingFactor.THIRD_PARTY_ERROR;
 
+import static de.hszg.datenpannen.model.CostDistribution.*;
+
 import static org.assertj.core.api.Assertions.*;
 
 
@@ -42,35 +44,38 @@ public class CalculationScenarioTest {
     @Test
     public void testScenarioKleinesEnergieunternehmen() {
 
-        userinputModel.setNumberOfDatasets(512);
-        userinputModel.setSector(Sector.ENERGY);
-        userinputModel.addInfluencingFactors(THIRD_PARTY_ERROR, QUICK_NOTIFICATION, CISO_APPOINTMENT, STRONG_SECURITY_POSTURE);
+        userinputModel.numberOfDatasets().set(512);
+        userinputModel.sector().set(Sector.ENERGY);
+        userinputModel.influencingFactors().add(THIRD_PARTY_ERROR);
+        userinputModel.influencingFactors().add(QUICK_NOTIFICATION);
+        userinputModel.influencingFactors().add(CISO_APPOINTMENT);
+        userinputModel.influencingFactors().add(STRONG_SECURITY_POSTURE);
 
 
-        assertThat(result.getAvgCostPerDataset()).isEqualTo(203);
-//        assertThat(result.getMinCostPerDataset()).isEqualTo(108.490066);
-//        assertThat(result.getMaxCostPerDataset()).isEqualTo(334.781457);
-//
-//        assertThat(result.getAvgCostTotal()).isEqualTo(103936.00);
-//        assertThat(result.getMinCostTotal()).isEqualTo(55546.91);
-//        assertThat(result.getMaxCostTotal()).isEqualTo(171408.11);
+        assertThat(result.avgCostPerDataset().get()).isEqualTo(203);
+        assertThat(result.minCostPerDataset().get()).isEqualTo(108.490066);
+        assertThat(result.maxCostPerDataset().get()).isEqualTo(334.781457);
 
-//        assertDistribution(result, 36.89, 62.02, 113.83, INVESTIGATIONS_AND_FORENSICS);
-//        assertDistribution(result, 31.46, 58.87, 97.09, LOST_CUSTOMER_BUSINESS);
-//        assertDistribution(result, 9.76, 18.27, 30.13, AUDIT_AND_CONSULTING_SERVICES);
-//        assertDistribution(result, 7.59, 7.59, 23.43, OUTBOUND_CONTACT_COSTS);
-//        assertDistribution(result, 5.42, 10.15, 16.74, LEGAL_SERVICES_COMPLIANCE);
-//        assertDistribution(result, 5.42, 10.15, 16.74, CUSTOMER_ACQUISITION_COST);
-//        assertDistribution(result, 4.34, 8.12, 13.39, INBOUND_CONTACT_COSTS);
-//        assertDistribution(result, 4.34, 8.12, 13.39, LEGAL_SERVICES_DEFENSE);
-//        assertDistribution(result, 2.17, 4.06, 6.70, FREE_OR_DISCOUNTED_SERVICES);
-//        assertDistribution(result, 1.08, 2.03, 3.35, IDENTITY_PROTECTION_SERVICES);
-//        assertDistribution(result, 0.0, 0.0, 0.0, PUBLIC_RELATIONS_COMMUNICATIONS);
+        assertThat(result.avgCostTotal().get()).isEqualTo(103936.00);
+        assertThat(result.minCostTotal().get()).isEqualTo(55546.91);
+        assertThat(result.maxCostTotal().get()).isEqualTo(171408.11);
+
+        assertDistribution(result, 36.89, 62.02, 113.83, INVESTIGATIONS_AND_FORENSICS);
+        assertDistribution(result, 31.46, 58.87, 97.09, LOST_CUSTOMER_BUSINESS);
+        assertDistribution(result, 9.76, 18.27, 30.13, AUDIT_AND_CONSULTING_SERVICES);
+        assertDistribution(result, 7.59, 7.59, 23.43, OUTBOUND_CONTACT_COSTS);
+        assertDistribution(result, 5.42, 10.15, 16.74, LEGAL_SERVICES_COMPLIANCE);
+        assertDistribution(result, 5.42, 10.15, 16.74, CUSTOMER_ACQUISITION_COST);
+        assertDistribution(result, 4.34, 8.12, 13.39, INBOUND_CONTACT_COSTS);
+        assertDistribution(result, 4.34, 8.12, 13.39, LEGAL_SERVICES_DEFENSE);
+        assertDistribution(result, 2.17, 4.06, 6.70, FREE_OR_DISCOUNTED_SERVICES);
+        assertDistribution(result, 1.08, 2.03, 3.35, IDENTITY_PROTECTION_SERVICES);
+        assertDistribution(result, 0.0, 0.0, 0.0, PUBLIC_RELATIONS_COMMUNICATIONS);
     }
 
     private void assertDistribution(Result result, double min, double avg, double max, CostDistribution distribution) {
-        assertThat(result.getMinDistributionCost(distribution)).isEqualTo(min);
-        assertThat(result.getAvgDistributionCost(distribution)).isEqualTo(avg);
-        assertThat(result.getMaxDistributionCost(distribution)).isEqualTo(max);
+        assertThat(result.getMinDistributionCost(distribution).get()).isEqualTo(min);
+        assertThat(result.getAvgDistributionCost(distribution).get()).isEqualTo(avg);
+        assertThat(result.getMaxDistributionCost(distribution).get()).isEqualTo(max);
     }
 }

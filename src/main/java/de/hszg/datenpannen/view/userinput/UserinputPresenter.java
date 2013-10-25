@@ -35,10 +35,10 @@ public class UserinputPresenter implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("UserinputPresenter initialized");
 
-        numberOfDatasetsField.textProperty().bindBidirectional(userinputModel.numberOfDatasetsProperty(), new NumberStringConverter());
+        numberOfDatasetsField.textProperty().bindBidirectional(userinputModel.numberOfDatasets(), new NumberStringConverter());
 
         sectorChoiceBox.getItems().addAll(Sector.values());
-        sectorChoiceBox.valueProperty().bindBidirectional(userinputModel.sectorProperty());
+        sectorChoiceBox.valueProperty().bindBidirectional(userinputModel.sector());
 
         initInflueningFactorCheckBoxes();
     }
@@ -50,9 +50,9 @@ public class UserinputPresenter implements Initializable {
                 @Override
                 public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean selected) {
                     if (selected) {
-                        userinputModel.influencingFactorsProperty().add(factor);
+                        userinputModel.influencingFactors().add(factor);
                     } else {
-                        userinputModel.influencingFactorsProperty().remove(factor);
+                        userinputModel.influencingFactors().remove(factor);
                     }
                 }
             });

@@ -2,13 +2,10 @@ package de.hszg.datenpannen.view.statistics;
 
 import de.hszg.datenpannen.model.CostsChartModel;
 import de.hszg.datenpannen.model.DistributionChartModel;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
-import javafx.scene.chart.XYChart;
 
 import javax.inject.Inject;
 import java.net.URL;
@@ -46,11 +43,11 @@ public class StatisticsPresenter implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("StatisticsPresenter initialized");
 
-        costsChart.titleProperty().bindBidirectional(costsChartModel.titleProperty());
-        costsChart.getData().add(costsChartModel.totalSeriesProperty());
-        costsChart.getData().add(costsChartModel.regressionSeriesProperty());
+        costsChart.titleProperty().bindBidirectional(costsChartModel.title());
+        costsChart.getData().add(costsChartModel.totalSeries());
+        costsChart.getData().add(costsChartModel.regressionSeries());
 
-        distributionChart.titleProperty().bindBidirectional(distributionChartModel.titleProperty());
+        distributionChart.titleProperty().bindBidirectional(distributionChartModel.title());
         distributionChart.setData(distributionChartModel.getDistribtutionData());
     }
 
