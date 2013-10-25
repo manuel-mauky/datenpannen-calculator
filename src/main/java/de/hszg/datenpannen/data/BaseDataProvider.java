@@ -26,6 +26,8 @@ public interface BaseDataProvider {
 
     /**
      * Siehe {@link #getMinLossCost()}.
+     *
+     * Darf nicht 0 sein, da dieser Wert für Divisionen gebraucht wird.
      */
     double getAvgLossCost();
 

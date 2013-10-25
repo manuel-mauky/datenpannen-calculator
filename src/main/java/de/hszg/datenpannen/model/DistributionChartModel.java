@@ -15,7 +15,6 @@ public class DistributionChartModel {
 
     private ObservableList<PieChart.Data> distribtutionData = FXCollections.observableArrayList();
 
-
     public DistributionChartModel(){
         title.set("Aufteilung der Kosten");
         distribtutionData.addAll(new PieChart.Data("Malicious or criminal attack", 48),

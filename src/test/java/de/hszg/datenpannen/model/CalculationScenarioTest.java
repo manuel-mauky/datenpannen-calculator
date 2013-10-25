@@ -8,10 +8,13 @@ import static de.hszg.datenpannen.model.InfluencingFactor.THIRD_PARTY_ERROR;
 import static de.hszg.datenpannen.model.CostDistribution.*;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.data.Offset.offset;
 
 
 import de.hszg.datenpannen.data.BaseDataDummyProvider;
 import de.hszg.datenpannen.data.BaseDataProvider;
+import org.assertj.core.api.Assertions;
+import org.assertj.core.data.Offset;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -53,17 +56,17 @@ public class CalculationScenarioTest {
 
 
         assertThat(result.avgCostPerDataset().get()).isEqualTo(203);
-        assertThat(result.minCostPerDataset().get()).isEqualTo(108.490066);
-        assertThat(result.maxCostPerDataset().get()).isEqualTo(334.781457);
+        assertThat(result.minCostPerDataset().get()).isEqualTo(108.490066, offset(0.001));
+        assertThat(result.maxCostPerDataset().get()).isEqualTo(334.781457, offset(0.001));
 
-        assertThat(result.avgCostTotal().get()).isEqualTo(103936.00);
-        assertThat(result.minCostTotal().get()).isEqualTo(55546.91);
-        assertThat(result.maxCostTotal().get()).isEqualTo(171408.11);
+        assertThat(result.avgCostTotal().get()).isEqualTo(103936.00, offset(0.01));
+        assertThat(result.minCostTotal().get()).isEqualTo(55546.91, offset(0.01));
+        assertThat(result.maxCostTotal().get()).isEqualTo(171408.11, offset(0.01));
 
-        assertDistribution(result, 36.89, 62.02, 113.83, INVESTIGATIONS_AND_FORENSICS);
+        assertDistribution(result, 36.89, 69.02, 113.83, INVESTIGATIONS_AND_FORENSICS);
         assertDistribution(result, 31.46, 58.87, 97.09, LOST_CUSTOMER_BUSINESS);
         assertDistribution(result, 9.76, 18.27, 30.13, AUDIT_AND_CONSULTING_SERVICES);
-        assertDistribution(result, 7.59, 7.59, 23.43, OUTBOUND_CONTACT_COSTS);
+        assertDistribution(result, 7.59, 14.21, 23.43, OUTBOUND_CONTACT_COSTS);
         assertDistribution(result, 5.42, 10.15, 16.74, LEGAL_SERVICES_COMPLIANCE);
         assertDistribution(result, 5.42, 10.15, 16.74, CUSTOMER_ACQUISITION_COST);
         assertDistribution(result, 4.34, 8.12, 13.39, INBOUND_CONTACT_COSTS);
@@ -74,8 +77,8 @@ public class CalculationScenarioTest {
     }
 
     private void assertDistribution(Result result, double min, double avg, double max, CostDistribution distribution) {
-        assertThat(result.getMinDistributionCost(distribution).get()).isEqualTo(min);
-        assertThat(result.getAvgDistributionCost(distribution).get()).isEqualTo(avg);
-        assertThat(result.getMaxDistributionCost(distribution).get()).isEqualTo(max);
+        assertThat(result.getMinDistributionCost(distribution).get()).isEqualTo(min, offset(0.01));
+        assertThat(result.getAvgDistributionCost(distribution).get()).isEqualTo(avg, offset(0.01));
+        assertThat(result.getMaxDistributionCost(distribution).get()).isEqualTo(max, offset(0.01));
     }
 }
