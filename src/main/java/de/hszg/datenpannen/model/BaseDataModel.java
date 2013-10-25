@@ -18,7 +18,7 @@ public class BaseDataModel {
     private DoubleProperty maxLossCost = new SimpleDoubleProperty();
     private DoubleProperty minLossCost = new SimpleDoubleProperty();
 
-    private MapProperty<Sector, Double> lossCostPerSector = new SimpleMapProperty<>();
+    private MapProperty<Sector, Integer> lossCostPerSector = new SimpleMapProperty<>();
     private MapProperty<InfluencingFactor,Double> factorValues = new SimpleMapProperty<>();
     private MapProperty<CostDistribution,Double> costDistributions = new SimpleMapProperty<>();
 
@@ -61,7 +61,7 @@ public class BaseDataModel {
         return new SimpleDoubleProperty(dataProvider.getPercentageOf(distribution));
     }
 
-    public ReadOnlyMapProperty<Sector, Double> lossCostPerSectorProperty(){
+    public ReadOnlyMapProperty<Sector, Integer> lossCostPerSectorProperty(){
         return lossCostPerSector;
     }
 

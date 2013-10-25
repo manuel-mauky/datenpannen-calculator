@@ -32,7 +32,7 @@ public interface BaseDataProvider {
     double getValueOf(InfluencingFactor factor);
 
 
-    double getLossCostOf(Sector sector);
+    int getLossCostOf(Sector sector);
 
 
     double getPercentageOf(CostDistribution distribution);
@@ -45,7 +45,7 @@ public interface BaseDataProvider {
     /**
      * @return die Map der {@link Sector} Werte.
      */
-    Map<Sector,Double> getSectorMap();
+    Map<Sector, Integer> getSectorMap();
 
     /**
      * @return die Map der {@link CostDistribution} Werte.

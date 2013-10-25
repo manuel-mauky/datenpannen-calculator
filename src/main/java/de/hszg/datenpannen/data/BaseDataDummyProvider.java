@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class BaseDataDummyProvider implements BaseDataProvider {
 
-    private Map<Sector, Double> lossCostPerSector = new EnumMap<>(Sector.class);
+    private Map<Sector, Integer> lossCostPerSector = new EnumMap<>(Sector.class);
     private Map<InfluencingFactor, Double> factorValues = new EnumMap<>(InfluencingFactor.class);
     private Map<CostDistribution, Double> costDistributions = new EnumMap<>(CostDistribution.class);
 
@@ -22,17 +22,17 @@ public class BaseDataDummyProvider implements BaseDataProvider {
     }
 
     private void initLossCostPerSector() {
-        lossCostPerSector.put(Sector.COMMUNICATIONS, 119.0);
-        lossCostPerSector.put(Sector.CONSUMER, 161.0);
-        lossCostPerSector.put(Sector.ENERGY, 201.0);
-        lossCostPerSector.put(Sector.FINANCIAL, 217.0);
-        lossCostPerSector.put(Sector.HOSPITALITY, 141.0);
-        lossCostPerSector.put(Sector.INDUSTRIAL, 214.0);
-        lossCostPerSector.put(Sector.PHARMACEUTICAL, 114.0);
-        lossCostPerSector.put(Sector.PUBLIC_SECTOR, 93.0);
-        lossCostPerSector.put(Sector.RETAIL, 126.0);
-        lossCostPerSector.put(Sector.SERVICES, 134.0);
-        lossCostPerSector.put(Sector.TECHNOLOGY, 120.0);
+        lossCostPerSector.put(Sector.COMMUNICATIONS, 119);
+        lossCostPerSector.put(Sector.CONSUMER, 161);
+        lossCostPerSector.put(Sector.ENERGY, 201);
+        lossCostPerSector.put(Sector.FINANCIAL, 217);
+        lossCostPerSector.put(Sector.HOSPITALITY, 141);
+        lossCostPerSector.put(Sector.INDUSTRIAL, 214);
+        lossCostPerSector.put(Sector.PHARMACEUTICAL, 114);
+        lossCostPerSector.put(Sector.PUBLIC_SECTOR, 93);
+        lossCostPerSector.put(Sector.RETAIL, 126);
+        lossCostPerSector.put(Sector.SERVICES, 134);
+        lossCostPerSector.put(Sector.TECHNOLOGY, 120);
     }
 
     private void initFactorValues() {
@@ -81,9 +81,8 @@ public class BaseDataDummyProvider implements BaseDataProvider {
     }
 
     @Override
-    public double getLossCostOf(Sector sector) {
-        Double value = lossCostPerSector.get(sector);
-        return checkValue(value);
+    public int getLossCostOf(Sector sector) {
+        return lossCostPerSector.get(sector);
     }
 
     @Override
@@ -98,7 +97,7 @@ public class BaseDataDummyProvider implements BaseDataProvider {
     }
 
     @Override
-    public Map<Sector, Double> getSectorMap() {
+    public Map<Sector, Integer> getSectorMap() {
         return lossCostPerSector;
     }
 

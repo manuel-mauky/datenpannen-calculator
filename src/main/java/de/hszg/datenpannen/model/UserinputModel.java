@@ -56,15 +56,15 @@ public class UserinputModel {
     	influencingFactorsProperty.get().removeAll(Arrays.asList(factors));
     }
 
-    public IntegerProperty numberOfDatasetProperty() {
+    public IntegerProperty numberOfDatasetsProperty() {
         return numberOfDatasetsProperty;
     }
 
-    public int getNumberOfDataset() {
+    public int getNumberOfDatasets() {
         return numberOfDatasetsProperty.get();
     }
 
-    public void setNumberOfDataset(int number) {
+    public void setNumberOfDatasets(int number) {
         numberOfDatasetsProperty.set(number);
     }
 

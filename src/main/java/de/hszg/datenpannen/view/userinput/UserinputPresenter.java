@@ -35,7 +35,7 @@ public class UserinputPresenter implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("UserinputPresenter initialized");
 
-        numberOfDatasetsField.textProperty().bindBidirectional(userinputModel.numberOfDatasetProperty(), new NumberStringConverter());
+        numberOfDatasetsField.textProperty().bindBidirectional(userinputModel.numberOfDatasetsProperty(), new NumberStringConverter());
 
         sectorChoiceBox.getItems().addAll(Sector.values());
         sectorChoiceBox.valueProperty().bindBidirectional(userinputModel.sectorProperty());
