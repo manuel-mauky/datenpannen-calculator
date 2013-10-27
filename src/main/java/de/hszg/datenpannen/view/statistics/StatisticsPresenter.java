@@ -31,7 +31,7 @@ public class StatisticsPresenter implements Initializable{
      * Das Linien-Diagramm, welches die Tatsächlichen Kosten anzeigt.
      */
     @FXML
-    private LineChart<Integer, Integer> costsChart;
+    private LineChart<Integer, Double> costsChart;
 
     @Inject
     private CostsChartModel costsChartModel;
@@ -44,11 +44,12 @@ public class StatisticsPresenter implements Initializable{
         System.out.println("StatisticsPresenter initialized");
 
         costsChart.titleProperty().bindBidirectional(costsChartModel.title());
-        costsChart.getData().add(costsChartModel.totalSeries());
-        costsChart.getData().add(costsChartModel.regressionSeries());
+        costsChart.getData().add(costsChartModel.avgSeries());
+        costsChart.getData().add(costsChartModel.minSeries());
+        costsChart.getData().add(costsChartModel.maxSeries());
 
         distributionChart.titleProperty().bindBidirectional(distributionChartModel.title());
-        distributionChart.setData(distributionChartModel.getDistribtutionData());
+        distributionChart.setData(distributionChartModel.distribtutionData());
     }
 
 }

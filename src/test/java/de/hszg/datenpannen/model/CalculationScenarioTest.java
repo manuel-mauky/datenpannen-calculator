@@ -31,7 +31,7 @@ public class CalculationScenarioTest {
 
     @Before
     public void setup() {
-        BaseDataProvider baseDataProvider = new BaseDataDummyProvider();
+        BaseDataDummyProvider baseDataProvider = new BaseDataDummyProvider();
 
         baseDataModel = new BaseDataModel(baseDataProvider);
         userinputModel = new UserinputModel();

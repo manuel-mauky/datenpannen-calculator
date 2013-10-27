@@ -50,7 +50,7 @@ public class BaseDataModel {
     private MapProperty<CostDistribution,Double> costDistributions = new SimpleMapProperty<>();
 
     @Inject
-    private BaseDataProvider dataProvider;
+    private BaseDataDummyProvider dataProvider;
 
     /**
      * Public Default Konstruktor wird von DI-Framework zur Instanziierung benutzt.
@@ -60,7 +60,7 @@ public class BaseDataModel {
     /**
      * Parametrisierter Konstruktor kann in Tests ohne DI-Framework benutzt werden.
      */
-    BaseDataModel(BaseDataProvider dataProvider){
+    BaseDataModel(BaseDataDummyProvider dataProvider){
         this.dataProvider = dataProvider;
         initialize();
     }
