@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
-  <widgets xsi:type="model:Rectangle" id="1" x="27" y="31" width="550" height="450" measuredWidth="550" measuredHeight="450">
+  <widgets xsi:type="model:Rectangle" id="1" x="27" y="31" width="630" height="450" measuredWidth="630" measuredHeight="450">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Chart" id="3" x="304" y="264" measuredWidth="200" measuredHeight="200"/>
-  <widgets xsi:type="model:Chart" id="4" x="304" y="48" measuredWidth="200" measuredHeight="200" chartType="line"/>
+  <widgets xsi:type="model:Chart" id="3" x="288" y="264" measuredWidth="200" measuredHeight="200"/>
+  <widgets xsi:type="model:Chart" id="4" x="288" y="48" measuredWidth="200" measuredHeight="200" chartType="line"/>
   <widgets xsi:type="model:Combo" id="8" x="40" y="194" width="188" text="Industriezweig&#xA;" measuredWidth="188" measuredHeight="23">
     <font/>
   </widgets>
@@ -34,7 +34,35 @@
   <widgets xsi:type="model:Spinner" id="17" x="40" y="128" width="188" text="42" measuredWidth="188" measuredHeight="23">
     <font/>
   </widgets>
-  <hRuler/>
-  <vRuler/>
+  <widgets xsi:type="model:Label" id="18" x="512" y="48" text="Pro Datensatz" measuredWidth="101" measuredHeight="23">
+    <font bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="19" x="512" y="76" text="Durchschnitt: 123€" measuredWidth="124" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="20" x="512" y="98" text="Minimal: 60€" measuredWidth="83" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="21" x="512" y="120" text="Maximal: 160€" measuredWidth="94" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="22" x="512" y="150" text="Maximaler Verlust" measuredWidth="128" measuredHeight="23">
+    <font bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="23" x="512" y="178" text="Durchschnitt: 1203€" measuredWidth="132" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="24" x="512" y="200" text="Minimal: 600€" measuredWidth="91" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="25" x="512" y="222" text="Maximal: 1600€" measuredWidth="102" measuredHeight="23">
+    <font/>
+  </widgets>
+  <hRuler>
+    <guides position="-37"/>
+  </hRuler>
+  <vRuler>
+    <guides position="63"/>
+  </vRuler>
   <font size="12px"/>
 </model:Screen>
