@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Rectangle" id="1" x="32" y="31" width="638" height="474" measuredWidth="638" measuredHeight="474">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:VLine" id="2" x="248" y="32" height="473" measuredWidth="6" measuredHeight="473"/>
+  <widgets xsi:type="model:Combo" id="3" x="40" y="180" width="188" text="Industriezweig&#xA;" measuredWidth="188" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="4" x="40" y="154" text="Industriezweig auswählen:" measuredWidth="165" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="5" x="40" y="76" text="Wie viele Clients haben Sie?" measuredWidth="172" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Spinner" id="6" x="40" y="106" width="188" text="42" measuredWidth="188" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Combo" id="7" x="40" y="250" width="188" text="Maßnahme" measuredWidth="188" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="8" x="40" y="224" text="Sicherheitsvorkehrung auswählen:" measuredWidth="213" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Chart" id="9" x="272" y="67" width="273" height="146" measuredWidth="273" measuredHeight="146" chartType="line"/>
+  <widgets xsi:type="model:Chart" id="10" x="272" y="244" width="121" height="109" measuredWidth="121" measuredHeight="109"/>
+  <widgets xsi:type="model:Chart" id="11" x="480" y="244" width="121" height="109" measuredWidth="121" measuredHeight="109"/>
+  <widgets xsi:type="model:Chart" id="12" x="480" y="360" width="121" height="109" measuredWidth="121" measuredHeight="109"/>
+  <widgets xsi:type="model:Chart" id="13" x="272" y="360" width="121" height="109" measuredWidth="121" measuredHeight="109"/>
+  <widgets xsi:type="model:Arrow" id="14" x="376" y="312" width="112" height="8" measuredWidth="112" measuredHeight="8" annotation="true" left="false" right="true" direction="bottom"/>
+  <widgets xsi:type="model:Arrow" id="15" x="320" y="296" width="185" height="105" measuredWidth="185" measuredHeight="105" annotation="true" left="false" right="true"/>
+  <widgets xsi:type="model:Label" id="16" x="600" y="244" text="Intern" measuredWidth="42" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="17" x="600" y="360" text="Extern" measuredWidth="45" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="18" x="272" y="222" text="Kostenkomponenten" measuredWidth="129" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="19" x="272" y="45" text="Kostenübersicht" measuredWidth="102" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="20" x="265" y="468" text="Kosten verschiedener Angriffsarten" measuredWidth="216" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="21" x="544" y="45" text="Je Client" measuredWidth="61" measuredHeight="23">
+    <font bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="22" x="544" y="98" text="Max. Verlust" measuredWidth="90" measuredHeight="23">
+    <font bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="23" x="544" y="150" text="Verlust bei ... %" measuredWidth="113" measuredHeight="23">
+    <font bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="24" x="544" y="76" text="500,00€" measuredWidth="57" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="25" x="544" y="120" text="500,00€" measuredWidth="57" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="26" x="544" y="176" text="500,00€" measuredWidth="57" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="27" x="40" y="45" text="Kostenanalyse Virenbefall" measuredWidth="182" measuredHeight="23">
+    <font bold="true"/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>
