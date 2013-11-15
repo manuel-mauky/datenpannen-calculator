@@ -16,57 +16,53 @@ import java.util.EnumMap;
 public class BaseDataModel {
 
     /**
-     * Der statistisch ermittelte Ausgangswert für die Durchschnittlichen Kosten.
-     * Dieser Wert ist Grundlage für die weiteren Berechnungen.
+     * Der statistisch ermittelte Ausgangswert für die Durchschnittlichen
+     * Kosten. Dieser Wert ist Grundlage für die weiteren Berechnungen.
      */
     private DoubleProperty avgLossCost = new SimpleDoubleProperty();
-
     /**
-     * Der statistisch ermittelte Ausgangswert für die Maximalen Kosten.
-     * Dieser Wert ist Grundlage für die weiteren Berechnungen.
+     * Der statistisch ermittelte Ausgangswert für die Maximalen Kosten. Dieser
+     * Wert ist Grundlage für die weiteren Berechnungen.
      */
     private DoubleProperty maxLossCost = new SimpleDoubleProperty();
-
     /**
-     * Der statistisch ermittelte Ausgangswert für die Minimalen Kosten.
-     * Dieser Wert ist Grundlage für die weiteren Berechnungen.
+     * Der statistisch ermittelte Ausgangswert für die Minimalen Kosten. Dieser
+     * Wert ist Grundlage für die weiteren Berechnungen.
      */
     private DoubleProperty minLossCost = new SimpleDoubleProperty();
-
-
     /**
      * Die Kosten für die einzelnen Industriezweige.
      */
     private MapProperty<Sector, Integer> lossCostPerSector = new SimpleMapProperty<>();
-
     /**
      * Die Einflussfaktoren.
      */
-    private MapProperty<InfluencingFactor,Double> factorValues = new SimpleMapProperty<>();
-
+    private MapProperty<InfluencingFactor, Double> factorValues = new SimpleMapProperty<>();
     /**
      * Die Aufteilung der Kosten.
      */
-    private MapProperty<CostDistribution,Double> costDistributions = new SimpleMapProperty<>();
-
+    private MapProperty<CostDistribution, Double> costDistributions = new SimpleMapProperty<>();
     @Inject
     private BaseDataDummyProvider dataProvider;
 
     /**
-     * Public Default Konstruktor wird von DI-Framework zur Instanziierung benutzt.
+     * Public Default Konstruktor wird von DI-Framework zur Instanziierung
+     * benutzt.
      */
-    public BaseDataModel(){}
+    public BaseDataModel() {
+    }
 
     /**
-     * Parametrisierter Konstruktor kann in Tests ohne DI-Framework benutzt werden.
+     * Parametrisierter Konstruktor kann in Tests ohne DI-Framework benutzt
+     * werden.
      */
-    BaseDataModel(BaseDataDummyProvider dataProvider){
+    BaseDataModel(BaseDataDummyProvider dataProvider) {
         this.dataProvider = dataProvider;
         initialize();
     }
 
     @PostConstruct
-    void initialize() {
+    final void initialize() {
         avgLossCost.set(dataProvider.getAvgLossCost());
         maxLossCost.set(dataProvider.getMaxLossCost());
         minLossCost.set(dataProvider.getMinLossCost());
@@ -76,30 +72,17 @@ public class BaseDataModel {
         costDistributions.set(FXCollections.observableMap(dataProvider.getCostDistributionMap()));
     }
 
-    public ReadOnlyDoubleProperty influencingFactor(InfluencingFactor factor) {
-        return new SimpleDoubleProperty(dataProvider.getValueOf(factor));
-    }
-
-    public ReadOnlyDoubleProperty lossCostSector(Sector sector) {
-        return new SimpleDoubleProperty(dataProvider.getLossCostOf(sector));
-    }
-
-    public ReadOnlyDoubleProperty costDistribution(CostDistribution distribution) {
-        return new SimpleDoubleProperty(dataProvider.getPercentageOf(distribution));
-    }
-
-    public ReadOnlyMapProperty<Sector, Integer> lossCostPerSector(){
+    public ReadOnlyMapProperty<Sector, Integer> lossCostPerSector() {
         return lossCostPerSector;
     }
 
-    public ReadOnlyMapProperty<InfluencingFactor,Double> factorValues(){
+    public ReadOnlyMapProperty<InfluencingFactor, Double> factorValues() {
         return factorValues;
     }
 
-    public ReadOnlyMapProperty<CostDistribution,Double> costDistributions(){
+    public ReadOnlyMapProperty<CostDistribution, Double> costDistributions() {
         return costDistributions;
     }
-
 
     public ReadOnlyDoubleProperty minLossCost() {
         return minLossCost;

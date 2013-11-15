@@ -31,14 +31,6 @@ public interface BaseDataProvider {
      */
     double getAvgLossCost();
 
-    double getValueOf(InfluencingFactor factor);
-
-
-    int getLossCostOf(Sector sector);
-
-
-    double getPercentageOf(CostDistribution distribution);
-
     /**
      * @return die Map der {@link InfluencingFactor} Werte.
      */

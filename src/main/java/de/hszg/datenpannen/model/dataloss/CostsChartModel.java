@@ -1,9 +1,7 @@
 package de.hszg.datenpannen.model.dataloss;
 
-import javafx.beans.binding.ObjectBinding;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
 
@@ -45,9 +43,9 @@ public class CostsChartModel {
         minSeries.setName("Min");
         maxSeries.setName("Max");
 
-        avgSeriesData().add(new XYChart.Data<Integer, Double>(0,0.0));
-        minSeriesData().add(new XYChart.Data<Integer, Double>(0,0.0));
-        maxSeriesData().add(new XYChart.Data<Integer, Double>(0,0.0));
+        avgSeriesData().add(new XYChart.Data<>(0,0.0));
+        minSeriesData().add(new XYChart.Data<>(0,0.0));
+        maxSeriesData().add(new XYChart.Data<>(0,0.0));
 
 
 

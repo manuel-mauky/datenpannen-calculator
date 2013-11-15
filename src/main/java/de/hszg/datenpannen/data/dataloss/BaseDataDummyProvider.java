@@ -75,23 +75,6 @@ public class BaseDataDummyProvider implements BaseDataProvider {
     }
 
     @Override
-    public double getValueOf(InfluencingFactor factor) {
-        Double value = factorValues.get(factor);
-        return checkValue(value);
-    }
-
-    @Override
-    public int getLossCostOf(Sector sector) {
-        return lossCostPerSector.get(sector);
-    }
-
-    @Override
-    public double getPercentageOf(CostDistribution distribution) {
-        Double value = costDistributions.get(distribution);
-        return checkValue(value);
-    }
-
-    @Override
     public Map<InfluencingFactor, Double> getInfluencingFactorMap() {
         return factorValues;
     }
@@ -104,13 +87,5 @@ public class BaseDataDummyProvider implements BaseDataProvider {
     @Override
     public Map<CostDistribution, Double> getCostDistributionMap() {
         return costDistributions;
-    }
-
-    private double checkValue(Double value) {
-        if (value == null) {
-            return Double.NaN;
-        } else {
-            return value;
-        }
     }
 }

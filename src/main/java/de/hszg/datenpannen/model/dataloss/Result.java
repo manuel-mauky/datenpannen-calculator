@@ -17,55 +17,46 @@ import java.util.Map;
 public class Result {
 
     /**
-     * Die tatsächlichen (d.h. für den Industriezweig) Durchschnittskosten pro Datensatz.
+     * Die tatsächlichen (d.h. für den Industriezweig) Durchschnittskosten pro
+     * Datensatz.
      */
     private DoubleProperty avgCostPerDataset = new SimpleDoubleProperty();
-
     /**
-     * Die tatsächlichen (d.h. für den Industriezweig) Minimalen Kosten pro Datensatz.
+     * Die tatsächlichen (d.h. für den Industriezweig) Minimalen Kosten pro
+     * Datensatz.
      */
     private DoubleProperty minCostPerDataset = new SimpleDoubleProperty();
-
     /**
-     * Die tatsächlichen (d.h. für den Industriezweig) Maximalen Kosten pro Datensatz.
+     * Die tatsächlichen (d.h. für den Industriezweig) Maximalen Kosten pro
+     * Datensatz.
      */
     private DoubleProperty maxCostPerDataset = new SimpleDoubleProperty();
-
     /**
      * Die gesamten Durchschnittskosten über alle Datensätze.
      */
     private DoubleProperty avgCostTotal = new SimpleDoubleProperty();
-
     /**
      * Die gesamten Minimalen Kosten über alle Datensätze.
      */
     private DoubleProperty minCostTotal = new SimpleDoubleProperty();
-
     /**
      * Die gesamten Maximalen Kosten über alle Datensätze.
      */
     private DoubleProperty maxCostTotal = new SimpleDoubleProperty();
-
-
     /**
      * Die Aufteilung der Durchschnittlichen Kosten.
      */
     private MapProperty<CostDistribution, DoubleProperty> avgDistributionCosts = new SimpleMapProperty<>();
-
     /**
      * Die Aufteilung der Minimalen Kosten.
      */
     private MapProperty<CostDistribution, DoubleProperty> minDistributionCosts = new SimpleMapProperty<>();
-
     /**
      * Die Aufteilung der Maximalen Kosten.
      */
     private MapProperty<CostDistribution, DoubleProperty> maxDistributionCosts = new SimpleMapProperty<>();
-
-
     @Inject
     private BaseDataModel baseDataModel;
-
     @Inject
     private UserinputModel userinputModel;
 
@@ -76,10 +67,11 @@ public class Result {
     }
 
     /**
-     * Der Parametrisierte Konstruktor ist zum Testen der Klasse gedacht. Darüber können die Abhängigkeiten direkt
-     * injeziert werden.
+     * Der Parametrisierte Konstruktor ist zum Testen der Klasse gedacht.
+     * Darüber können die Abhängigkeiten direkt injeziert werden.
      * <p/>
-     * Im Realen Betrieb wird dies durch das Dependency-Injection-Framework übernommen.
+     * Im Realen Betrieb wird dies durch das Dependency-Injection-Framework
+     * übernommen.
      */
     protected Result(BaseDataModel baseDataModel, UserinputModel userinputModel) {
         this();
@@ -90,8 +82,9 @@ public class Result {
     }
 
     /**
-     * Stellt sämtliche Bindings her. Diese Methode wird dank der {@link PostConstruct} Annotation durch das
-     * DI-Framework nach Initialisierung der Klasse aufgerufen.
+     * Stellt sämtliche Bindings her. Diese Methode wird dank der
+     * {@link PostConstruct} Annotation durch das DI-Framework nach
+     * Initialisierung der Klasse aufgerufen.
      */
     @PostConstruct
     protected void initialize() {
@@ -136,25 +129,27 @@ public class Result {
     }
 
     /**
-     * Erzeugt für sämtliche DoubleProperty-Values der Map ein Binding, welches die angegebenen "costPerDataset" (je
-     * avg,min, max) mit dem dazugehörigen Faktor (aus {@link BaseDataModel} multipliziert.
+     * Erzeugt für sämtliche DoubleProperty-Values der Map ein Binding, welches
+     * die angegebenen "costPerDataset" (je avg,min, max) mit dem dazugehörigen
+     * Faktor (aus {@link BaseDataModel} multipliziert.
      */
     private void initDistributionCostBinding(Map<CostDistribution, DoubleProperty> map, DoubleProperty costPerDataset) {
         for (Map.Entry<CostDistribution, DoubleProperty> entry : map.entrySet()) {
             CostDistribution key = entry.getKey();
             DoubleProperty value = entry.getValue();
 
-            ReadOnlyDoubleProperty property = baseDataModel.costDistribution(key);
+            ReadOnlyDoubleProperty property = new SimpleDoubleProperty(
+                    baseDataModel.costDistributions().get(key));
 
             value.bind(costPerDataset.multiply(property));
         }
     }
 
-
     /**
-     * Erzeugt eine EnumMap für den angegebenen Enum-Typ. Die Map wird mit SimpleDoubleProperty-Instanzen gefüllt.
+     * Erzeugt eine EnumMap für den angegebenen Enum-Typ. Die Map wird mit
+     * SimpleDoubleProperty-Instanzen gefüllt.
      */
-    private <T extends Enum<T>>Map<T, DoubleProperty> createEmptyEnumMap(Class<T> enumType) {
+    private <T extends Enum<T>> Map<T, DoubleProperty> createEmptyEnumMap(Class<T> enumType) {
         final Map<T, DoubleProperty> map = new EnumMap<T, DoubleProperty>(enumType);
         for (T enumConstant : enumType.getEnumConstants()) {
             map.put(enumConstant, new SimpleDoubleProperty(0));
