@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns:fx="http://javafx.com/fxml" fx:controller="de.hszg.datenpannen.view.statistics.virus.StatisticsPresenter">
+  <children>
+    <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <LineChart fx:id="costsChart" alternativeRowFillVisible="false" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" prefHeight="286.0" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
+          <xAxis>
+            <NumberAxis minorTickVisible="false" side="BOTTOM" upperBound="32.0" />
+          </xAxis>
+          <yAxis>
+            <NumberAxis side="LEFT" upperBound="12000.0" />
+          </yAxis>
+        </LineChart>
+        <GridPane>
+          <children>
+            <PieChart fx:id="distributionChart" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <PieChart fx:id="distributionProductivityLossChart" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <PieChart fx:id="distributionDirectLaborChart" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <PieChart fx:id="attackCostsChart" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+          </children>
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+          </rowConstraints>
+        </GridPane>
+      </children>
+    </VBox>
+  </children>
+</AnchorPane>

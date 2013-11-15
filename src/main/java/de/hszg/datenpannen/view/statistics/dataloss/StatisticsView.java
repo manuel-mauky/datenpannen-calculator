@@ -1,4 +1,4 @@
-package de.hszg.datenpannen.view.statistics;
+package de.hszg.datenpannen.view.statistics.dataloss;
 
 import com.airhacks.afterburner.views.FXMLView;
 

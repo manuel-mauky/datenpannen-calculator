@@ -1,7 +1,7 @@
-package de.hszg.datenpannen.view.statistics;
+package de.hszg.datenpannen.view.statistics.dataloss;
 
-import de.hszg.datenpannen.model.CostsChartModel;
-import de.hszg.datenpannen.model.DistributionChartModel;
+import de.hszg.datenpannen.model.dataloss.CostsChartModel;
+import de.hszg.datenpannen.model.dataloss.DistributionChartModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;

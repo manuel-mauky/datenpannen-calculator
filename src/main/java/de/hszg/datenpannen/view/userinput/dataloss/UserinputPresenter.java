@@ -1,8 +1,8 @@
-package de.hszg.datenpannen.view.userinput;
+package de.hszg.datenpannen.view.userinput.dataloss;
 
-import de.hszg.datenpannen.model.InfluencingFactor;
-import de.hszg.datenpannen.model.Sector;
-import de.hszg.datenpannen.model.UserinputModel;
+import de.hszg.datenpannen.model.dataloss.InfluencingFactor;
+import de.hszg.datenpannen.model.dataloss.Sector;
+import de.hszg.datenpannen.model.dataloss.UserinputModel;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;

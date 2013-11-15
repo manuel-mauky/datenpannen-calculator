@@ -1,19 +1,13 @@
-package de.hszg.datenpannen.model;
+package de.hszg.datenpannen.model.dataloss;
 
-import static de.hszg.datenpannen.model.InfluencingFactor.*;
-import static de.hszg.datenpannen.model.CostDistribution.*;
+import static de.hszg.datenpannen.model.dataloss.InfluencingFactor.*;
+import static de.hszg.datenpannen.model.dataloss.CostDistribution.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.data.Offset.offset;
 
-import javax.swing.UIManager;
 
-import de.hszg.datenpannen.data.BaseDataDummyProvider;
-import de.hszg.datenpannen.data.BaseDataProvider;
-
-import org.assertj.core.api.Assertions;
-import org.assertj.core.data.Offset;
+import de.hszg.datenpannen.data.dataloss.BaseDataDummyProvider;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**

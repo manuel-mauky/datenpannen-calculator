@@ -1,4 +1,4 @@
-package de.hszg.datenpannen.model;
+package de.hszg.datenpannen.model.dataloss;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;

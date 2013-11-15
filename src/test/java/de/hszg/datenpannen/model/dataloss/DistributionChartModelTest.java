@@ -1,4 +1,4 @@
-package de.hszg.datenpannen.model;
+package de.hszg.datenpannen.model.dataloss;
 
 import org.junit.Before;
 import org.junit.Test;

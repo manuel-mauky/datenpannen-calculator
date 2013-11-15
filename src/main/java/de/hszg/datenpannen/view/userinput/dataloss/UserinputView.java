@@ -1,4 +1,4 @@
-package de.hszg.datenpannen.view.userinput;
+package de.hszg.datenpannen.view.userinput.dataloss;
 
 import com.airhacks.afterburner.views.FXMLView;
 
