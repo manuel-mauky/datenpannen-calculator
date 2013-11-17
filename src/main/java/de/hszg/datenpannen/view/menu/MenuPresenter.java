@@ -1,6 +1,10 @@
 package de.hszg.datenpannen.view.menu;
 
+import de.hszg.datenpannen.view.dialogues.AboutView;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -10,6 +14,18 @@ import java.util.ResourceBundle;
  * ausführbar sind, koordiniert.
  */
 public class MenuPresenter implements Initializable {
+
+    public void about(){
+        System.out.println("about");
+
+        AboutView aboutView = new AboutView();
+        Parent aboutNode = aboutView.getView();
+
+        Stage aboutStage = new Stage();
+        aboutStage.setScene(new Scene(aboutNode));
+        aboutStage.show();
+
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

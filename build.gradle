@@ -39,7 +39,7 @@ dependencies {
     }
 
     // UI-Bibliothek für JavaFX
-    compile "com.airhacks:afterburner.fx:1.1"
+    compile "com.airhacks:afterburner.fx:1.2"
 
     // testing
     testCompile "junit:junit:4.11"
