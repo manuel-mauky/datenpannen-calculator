@@ -7,7 +7,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
-<?import de.hszg.datenpannen.utils.NumberTextField?>
 
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns:fx="http://javafx.com/fxml" fx:controller="de.hszg.datenpannen.dataloss.view.userinput.DatalossUserinputPresenter">
@@ -17,7 +16,7 @@
                 <VBox spacing="5.0">
                     <children>
                         <Label text="Wie viele Datensätze haben Sie?" VBox.vgrow="SOMETIMES" />
-                        <NumberTextField fx:id="numberOfDatasetsField" prefWidth="200.0" text="42" />
+                        <TextField fx:id="numberOfDatasetsField" prefWidth="200.0" text="42" />
                     </children>
                 </VBox>
                 <VBox spacing="5.0">

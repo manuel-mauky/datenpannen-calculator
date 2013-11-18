@@ -5,6 +5,9 @@ import de.hszg.datenpannen.dataloss.model.Sector;
 import de.hszg.datenpannen.dataloss.model.UserinputModel;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import de.hszg.datenpannen.utils.BindingHelper;
+import de.hszg.datenpannen.utils.EmptyToZeroNumberConverter;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -13,7 +16,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import javafx.util.converter.NumberStringConverter;
+
 import javax.inject.Inject;
 
 /**
@@ -35,7 +38,8 @@ public class DatalossUserinputPresenter implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("DatalossUserinputPresenter initialized");
 
-        numberOfDatasetsField.textProperty().bindBidirectional(userinputModel.numberOfDatasets(), new NumberStringConverter());
+        BindingHelper.applyNumberOnlyFilter(numberOfDatasetsField.textProperty());
+        numberOfDatasetsField.textProperty().bindBidirectional(userinputModel.numberOfDatasets(), new EmptyToZeroNumberConverter());
 
         sectorChoiceBox.getItems().addAll(Sector.values());
         sectorChoiceBox.valueProperty().bindBidirectional(userinputModel.sector());

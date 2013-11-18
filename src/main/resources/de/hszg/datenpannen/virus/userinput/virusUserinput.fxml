@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.hszg.datenpannen.utils.NumberTextField?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.collections.*?>
@@ -16,7 +15,7 @@
         <VBox spacing="5.0">
           <children>
             <Label text="Wie viele Clients haben Sie?" VBox.vgrow="SOMETIMES" />
-            <NumberTextField fx:id="numberOfClientsField" prefWidth="200.0" text="42" />
+            <TextField fx:id="numberOfClientsField" prefWidth="200.0" text="42" />
           </children>
         </VBox>
         <VBox spacing="5.0">
