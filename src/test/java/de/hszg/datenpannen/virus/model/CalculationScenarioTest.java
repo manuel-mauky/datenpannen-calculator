@@ -1,13 +1,12 @@
-package de.hszg.datenpannen.model.virus;
+package de.hszg.datenpannen.virus.model;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.assertj.core.data.Offset.offset;
-
+import de.hszg.datenpannen.virus.data.BaseDataDummyProvider;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import de.hszg.datenpannen.data.virus.BaseDataDummyProvider;
+import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.data.Offset.offset;
 
 /**
  * 

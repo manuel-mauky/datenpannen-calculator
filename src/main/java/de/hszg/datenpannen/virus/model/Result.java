@@ -1,4 +1,4 @@
-package de.hszg.datenpannen.model.virus;
+package de.hszg.datenpannen.virus.model;
 
 import javafx.beans.property.ReadOnlyDoubleProperty;
 
