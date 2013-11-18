@@ -1,0 +1,20 @@
+package de.hszg.datenpannen.virus.model;
+
+public enum Sector {
+
+    FINANCIAL_SERVICES,
+    UTILITIES_AND_ENERGY,
+    PHARMACEUTICAL,
+    TECHNOLOGY,
+    PUBLIC_SECTOR,
+    EDUCATION_AND_RESEARCH,
+    INDUSTRIAL,
+    TRANSPORTATION,
+    SERVICES,
+    HOSPITALITY,
+    CONSUMER_PRODUCTS,
+    AUTOMOTIVE,
+    MEDIA,
+    RETAIL;  
+    
+}

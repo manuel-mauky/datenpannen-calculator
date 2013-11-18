@@ -1,7 +1,7 @@
 package de.hszg.datenpannen;
 
 import com.airhacks.afterburner.injection.InjectionProvider;
-import de.hszg.datenpannen.view.main.MainView;
+import de.hszg.datenpannen.main.view.main.MainView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
