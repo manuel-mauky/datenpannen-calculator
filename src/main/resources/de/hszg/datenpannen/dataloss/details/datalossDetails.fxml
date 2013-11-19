@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="-1.0" prefWidth="-1.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.hszg.datenpannen.dataloss.view.details.DatalossDetailsPresenter">
+  <children>
+    <VBox alignment="TOP_LEFT" fillWidth="true" prefHeight="-1.0" prefWidth="-1.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <Label text="Pro Datensatz" underline="false">
+          <font>
+            <Font name="System Bold" size="13.0" fx:id="x1" />
+          </font>
+        </Label>
+        <VBox fillWidth="false" prefHeight="-1.0" prefWidth="-1.0" spacing="2.0">
+          <children>
+            <Label id="avgPerD" fx:id="avgPerDataset" text="Durchschnitt: 123 €" />
+            <Label fx:id="minPerDataset" text="Minimal: 60 €" />
+            <Label fx:id="maxPerDataset" text="Maximal 160 €" />
+          </children>
+          <padding>
+            <Insets left="5.0" fx:id="x2" />
+          </padding>
+        </VBox>
+        <Label font="$x1" text="Gesamt" />
+        <VBox fillWidth="false" padding="$x2" prefHeight="-1.0" prefWidth="-1.0" spacing="2.0">
+          <children>
+            <Label fx:id="avgTotal" text="Durchschnitt: 1203 €" />
+            <Label fx:id="minTotal" text="Minimal: 600 €" />
+            <Label fx:id="maxTotal" text="Maximal 1600 €" />
+          </children>
+        </VBox>
+      </children>
+    </VBox>
+  </children>
+</AnchorPane>

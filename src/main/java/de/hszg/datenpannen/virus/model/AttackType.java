@@ -1,0 +1,14 @@
+package de.hszg.datenpannen.virus.model;
+
+public enum AttackType {
+
+    MALICIOUS_INSIDERS,
+    DENIAL_OF_SERVICES,
+    WEB_BASED_ATTACKS,
+    VIRUSES_WORMS_TROJANS,
+    MALICIOUS_CODE,
+    STOLEN_DEVICES,
+    MALWARE,
+    PHISHING_AND_SOCIAL_ENGINEERING,
+    BOTNETS;
+}

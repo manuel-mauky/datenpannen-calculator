@@ -3,6 +3,8 @@ package de.hszg.datenpannen.utils;
 import javafx.beans.binding.ObjectBinding;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
 public class BindingHelper {
@@ -37,5 +39,17 @@ public class BindingHelper {
                 return observable.getValue();
             }
         };
+    }
+
+
+    public static void applyNumberOnlyFilter(final StringProperty target){
+        target.addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+                if (!(newValue.matches("\\d*") && newValue.length() < 9)) {
+                    target.set(oldValue);
+                }
+            }
+        });
     }
 }
