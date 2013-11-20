@@ -25,6 +25,12 @@ public class UserInputModel {
 	 */
 	private ObjectProperty<SecurityGovernanceActivity> securityGovernanceActivity = new SimpleObjectProperty<>(SecurityGovernanceActivity.ADEQUACY_OF_BUDGETED_RESOURCES);
 
+	/**
+	 * Vom Nutzer aktuell ausgewählte Position im Chart.
+	 */
+	private IntegerProperty selectedNumberOfClientsInChart;
+	
+
 	public IntegerProperty numberOfClients() {
 		return numberOfClients;
 	}
@@ -35,6 +41,10 @@ public class UserInputModel {
 
 	public ObjectProperty<SecurityGovernanceActivity> securityGovernanceActivity() {
 		return securityGovernanceActivity;
+	}
+	
+	public IntegerProperty selectedNumberOfClientsInChart(){
+		return selectedNumberOfClientsInChart;
 	}
 
 }
