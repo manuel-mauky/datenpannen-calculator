@@ -116,8 +116,46 @@ public class CalculationScenarioTest {
 		assertThat(result.minCostSelected().get()).isEqualTo(148373.3606, offset(0.001));
 		assertThat(result.maxCostSelected().get()).isEqualTo(446862.3203, offset(0.001));
 		
-		//TODO hasToBeImplemented
-	
+		/**
+		 * Kreisdiagramm 1
+		 * in Abhängigkeit zu selektiertem Wert
+		 */
+		
+		assertCostComponent(result, 174366.2630, 38577.0737, 116184.2032, CostComponent.PRODUCTIVITY_LOSS);
+		assertCostComponent(result, 154247.0788, 34125.8729, 102778.3336, CostComponent.DIRECT_LABOR);
+		assertCostComponent(result, 140834.2893, 31158.4057, 93841.0872, CostComponent.INDIRECT_LABOR);
+		assertCostComponent(result, 120715.1051, 26707.2049, 80435.2176, CostComponent.CASH_OUTLAY);
+		assertCostComponent(result, 60357.5525, 13353.6024, 40217.6088, CostComponent.OVERHEAD);
+		assertCostComponent(result, 20119.1841, 4451.2008, 13405.8696, CostComponent.OTHER);
+		
+		assertExternalConsequence(result, 69746.5052, 15430.8295, 46473.6813, ExternalConsequence.INFORMATION_LOSS);
+		assertExternalConsequence(result, 48822.5536, 10801.5806, 32531.5769, ExternalConsequence.REVENUE_LOSS);
+		assertExternalConsequence(result, 43591.5657, 9644.2684, 29046.0508, ExternalConsequence.BUSINESS_DISRUPTION);
+		assertExternalConsequence(result, 8718.3131, 1928.8536, 5809.2101, ExternalConsequence.EQUIPMENT_DAMAGES);
+		assertExternalConsequence(result, 3487.3252, 771.5414, 2323.6840, ExternalConsequence.OTHER_COSTS);
+		
+		assertInternalActivity(result, 50901.5360, 11261.5380, 33916.8501, InternalActivity.DETECTION);
+		assertInternalActivity(result, 33934.3573, 7507.6920, 22611.2334, InternalActivity.RECOVERY);
+		assertInternalActivity(result, 29306.9449, 6483.9158, 19527.8833, InternalActivity.INVESTIGATION);
+		assertInternalActivity(result, 18509.6494, 4095.1047, 12333.4000, InternalActivity.CONTAINMENT);
+		assertInternalActivity(result, 13882.2370, 3071.3285, 9250.0500, InternalActivity.INCIDENT_MANAGMENT);
+		assertInternalActivity(result, 7712.3539, 1706.2936, 5138.9166, InternalActivity.EX_POST_RESPONSE);
+		
+		/**
+		 * Kreisdiagramm 2
+		 * in Abhängigkeit zu selektiertem Wert
+		 */
+		
+		assertAttackType(result, 140834.2893, 31158.4057, 93841.0872, AttackType.MALICIOUS_INSIDERS);
+		assertAttackType(result, 134127.8946, 29674.6721, 89372.4640, AttackType.DENIAL_OF_SERVICES);
+		assertAttackType(result, 114008.7104, 25223.4712, 75966.5944, AttackType.WEB_BASED_ATTACKS);
+		assertAttackType(result, 60357.5525, 13353.6024, 40217.6088, AttackType.VIRUSES_WORMS_TROJANS);
+		assertAttackType(result, 53651.1578, 11869.8688, 35748.9856, AttackType.MALICIOUS_CODE);
+		assertAttackType(result, 46944.7631, 10386.1352, 31280.3624, AttackType.STOLEN_DEVICES);
+		assertAttackType(result, 40238.3683, 8902.4016, 26811.7392, AttackType.MALWARE);
+		assertAttackType(result, 40238.3683, 8902.4016, 26811.7392, AttackType.PHISHING_AND_SOCIAL_ENGINEERING);
+		assertAttackType(result, 33531.9736, 7418.6680, 22343.1160, AttackType.BOTNETS);
+		
 	}
 
 	private void assertCostComponent(Result result, double avg, double min, 
