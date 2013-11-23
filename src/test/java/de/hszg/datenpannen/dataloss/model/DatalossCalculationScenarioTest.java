@@ -13,9 +13,9 @@ import org.junit.Test;
 /**
  * Dieser Test überprüft die Gesamtberechnung.
  */
-public class CalculationScenarioTest {
+public class DatalossCalculationScenarioTest {
 
-    private Result result;
+    private DatalossResult result;
 
     private BaseDataModel baseDataModel;
     private UserinputModel userinputModel;
@@ -27,7 +27,7 @@ public class CalculationScenarioTest {
         baseDataModel = new BaseDataModel(baseDataProvider);
         userinputModel = new UserinputModel();
 
-        result = new Result(baseDataModel, userinputModel);
+        result = new DatalossResult(baseDataModel, userinputModel);
     }
     
     @Test
@@ -146,7 +146,7 @@ public class CalculationScenarioTest {
     	
     }
     
-    private void assertDistribution(Result result, double min, double avg, double max, CostDistribution distribution) {
+    private void assertDistribution(DatalossResult result, double min, double avg, double max, CostDistribution distribution) {
         assertThat(result.getMinDistributionCost(distribution).get()).isEqualTo(min, offset(0.01));
         assertThat(result.getAvgDistributionCost(distribution).get()).isEqualTo(avg, offset(0.01));
         assertThat(result.getMaxDistributionCost(distribution).get()).isEqualTo(max, offset(0.01));

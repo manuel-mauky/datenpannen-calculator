@@ -1,8 +1,5 @@
 package de.hszg.datenpannen.dataloss.model;
 
-import de.hszg.datenpannen.dataloss.model.CostsChartModel;
-import de.hszg.datenpannen.dataloss.model.Result;
-import de.hszg.datenpannen.dataloss.model.UserinputModel;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -22,7 +19,7 @@ public class CostsChartModelTest {
     public static final double MAX_TOTAL = 171408.11;
     private CostsChartModel model;
 
-    private Result resultMock;
+    private DatalossResult resultMock;
     private UserinputModel userinputModelMock;
 
     private DoubleProperty avgCostTotal = new SimpleDoubleProperty();
@@ -32,7 +29,7 @@ public class CostsChartModelTest {
 
     @Before
     public void setup(){
-        resultMock = mock(Result.class);
+        resultMock = mock(DatalossResult.class);
         when(resultMock.avgCostTotal()).thenReturn(avgCostTotal);
         when(resultMock.minCostTotal()).thenReturn(minCostTotal);
         when(resultMock.maxCostTotal()).thenReturn(maxCostTotal);

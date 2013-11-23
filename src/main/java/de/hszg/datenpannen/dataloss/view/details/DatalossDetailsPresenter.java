@@ -1,6 +1,6 @@
 package de.hszg.datenpannen.dataloss.view.details;
 
-import de.hszg.datenpannen.dataloss.model.Result;
+import de.hszg.datenpannen.dataloss.model.DatalossResult;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringExpression;
 import javafx.beans.property.ReadOnlyDoubleProperty;
@@ -33,7 +33,7 @@ public class DatalossDetailsPresenter implements Initializable{
     private Label maxTotal;
 
     @Inject
-    private Result result;
+    private DatalossResult result;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

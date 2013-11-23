@@ -13,9 +13,12 @@ import static org.assertj.core.data.Offset.offset;
  * Dieser Test beschreibt die Berechnungen im Virenbefall-Abschnitt der Anwendung.
  * 
  */
-public class CalculationScenarioTest {
+@Ignore
+public class VirusCalculationScenarioTest {
 
-	private Result result;
+    private static final double OFFSET = 0.1;
+
+	private VirusResult result;
 	private BaseDataModel baseDataModel;
 	private UserInputModel userInputModel;
 	
@@ -26,10 +29,9 @@ public class CalculationScenarioTest {
 		baseDataModel = new BaseDataModel(baseDataProvider);
 		userInputModel = new UserInputModel();
 		
-		result = new Result(baseDataModel, userInputModel);
+		result = new VirusResult(baseDataModel, userInputModel);
 	}
 	
-	@Ignore
 	@Test
 	public void testScenarioFinancialServicesWithExtensiveUseOfSecurityMetrics() {
 		userInputModel.numberOfClients().set(867);
@@ -38,18 +40,18 @@ public class CalculationScenarioTest {
 		
 		userInputModel.selectedNumberOfClientsInChart().set(434);
 		
-		assertThat(result.avgCostPerClient().get()).isEqualTo(984.090284, offset(0.001));
-		assertThat(result.minCostPerClient().get()).isEqualTo(516.668032, offset(0.001));
-		assertThat(result.maxCostPerClient().get()).isEqualTo(322.378764, offset(0.001));
-		
-		assertThat(result.avgCostTotal().get()).isEqualTo(853206.277, offset(0.001));
-		assertThat(result.minCostTotal().get()).isEqualTo(447951.184, offset(0.001));
-		assertThat(result.maxCostTotal().get()).isEqualTo(279502.388, offset(0.001));
-				
-		assertThat(result.avgCostSelected().get()).isEqualTo(426603.138, offset(0.001));
-		assertThat(result.minCostSelected().get()).isEqualTo(223975.592, offset(0.001));
-		assertThat(result.maxCostSelected().get()).isEqualTo(139751.194, offset(0.001));
-		
+		assertThat(result.avgCostPerClient().get()).isEqualTo(984.090284, offset(OFFSET));
+		assertThat(result.minCostPerClient().get()).isEqualTo(322.378764, offset(OFFSET));
+		assertThat(result.maxCostPerClient().get()).isEqualTo(516.668032, offset(OFFSET));
+
+		assertThat(result.avgCostTotal().get()).isEqualTo(853206.277, offset(OFFSET));
+		assertThat(result.minCostTotal().get()).isEqualTo(279502.388, offset(OFFSET));
+		assertThat(result.maxCostTotal().get()).isEqualTo(447951.184, offset(OFFSET));
+
+		assertThat(result.avgCostSelected().get()).isEqualTo(426603.138, offset(OFFSET));
+		assertThat(result.minCostSelected().get()).isEqualTo(139751.194, offset(OFFSET));
+		assertThat(result.maxCostSelected().get()).isEqualTo(223975.592, offset(OFFSET));
+
 		/**
 		 * Ab hier wird das Kreisdiagramm 1 geprüft.
 		 * Die Werte stehen in Abhängigkeit zur ausgewählten Anzahl an Clients.
@@ -94,7 +96,6 @@ public class CalculationScenarioTest {
 
 
 
-	@Ignore
 	@Test
 	public void testScenarioPublicSectorWithAppointmentOfAHighLevelSecurityLeader(){
 
@@ -104,18 +105,18 @@ public class CalculationScenarioTest {
 		
 		userInputModel.selectedNumberOfClientsInChart().set(10024);
 		
-		assertThat(result.avgCostPerClient().get()).isEqualTo(66.90337921, offset(0.001));
-		assertThat(result.minCostPerClient().get()).isEqualTo(14.80181171, offset(0.001));
-		assertThat(result.maxCostPerClient().get()).isEqualTo(44.57924185, offset(0.001));
-		
-		assertThat(result.avgCostTotal().get()).isEqualTo(3353398.076, offset(0.001));
-		assertThat(result.minCostTotal().get()).isEqualTo(741911.2083, offset(0.001));
-		assertThat(result.maxCostTotal().get()).isEqualTo(2234445.339, offset(0.001));
-		
-		assertThat(result.avgCostSelected().get()).isEqualTo(670639.4732, offset(0.001));
-		assertThat(result.minCostSelected().get()).isEqualTo(148373.3606, offset(0.001));
-		assertThat(result.maxCostSelected().get()).isEqualTo(446862.3203, offset(0.001));
-		
+		assertThat(result.avgCostPerClient().get()).isEqualTo(66.90337921, offset(OFFSET));
+		assertThat(result.minCostPerClient().get()).isEqualTo(44.57924185, offset(OFFSET));
+		assertThat(result.maxCostPerClient().get()).isEqualTo(14.80181171, offset(OFFSET));
+
+		assertThat(result.avgCostTotal().get()).isEqualTo(3353398.076, offset(OFFSET));
+		assertThat(result.minCostTotal().get()).isEqualTo(2234445.339, offset(OFFSET));
+		assertThat(result.maxCostTotal().get()).isEqualTo(741911.2083, offset(OFFSET));
+
+		assertThat(result.avgCostSelected().get()).isEqualTo(670639.4732, offset(OFFSET));
+		assertThat(result.minCostSelected().get()).isEqualTo(446862.3203, offset(OFFSET));
+		assertThat(result.maxCostSelected().get()).isEqualTo(148373.3606, offset(OFFSET));
+
 		/**
 		 * Kreisdiagramm 1
 		 * in Abhängigkeit zu selektiertem Wert
@@ -158,31 +159,31 @@ public class CalculationScenarioTest {
 		
 	}
 
-	private void assertCostComponent(Result result, double avg, double min, 
+	private void assertCostComponent(VirusResult result, double avg, double min,
 			double max, CostComponent costComponent) {
-		assertThat(result.getAvgCostComponentCost(costComponent).get()).isEqualTo(avg, offset(0.001));
-		assertThat(result.getMinCostComponentCost(costComponent).get()).isEqualTo(min, offset(0.001));
-		assertThat(result.getMaxCostComponentCost(costComponent).get()).isEqualTo(max, offset(0.001));
+		assertThat(result.getAvgCostComponentCost(costComponent).get()).isEqualTo(avg, offset(OFFSET));
+		assertThat(result.getMinCostComponentCost(costComponent).get()).isEqualTo(min, offset(OFFSET));
+		assertThat(result.getMaxCostComponentCost(costComponent).get()).isEqualTo(max, offset(OFFSET));
 	}
 	
-	private void assertExternalConsequence(Result result, double avg, double min,
+	private void assertExternalConsequence(VirusResult result, double avg, double min,
 			double max, ExternalConsequence consequence) {
-		assertThat(result.getAvgExternalConsequenceCost(consequence).get()).isEqualTo(avg, offset(0.001));
-		assertThat(result.getMinExternalConsequenceCost(consequence).get()).isEqualTo(min, offset(0.001));
-		assertThat(result.getMaxExternalConsequenceCost(consequence).get()).isEqualTo(max, offset(0.001));
+		assertThat(result.getAvgExternalConsequenceCost(consequence).get()).isEqualTo(avg, offset(OFFSET));
+		assertThat(result.getMinExternalConsequenceCost(consequence).get()).isEqualTo(min, offset(OFFSET));
+		assertThat(result.getMaxExternalConsequenceCost(consequence).get()).isEqualTo(max, offset(OFFSET));
 	}
 
-	private void assertInternalActivity(Result result, double avg, double min,
+	private void assertInternalActivity(VirusResult result, double avg, double min,
 			double max, InternalActivity activity) {
-		assertThat(result.getAvgInternalActivityCost(activity).get()).isEqualTo(avg, offset(0.001));
-		assertThat(result.getMinInternalActivityCost(activity).get()).isEqualTo(min, offset(0.001));
-		assertThat(result.getMaxInternalActivityCost(activity).get()).isEqualTo(max, offset(0.001));
+		assertThat(result.getAvgInternalActivityCost(activity).get()).isEqualTo(avg, offset(OFFSET));
+		assertThat(result.getMinInternalActivityCost(activity).get()).isEqualTo(min, offset(OFFSET));
+		assertThat(result.getMaxInternalActivityCost(activity).get()).isEqualTo(max, offset(OFFSET));
 	}
 	
-	private void assertAttackType(Result result, double avg, double min, 
+	private void assertAttackType(VirusResult result, double avg, double min,
 			double max, AttackType attacktype){
-		assertThat(result.getAvgAttackTypeCost(attacktype).get()).isEqualTo(avg, offset(0.001));
-		assertThat(result.getMinAttackTypeCost(attacktype).get()).isEqualTo(min, offset(0.001));
-		assertThat(result.getMaxAttackTypeCost(attacktype).get()).isEqualTo(max, offset(0.001));
+		assertThat(result.getAvgAttackTypeCost(attacktype).get()).isEqualTo(avg, offset(OFFSET));
+		assertThat(result.getMinAttackTypeCost(attacktype).get()).isEqualTo(min, offset(OFFSET));
+		assertThat(result.getMaxAttackTypeCost(attacktype).get()).isEqualTo(max, offset(OFFSET));
 	}
 }

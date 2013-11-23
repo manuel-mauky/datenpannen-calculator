@@ -22,12 +22,12 @@ public class CostsChartModel {
     private XYChart.Series maxSeries = new XYChart.Series<>();
 
     @Inject
-    private Result result;
+    private DatalossResult result;
 
     @Inject
     private UserinputModel userinputModel;
 
-    CostsChartModel(Result result, UserinputModel userinputModel){
+    CostsChartModel(DatalossResult result, UserinputModel userinputModel){
         this.result = result;
         this.userinputModel = userinputModel;
     }
