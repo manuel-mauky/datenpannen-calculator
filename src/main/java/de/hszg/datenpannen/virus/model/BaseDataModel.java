@@ -1,7 +1,7 @@
 package de.hszg.datenpannen.virus.model;
 
-import de.hszg.datenpannen.virus.data.BaseDataDummyProvider;
-import de.hszg.datenpannen.virus.data.BaseDataProvider;
+import de.hszg.datenpannen.virus.data.StaticVirusDataProvider;
+import de.hszg.datenpannen.virus.data.VirusDataProvider;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.MapProperty;
 import javafx.beans.property.ReadOnlyDoubleProperty;
@@ -25,12 +25,12 @@ public class BaseDataModel {
     private MapProperty<ExternalConsequence, Double> externalConsequenceDistributions = new SimpleMapProperty<>();
     private MapProperty<InternalActivity, Double> internalActivityDistributions = new SimpleMapProperty<>();
     private MapProperty<AttackType, Double> attackTypeDistributions = new SimpleMapProperty<>();
-    private BaseDataProvider dataProvider = new BaseDataDummyProvider();
+    private VirusDataProvider dataProvider = new StaticVirusDataProvider();
 
     public BaseDataModel() {
     }
 
-    public BaseDataModel(BaseDataProvider dataProvider) {
+    public BaseDataModel(VirusDataProvider dataProvider) {
         this.dataProvider = dataProvider;
         initialize();
     }

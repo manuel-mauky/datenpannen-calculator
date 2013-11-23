@@ -8,7 +8,7 @@ import java.util.Map;
  * Schnittstelle für die Bereitstellung von Basisdaten. Wird vom BaseDataModel
  * zum Laden der Basisdaten verwendet.
  */
-public interface BaseDataProvider {
+public interface VirusDataProvider {
 
     double getAvgCostBase();
 

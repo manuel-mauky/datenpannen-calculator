@@ -9,7 +9,7 @@ import de.hszg.datenpannen.virus.model.SecurityGovernanceActivity;
 import java.util.EnumMap;
 import java.util.Map;
 
-public class BaseDataDummyProvider implements BaseDataProvider {
+public class StaticVirusDataProvider implements VirusDataProvider {
 
     private Map<Sector, Double> attackCostPerSector = new EnumMap<>(Sector.class);
     private Map<SecurityGovernanceActivity, Double> securityGovernanceActivityDistributions = new EnumMap<>(SecurityGovernanceActivity.class);
@@ -18,7 +18,7 @@ public class BaseDataDummyProvider implements BaseDataProvider {
     private Map<InternalActivity, Double> internalActivityDistributions = new EnumMap<>(InternalActivity.class);
     private Map<AttackType, Double> attackTypeDistributions = new EnumMap<>(AttackType.class);
 
-    public BaseDataDummyProvider() {
+    public StaticVirusDataProvider() {
         initAttackCostPerSector();
         initSecurityGovernanceActivityDistributions();
         initCostComponentDistributions();

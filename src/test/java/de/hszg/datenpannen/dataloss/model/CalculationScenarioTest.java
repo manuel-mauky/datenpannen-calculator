@@ -6,8 +6,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.data.Offset.offset;
 
 
-import de.hszg.datenpannen.dataloss.data.BaseDataDummyProvider;
-import de.hszg.datenpannen.dataloss.model.*;
+import de.hszg.datenpannen.dataloss.data.StaticDatalossDataProvider;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,7 +22,7 @@ public class CalculationScenarioTest {
 
     @Before
     public void setup() {
-        BaseDataDummyProvider baseDataProvider = new BaseDataDummyProvider();
+        StaticDatalossDataProvider baseDataProvider = new StaticDatalossDataProvider();
 
         baseDataModel = new BaseDataModel(baseDataProvider);
         userinputModel = new UserinputModel();

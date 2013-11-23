@@ -1,6 +1,6 @@
 package de.hszg.datenpannen.virus.model;
 
-import de.hszg.datenpannen.virus.data.BaseDataDummyProvider;
+import de.hszg.datenpannen.virus.data.StaticVirusDataProvider;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -21,7 +21,7 @@ public class CalculationScenarioTest {
 	
 	@Before
 	public void setup(){
-		BaseDataDummyProvider baseDataProvider = new BaseDataDummyProvider();
+		StaticVirusDataProvider baseDataProvider = new StaticVirusDataProvider();
 		
 		baseDataModel = new BaseDataModel(baseDataProvider);
 		userInputModel = new UserInputModel();
