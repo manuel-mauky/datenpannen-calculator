@@ -28,7 +28,7 @@ public class UserInputModel {
 	/**
 	 * Vom Nutzer aktuell ausgewählte Position im Chart.
 	 */
-	private IntegerProperty selectedNumberOfClientsInChart;
+	private IntegerProperty selectedNumberOfClientsInChart = new SimpleIntegerProperty();
 	
 
 	public IntegerProperty numberOfClients() {

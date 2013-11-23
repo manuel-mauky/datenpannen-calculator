@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * DataModel für die Ergebnisdaten.
  */
-public class Result {
+public class DatalossResult {
 
     /**
      * Die tatsächlichen (d.h. für den Industriezweig) Durchschnittskosten pro
@@ -60,7 +60,7 @@ public class Result {
     @Inject
     private UserinputModel userinputModel;
 
-    public Result() {
+    public DatalossResult() {
         avgDistributionCosts.set(FXCollections.observableMap(createEmptyEnumMap(CostDistribution.class)));
         minDistributionCosts.set(FXCollections.observableMap(createEmptyEnumMap(CostDistribution.class)));
         maxDistributionCosts.set(FXCollections.observableMap(createEmptyEnumMap(CostDistribution.class)));
@@ -73,7 +73,7 @@ public class Result {
      * Im Realen Betrieb wird dies durch das Dependency-Injection-Framework
      * übernommen.
      */
-    protected Result(BaseDataModel baseDataModel, UserinputModel userinputModel) {
+    protected DatalossResult(BaseDataModel baseDataModel, UserinputModel userinputModel) {
         this();
         this.baseDataModel = baseDataModel;
         this.userinputModel = userinputModel;

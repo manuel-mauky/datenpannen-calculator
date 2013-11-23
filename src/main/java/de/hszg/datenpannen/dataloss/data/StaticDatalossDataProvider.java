@@ -7,15 +7,16 @@ import java.util.EnumMap;
 import java.util.Map;
 
 /**
- * Dummy Implementation des BaseDataProvider.
+ *  Implementation des DatalossDataProvider, welches die Werte statisch im Code enthalten hat und keine
+ *  externe Datenquelle benutzt.
  */
-public class BaseDataDummyProvider implements BaseDataProvider {
+public class StaticDatalossDataProvider implements DatalossDataProvider {
 
     private Map<Sector, Integer> lossCostPerSector = new EnumMap<>(Sector.class);
     private Map<InfluencingFactor, Double> factorValues = new EnumMap<>(InfluencingFactor.class);
     private Map<CostDistribution, Double> costDistributions = new EnumMap<>(CostDistribution.class);
 
-    public BaseDataDummyProvider() {
+    public StaticDatalossDataProvider() {
         initLossCostPerSector();
         initFactorValues();
         initCostDistributions();

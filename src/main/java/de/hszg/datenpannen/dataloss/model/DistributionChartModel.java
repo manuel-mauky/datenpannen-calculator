@@ -19,9 +19,9 @@ public class DistributionChartModel {
     private ObservableList<PieChart.Data> distribtutionData = FXCollections.observableArrayList();
 
     @Inject
-    private Result result;
+    private DatalossResult result;
 
-    DistributionChartModel(Result result){
+    DistributionChartModel(DatalossResult result){
         this();
         this.result = result;
         initialize();

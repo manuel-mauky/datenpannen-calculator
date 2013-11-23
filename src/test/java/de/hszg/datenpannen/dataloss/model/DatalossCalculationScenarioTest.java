@@ -6,29 +6,28 @@ import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.data.Offset.offset;
 
 
-import de.hszg.datenpannen.dataloss.data.BaseDataDummyProvider;
-import de.hszg.datenpannen.dataloss.model.*;
+import de.hszg.datenpannen.dataloss.data.StaticDatalossDataProvider;
 import org.junit.Before;
 import org.junit.Test;
 
 /**
  * Dieser Test überprüft die Gesamtberechnung.
  */
-public class CalculationScenarioTest {
+public class DatalossCalculationScenarioTest {
 
-    private Result result;
+    private DatalossResult result;
 
     private BaseDataModel baseDataModel;
     private UserinputModel userinputModel;
 
     @Before
     public void setup() {
-        BaseDataDummyProvider baseDataProvider = new BaseDataDummyProvider();
+        StaticDatalossDataProvider baseDataProvider = new StaticDatalossDataProvider();
 
         baseDataModel = new BaseDataModel(baseDataProvider);
         userinputModel = new UserinputModel();
 
-        result = new Result(baseDataModel, userinputModel);
+        result = new DatalossResult(baseDataModel, userinputModel);
     }
     
     @Test
@@ -147,7 +146,7 @@ public class CalculationScenarioTest {
     	
     }
     
-    private void assertDistribution(Result result, double min, double avg, double max, CostDistribution distribution) {
+    private void assertDistribution(DatalossResult result, double min, double avg, double max, CostDistribution distribution) {
         assertThat(result.getMinDistributionCost(distribution).get()).isEqualTo(min, offset(0.01));
         assertThat(result.getAvgDistributionCost(distribution).get()).isEqualTo(avg, offset(0.01));
         assertThat(result.getMaxDistributionCost(distribution).get()).isEqualTo(max, offset(0.01));

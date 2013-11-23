@@ -1,6 +1,6 @@
 package de.hszg.datenpannen.dataloss.model;
 
-import de.hszg.datenpannen.dataloss.data.BaseDataDummyProvider;
+import de.hszg.datenpannen.dataloss.data.StaticDatalossDataProvider;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 
@@ -41,7 +41,7 @@ public class BaseDataModel {
      */
     private MapProperty<CostDistribution, Double> costDistributions = new SimpleMapProperty<>();
     @Inject
-    private BaseDataDummyProvider dataProvider;
+    private StaticDatalossDataProvider dataProvider;
 
     /**
      * Public Default Konstruktor wird von DI-Framework zur Instanziierung
@@ -54,7 +54,7 @@ public class BaseDataModel {
      * Parametrisierter Konstruktor kann in Tests ohne DI-Framework benutzt
      * werden.
      */
-    BaseDataModel(BaseDataDummyProvider dataProvider) {
+    BaseDataModel(StaticDatalossDataProvider dataProvider) {
         this.dataProvider = dataProvider;
         initialize();
     }
