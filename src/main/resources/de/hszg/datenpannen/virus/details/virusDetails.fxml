@@ -12,28 +12,33 @@
   <children>
     <VBox alignment="TOP_LEFT" fillWidth="true" prefHeight="-1.0" prefWidth="-1.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-        <Label text="Pro Datensatz" underline="false">
+        <Label text="je Client" underline="false">
           <font>
             <Font name="System Bold" size="13.0" fx:id="x1" />
           </font>
         </Label>
         <VBox fillWidth="false" prefHeight="-1.0" prefWidth="-1.0" spacing="2.0">
           <children>
-            <Label id="avgPerD" fx:id="avgPerDataset" text="Durchschnitt: 123 €" />
-            <Label fx:id="minPerDataset" text="Minimal: 60 €" />
-            <Label fx:id="maxPerDataset" text="Maximal 160 €" />
+            <Label id="avgPerD" fx:id="perClient" text="Durchschnitt: 123 €" />
           </children>
           <padding>
             <Insets left="5.0" fx:id="x2" />
           </padding>
         </VBox>
-        <Label font="$x1" text="Gesamt" />
+        <Label font="$x1" text="Max. Verlust" />
         <VBox fillWidth="false" padding="$x2" prefHeight="-1.0" prefWidth="-1.0" spacing="2.0">
           <children>
-            <Label fx:id="avgTotal" text="Durchschnitt: 1203 €" />
-            <Label fx:id="minTotal" text="Minimal: 600 €" />
-            <Label fx:id="maxTotal" text="Maximal 1600 €" />
+            <Label id="avgTotal" fx:id="maxLoss" text="Durchschnitt: 1203 €" />
           </children>
+        </VBox>
+        <Label id="lossWithXPercent" fx:id="lossWithXPercentLabel" font="$x1" text="Verlust bei x %" underline="false" />
+        <VBox fillWidth="false" prefHeight="-1.0" prefWidth="-1.0" spacing="2.0">
+          <children>
+            <Label id="avgTotal" fx:id="lossWithXPercentValue" text="Durchschnitt: 1203 €" />
+          </children>
+          <padding>
+            <Insets left="5.0" fx:id="x2" />
+          </padding>
         </VBox>
       </children>
     </VBox>

@@ -2,32 +2,30 @@
 
 <?import java.lang.*?>
 <?import java.util.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
-<?import javafx.scene.control.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="-1.0" prefWidth="-1.0" xmlns:fx="http://javafx.com/fxml">
   <children>
-    <HBox prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" >
-        <children>
-            <VBox>
-                <children>
-                    <fx:include source="userinput/virusUserinput.fxml"/>
-                </children>
+    <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <VBox>
+          <children>
+            <fx:include source="userinput/virusUserinput.fxml" />
+          </children>
+        </VBox>
+        <Separator orientation="VERTICAL" prefHeight="200.0" />
+        <ScrollPane fitToHeight="false" fitToWidth="false" hbarPolicy="ALWAYS" prefHeight="-1.0" prefWidth="-1.0" vbarPolicy="ALWAYS" HBox.hgrow="ALWAYS">
+          <content>
+            <VBox prefHeight="-1.0" prefWidth="-1.0">
+              <children>
+                <fx:include source="statistics/virusStatistics.fxml" />
+              </children>
             </VBox>
-            <Separator orientation="VERTICAL" prefHeight="200.0"/>
-            <VBox prefHeight="200.0" prefWidth="100.0">
-                <children>
-                    <fx:include source="statistics/virusStatistics.fxml"/>
-                </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0">
-                <children>
-
-                    <fx:include source="details/virusDetails.fxml"/>
-                </children>
-            </VBox>
-        </children>
+          </content>
+        </ScrollPane>
+      </children>
     </HBox>
   </children>
 </AnchorPane>

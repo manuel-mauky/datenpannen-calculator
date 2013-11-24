@@ -1,10 +1,13 @@
 package de.hszg.datenpannen.utils;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.binding.DoubleBinding;
 import javafx.beans.binding.ObjectBinding;
-import javafx.beans.property.ReadOnlyDoubleProperty;
-import javafx.beans.property.ReadOnlyIntegerProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableDoubleValue;
 import javafx.beans.value.ObservableValue;
 
 public class BindingHelper {
@@ -51,6 +54,41 @@ public class BindingHelper {
                 }
             }
         });
+    }
+
+    public static BooleanBinding isNanOrInfinity(final ObservableDoubleValue observable){
+        return new BooleanBinding() {
+            {
+                super.bind(observable);
+            }
+            @Override
+            protected boolean computeValue() {
+                double value = observable.get();
+                return Double.isInfinite(value) || Double.isNaN(value);
+            }
+        };
+    }
+
+    public static ReadOnlyDoubleProperty nanOrInfinity(final ReadOnlyDoubleProperty property){
+        DoubleProperty result = new SimpleDoubleProperty();
+
+        result.bind(new DoubleBinding() {
+            {
+                super.bind(property);
+            }
+            @Override
+            protected double computeValue() {
+                double value = property.get();
+
+                if (Double.isInfinite(value) || Double.isNaN(value)) {
+                    return 0;
+                } else {
+                    return property.get();
+                }
+            }
+        });
+
+        return result;
     }
 
 }

@@ -9,21 +9,26 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns:fx="http://javafx.com/fxml" fx:controller="de.hszg.datenpannen.virus.view.statistics.VirusStatisticsPresenter">
   <children>
-    <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <VBox prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-        <LineChart fx:id="costsChart" alternativeRowFillVisible="false" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" prefHeight="286.0" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
-          <xAxis>
-            <NumberAxis minorTickVisible="false" side="BOTTOM" upperBound="32.0" />
-          </xAxis>
-          <yAxis>
-            <NumberAxis side="LEFT" upperBound="12000.0" />
-          </yAxis>
-        </LineChart>
+        <HBox prefHeight="-1.0" prefWidth="-1.0">
+          <children>
+            <LineChart fx:id="costsChart" alternativeRowFillVisible="false" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" prefHeight="286.0" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
+              <xAxis>
+                <NumberAxis minorTickVisible="false" side="BOTTOM" upperBound="32.0" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" upperBound="12000.0" />
+              </yAxis>
+            </LineChart>
+            <fx:include source="../details/virusDetails.fxml" />
+          </children>
+        </HBox>
         <GridPane>
           <children>
-            <PieChart fx:id="distributionChart" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <PieChart fx:id="distributionProductivityLossChart" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-            <PieChart fx:id="distributionDirectLaborChart" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <PieChart fx:id="costComponentChart" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <PieChart fx:id="productivityLossChart" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <PieChart fx:id="directLaborChart" GridPane.columnIndex="0" GridPane.rowIndex="1" />
             <PieChart fx:id="attackCostsChart" GridPane.columnIndex="1" GridPane.rowIndex="1" />
           </children>
           <columnConstraints>

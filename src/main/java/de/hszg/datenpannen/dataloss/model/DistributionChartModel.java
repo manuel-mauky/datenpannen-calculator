@@ -33,10 +33,13 @@ public class DistributionChartModel {
     @PostConstruct
     void initialize(){
         title.set("Aufteilung der Kosten");
-        distribtutionData.addAll(new PieChart.Data("Malicious or criminal attack", 48),
-                new PieChart.Data("System Glich", 16),
-                new PieChart.Data("Human factor", 36));
 
+        for (CostDistribution costDistribution : CostDistribution.values()) {
+            PieChart.Data element = new PieChart.Data(costDistribution.name(), 0);
+            element.pieValueProperty().bind(result.getAvgDistributionCost(costDistribution));
+
+            distribtutionData.add(element);
+        }
     }
 
     public StringProperty title(){

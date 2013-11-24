@@ -1,7 +1,9 @@
 package de.hszg.datenpannen.virus.model;
 
+import de.hszg.datenpannen.utils.BindingHelper;
 import de.hszg.datenpannen.utils.MathBindings;
 import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.binding.NumberBinding;
 import javafx.beans.property.*;
@@ -190,95 +192,95 @@ public class VirusResult {
 
 
     public ReadOnlyDoubleProperty avgCostPerClient() {
-        return avgCostPerClient;
+        return BindingHelper.nanOrInfinity(avgCostPerClient);
     }
 
     public ReadOnlyDoubleProperty minCostPerClient() {
-        return minCostPerClient;
+        return BindingHelper.nanOrInfinity(minCostPerClient);
     }
 
     public ReadOnlyDoubleProperty maxCostPerClient() {
-        return maxCostPerClient;
+        return BindingHelper.nanOrInfinity(maxCostPerClient);
     }
 
     public ReadOnlyDoubleProperty avgCostTotal() {
-        return avgCostTotal;
+        return BindingHelper.nanOrInfinity(avgCostTotal);
     }
 
     public ReadOnlyDoubleProperty minCostTotal() {
-        return minCostTotal;
+        return BindingHelper.nanOrInfinity(minCostTotal);
     }
 
     public ReadOnlyDoubleProperty maxCostTotal() {
-        return maxCostTotal;
+        return BindingHelper.nanOrInfinity(maxCostTotal);
     }
 
     public ReadOnlyDoubleProperty avgCostSelected() {
-        return avgCostSelected;
+        return BindingHelper.nanOrInfinity(avgCostSelected);
     }
 
     public ReadOnlyDoubleProperty minCostSelected() {
-        return minCostSelected;
+        return BindingHelper.nanOrInfinity(minCostSelected);
     }
 
     public ReadOnlyDoubleProperty maxCostSelected() {
-        return maxCostSelected;
+        return BindingHelper.nanOrInfinity(maxCostSelected);
     }
 
     public ReadOnlyDoubleProperty getAvgCostComponentCost(
             CostComponent costCompontent) {
-        return avgCostComponentCosts.get(costCompontent);
+        return BindingHelper.nanOrInfinity(avgCostComponentCosts.get(costCompontent));
     }
 
     public ReadOnlyDoubleProperty getMinCostComponentCost(
             CostComponent costCompontent) {
-        return minCostComponentCosts.get(costCompontent);
+        return BindingHelper.nanOrInfinity(minCostComponentCosts.get(costCompontent));
     }
 
     public ReadOnlyDoubleProperty getMaxCostComponentCost(
             CostComponent costCompontent) {
-        return maxCostComponentCosts.get(costCompontent);
+        return BindingHelper.nanOrInfinity(maxCostComponentCosts.get(costCompontent));
     }
 
     public ReadOnlyDoubleProperty getAvgInternalActivityCost(
             InternalActivity activity) {
-        return avgInternalActivityCosts.get(activity);
+        return BindingHelper.nanOrInfinity(avgInternalActivityCosts.get(activity));
     }
 
     public ReadOnlyDoubleProperty getMinInternalActivityCost(
             InternalActivity activity) {
-        return minInternalActivityCosts.get(activity);
+        return BindingHelper.nanOrInfinity(minInternalActivityCosts.get(activity));
     }
 
     public ReadOnlyDoubleProperty getMaxInternalActivityCost(
             InternalActivity activity) {
-        return maxInternalActivityCosts.get(activity);
+        return BindingHelper.nanOrInfinity(maxInternalActivityCosts.get(activity));
     }
 
     public ReadOnlyDoubleProperty getAvgExternalConsequenceCost(
             ExternalConsequence consequence) {
-        return avgExternalConsequenceCosts.get(consequence);
+        return BindingHelper.nanOrInfinity(avgExternalConsequenceCosts.get(consequence));
     }
 
     public ReadOnlyDoubleProperty getMinExternalConsequenceCost(
             ExternalConsequence consequence) {
-        return minExternalConsequenceCosts.get(consequence);
+        return BindingHelper.nanOrInfinity(minExternalConsequenceCosts.get(consequence));
     }
 
     public ReadOnlyDoubleProperty getMaxExternalConsequenceCost(
             ExternalConsequence consequence) {
-        return maxExternalConsequenceCosts.get(consequence);
+        return BindingHelper.nanOrInfinity(maxExternalConsequenceCosts.get(consequence));
     }
 
     public ReadOnlyDoubleProperty getAvgAttackTypeCost(AttackType attacktype) {
-        return avgAttackTypeCosts.get(attacktype);
+        return BindingHelper.nanOrInfinity(avgAttackTypeCosts.get(attacktype));
     }
 
     public ReadOnlyDoubleProperty getMinAttackTypeCost(AttackType attacktype) {
-        return minAttackTypeCosts.get(attacktype);
+        return BindingHelper.nanOrInfinity(minAttackTypeCosts.get(attacktype));
     }
 
     public ReadOnlyDoubleProperty getMaxAttackTypeCost(AttackType attacktype) {
-        return maxAttackTypeCosts.get(attacktype);
+        return BindingHelper.nanOrInfinity(maxAttackTypeCosts.get(attacktype));
     }
 }
