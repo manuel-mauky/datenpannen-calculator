@@ -2,6 +2,10 @@ package de.hszg.datenpannen.dataloss.view.statistics;
 
 import de.hszg.datenpannen.dataloss.model.CostsChartModel;
 import de.hszg.datenpannen.dataloss.model.DistributionChartModel;
+import de.hszg.datenpannen.dataloss.model.UserinputModel;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;

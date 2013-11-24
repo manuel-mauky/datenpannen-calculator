@@ -9,6 +9,8 @@ import de.hszg.datenpannen.virus.model.Sector;
 import de.hszg.datenpannen.virus.model.SecurityGovernanceActivity;
 import de.hszg.datenpannen.virus.model.UserInputModel;
 import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -59,5 +61,12 @@ public class VirusUserinputPresenter implements Initializable {
         selectedClientsSlider.maxProperty().bind(userInputModel.numberOfClients());
 
         selectedClientsLabel.textProperty().bind(Bindings.format(FORMAT_SELECTED_CLIENTS, userInputModel.selectedNumberOfClientsInChart()));
+
+        userInputModel.numberOfClients().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
+                    userInputModel.selectedNumberOfClientsInChart().set(newValue.intValue());
+            }
+        });
     }
 }

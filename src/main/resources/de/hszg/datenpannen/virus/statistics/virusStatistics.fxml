@@ -2,6 +2,7 @@
 
 <?import java.lang.*?>
 <?import java.util.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -9,7 +10,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns:fx="http://javafx.com/fxml" fx:controller="de.hszg.datenpannen.virus.view.statistics.VirusStatisticsPresenter">
   <children>
-    <VBox prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <VBox prefHeight="-1.0" prefWidth="-1.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
         <HBox prefHeight="-1.0" prefWidth="-1.0">
           <children>
@@ -24,23 +25,17 @@
             <fx:include source="../details/virusDetails.fxml" />
           </children>
         </HBox>
-        <GridPane>
-          <children>
-            <PieChart fx:id="costComponentChart" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <PieChart fx:id="productivityLossChart" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-            <PieChart fx:id="directLaborChart" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <PieChart fx:id="attackCostsChart" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-          </children>
-          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-          </columnConstraints>
-          <rowConstraints>
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-          </rowConstraints>
-        </GridPane>
+        <PieChart fx:id="costComponentChart" labelLineLength="20.0" labelsVisible="true" legendSide="BOTTOM" legendVisible="true" startAngle="90.0" />
+        <Separator prefWidth="200.0" />
+        <PieChart fx:id="productivityLossChart" labelLineLength="20.0" labelsVisible="true" legendSide="BOTTOM" startAngle="90.0" />
+        <Separator prefWidth="200.0" />
+        <PieChart fx:id="directLaborChart" labelsVisible="true" legendSide="BOTTOM" startAngle="90.0" />
+        <Separator prefWidth="200.0" />
+        <PieChart fx:id="attackCostsChart" labelsVisible="true" legendSide="BOTTOM" startAngle="90.0" />
       </children>
+      <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </padding>
     </VBox>
   </children>
 </AnchorPane>
