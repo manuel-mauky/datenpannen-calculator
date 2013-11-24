@@ -13,7 +13,6 @@ import static org.assertj.core.data.Offset.offset;
  * Dieser Test beschreibt die Berechnungen im Virenbefall-Abschnitt der Anwendung.
  * 
  */
-@Ignore
 public class VirusCalculationScenarioTest {
 
     private static final double OFFSET = 0.001;
@@ -31,7 +30,8 @@ public class VirusCalculationScenarioTest {
 		
 		result = new VirusResult(baseDataModel, userInputModel);
 	}
-	
+
+    @Ignore
 	@Test
 	public void testScenarioFinancialServicesWithExtensiveUseOfSecurityMetrics() {
 		userInputModel.numberOfClients().set(867);

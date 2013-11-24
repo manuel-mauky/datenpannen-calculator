@@ -4,13 +4,15 @@ import de.hszg.datenpannen.utils.MathBindings;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.binding.NumberBinding;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ReadOnlyDoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.*;
+import javafx.collections.FXCollections;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import java.util.Map;
+
+
+import static de.hszg.datenpannen.utils.Helper.createEmptyEnumMap;
 
 public class VirusResult {
 
@@ -23,27 +25,51 @@ public class VirusResult {
     private DoubleProperty avgCostSelected = new SimpleDoubleProperty();
     private DoubleProperty minCostSelected = new SimpleDoubleProperty();
     private DoubleProperty maxCostSelected = new SimpleDoubleProperty();
-    private DoubleProperty avgCostComponentCost = new SimpleDoubleProperty();
-    private DoubleProperty minCostComponentCost = new SimpleDoubleProperty();
-    private DoubleProperty maxCostComponentCost = new SimpleDoubleProperty();
-    private DoubleProperty avgInternalActivityCost = new SimpleDoubleProperty();
-    private DoubleProperty minInternalActivityCost = new SimpleDoubleProperty();
-    private DoubleProperty maxInternalActivityCost = new SimpleDoubleProperty();
-    private DoubleProperty avgExternalConsequenceCost = new SimpleDoubleProperty();
-    private DoubleProperty minExternalConsequenceCost = new SimpleDoubleProperty();
-    private DoubleProperty maxExternalConsequenceCost = new SimpleDoubleProperty();
-    private DoubleProperty avgAttackTypeCost = new SimpleDoubleProperty();
-    private DoubleProperty minAttackTypeCost = new SimpleDoubleProperty();
-    private DoubleProperty maxAttackTypeCost = new SimpleDoubleProperty();
+
+    private MapProperty<CostComponent,DoubleProperty> avgCostComponentCosts = new SimpleMapProperty<>();
+    private MapProperty<CostComponent,DoubleProperty> minCostComponentCosts = new SimpleMapProperty<>();
+    private MapProperty<CostComponent,DoubleProperty> maxCostComponentCosts = new SimpleMapProperty<>();
+
+
+    private MapProperty<InternalActivity,DoubleProperty> avgInternalActivityCosts = new SimpleMapProperty<>();
+    private MapProperty<InternalActivity,DoubleProperty> minInternalActivityCosts = new SimpleMapProperty<>();
+    private MapProperty<InternalActivity,DoubleProperty> maxInternalActivityCosts = new SimpleMapProperty<>();
+
+    private MapProperty<ExternalConsequence,DoubleProperty> avgExternalConsequenceCosts = new SimpleMapProperty<>();
+    private MapProperty<ExternalConsequence,DoubleProperty> minExternalConsequenceCosts = new SimpleMapProperty<>();
+    private MapProperty<ExternalConsequence,DoubleProperty> maxExternalConsequenceCosts = new SimpleMapProperty<>();
+
+    private MapProperty<AttackType,DoubleProperty> avgAttackTypeCosts = new SimpleMapProperty<>();
+    private MapProperty<AttackType,DoubleProperty> minAttackTypeCosts = new SimpleMapProperty<>();
+    private MapProperty<AttackType,DoubleProperty> maxAttackTypeCosts = new SimpleMapProperty<>();
+
     @Inject
     private BaseDataModel baseDataModel;
     @Inject
     private UserInputModel userInputModel;
 
     public VirusResult() {
+        avgCostComponentCosts.set(FXCollections.observableMap(createEmptyEnumMap(CostComponent.class))) ;
+        minCostComponentCosts.set(FXCollections.observableMap(createEmptyEnumMap(CostComponent.class)));
+        maxCostComponentCosts.set(FXCollections.observableMap(createEmptyEnumMap(CostComponent.class)));
+
+
+        avgInternalActivityCosts.set(FXCollections.observableMap(createEmptyEnumMap(InternalActivity.class)));
+        minInternalActivityCosts.set(FXCollections.observableMap(createEmptyEnumMap(InternalActivity.class)));
+        maxInternalActivityCosts.set(FXCollections.observableMap(createEmptyEnumMap(InternalActivity.class)));
+
+        avgExternalConsequenceCosts.set(FXCollections.observableMap(createEmptyEnumMap(ExternalConsequence.class)));
+        minExternalConsequenceCosts.set(FXCollections.observableMap(createEmptyEnumMap(ExternalConsequence.class)));
+        maxExternalConsequenceCosts.set(FXCollections.observableMap(createEmptyEnumMap(ExternalConsequence.class)));
+
+        avgAttackTypeCosts.set(FXCollections.observableMap(createEmptyEnumMap(AttackType.class)));
+        minAttackTypeCosts.set(FXCollections.observableMap(createEmptyEnumMap(AttackType.class)));
+        maxAttackTypeCosts.set(FXCollections.observableMap(createEmptyEnumMap(AttackType.class)));
+
     }
 
     public VirusResult(BaseDataModel baseDataModel, UserInputModel userInputModel) {
+        this();
         this.baseDataModel = baseDataModel;
         this.userInputModel = userInputModel;
 
@@ -97,12 +123,71 @@ public class VirusResult {
 
 
         IntegerProperty selectedNumberOfClients = userInputModel.selectedNumberOfClientsInChart();
-
         avgCostSelected.bind(selectedNumberOfClients.multiply(avgCostPerClient));
         minCostSelected.bind(selectedNumberOfClients.multiply(minCostPerClient));
         maxCostSelected.bind(selectedNumberOfClients.multiply(maxCostPerClient));
 
+
+
+        initCostComponentCosts(avgCostComponentCosts,avgCostSelected);
+        initCostComponentCosts(minCostComponentCosts,minCostSelected);
+        initCostComponentCosts(maxCostComponentCosts,maxCostSelected);
+
+        initInternalActivityCosts(avgInternalActivityCosts,avgCostSelected);
+        initInternalActivityCosts(minInternalActivityCosts,minCostSelected);
+        initInternalActivityCosts(maxInternalActivityCosts, maxCostSelected);
+
+        initExternalConsequencesCosts(avgExternalConsequenceCosts,avgCostSelected);
+        initExternalConsequencesCosts(minExternalConsequenceCosts,minCostSelected);
+        initExternalConsequencesCosts(maxExternalConsequenceCosts, maxCostSelected);
+
+        initAttackTypeCosts(avgAttackTypeCosts,avgCostSelected);
+        initAttackTypeCosts(minAttackTypeCosts,minCostSelected);
+        initAttackTypeCosts(maxAttackTypeCosts, maxCostSelected);
     }
+
+    private void initCostComponentCosts(MapProperty<CostComponent, DoubleProperty> map, DoubleProperty perClient) {
+        for(Map.Entry<CostComponent,DoubleProperty> entry : map.entrySet()){
+            CostComponent key = entry.getKey();
+            DoubleProperty value = entry.getValue();
+
+            value.bind(perClient.multiply(baseDataModel.costComponentDistributions().get(key)));
+        }
+    }
+
+    private void initInternalActivityCosts(MapProperty<InternalActivity, DoubleProperty> map, DoubleProperty perClient) {
+
+        Double directLaborFactor = baseDataModel.costComponentDistributions().get(CostComponent.DIRECT_LABOR);
+        for(Map.Entry<InternalActivity,DoubleProperty> entry : map.entrySet()){
+            InternalActivity key = entry.getKey();
+            DoubleProperty value = entry.getValue();
+
+            value.bind(perClient.multiply(directLaborFactor * baseDataModel.internalActivityDistributions().get(key)));
+        }
+    }
+
+    private void initExternalConsequencesCosts(MapProperty<ExternalConsequence, DoubleProperty> map, DoubleProperty perClient) {
+        Double productivityLossFactor = baseDataModel.costComponentDistributions().get(CostComponent.PRODUCTIVITY_LOSS);
+
+        for(Map.Entry<ExternalConsequence,DoubleProperty> entry : map.entrySet()){
+            ExternalConsequence key = entry.getKey();
+            DoubleProperty value = entry.getValue();
+
+            value.bind(perClient.multiply(
+                            productivityLossFactor *
+                            baseDataModel.externalConsequenceDistributions().get(key)));
+        }
+    }
+
+    private void initAttackTypeCosts(MapProperty<AttackType, DoubleProperty> map, DoubleProperty perClient) {
+        for(Map.Entry<AttackType,DoubleProperty> entry : map.entrySet()){
+            AttackType key = entry.getKey();
+            DoubleProperty value = entry.getValue();
+
+            value.bind(perClient.multiply(baseDataModel.attackTypeDistributions().get(key)));
+        }
+    }
+
 
     public ReadOnlyDoubleProperty avgCostPerClient() {
         return avgCostPerClient;
@@ -142,58 +227,58 @@ public class VirusResult {
 
     public ReadOnlyDoubleProperty getAvgCostComponentCost(
             CostComponent costCompontent) {
-        return avgCostComponentCost;
+        return avgCostComponentCosts.get(costCompontent);
     }
 
     public ReadOnlyDoubleProperty getMinCostComponentCost(
             CostComponent costCompontent) {
-        return minCostComponentCost;
+        return minCostComponentCosts.get(costCompontent);
     }
 
     public ReadOnlyDoubleProperty getMaxCostComponentCost(
             CostComponent costCompontent) {
-        return maxCostComponentCost;
+        return maxCostComponentCosts.get(costCompontent);
     }
 
     public ReadOnlyDoubleProperty getAvgInternalActivityCost(
             InternalActivity activity) {
-        return avgInternalActivityCost;
+        return avgInternalActivityCosts.get(activity);
     }
 
     public ReadOnlyDoubleProperty getMinInternalActivityCost(
             InternalActivity activity) {
-        return minInternalActivityCost;
+        return minInternalActivityCosts.get(activity);
     }
 
     public ReadOnlyDoubleProperty getMaxInternalActivityCost(
             InternalActivity activity) {
-        return maxInternalActivityCost;
+        return maxInternalActivityCosts.get(activity);
     }
 
     public ReadOnlyDoubleProperty getAvgExternalConsequenceCost(
             ExternalConsequence consequence) {
-        return avgExternalConsequenceCost;
+        return avgExternalConsequenceCosts.get(consequence);
     }
 
     public ReadOnlyDoubleProperty getMinExternalConsequenceCost(
             ExternalConsequence consequence) {
-        return minExternalConsequenceCost;
+        return minExternalConsequenceCosts.get(consequence);
     }
 
     public ReadOnlyDoubleProperty getMaxExternalConsequenceCost(
             ExternalConsequence consequence) {
-        return maxExternalConsequenceCost;
+        return maxExternalConsequenceCosts.get(consequence);
     }
 
     public ReadOnlyDoubleProperty getAvgAttackTypeCost(AttackType attacktype) {
-        return avgAttackTypeCost;
+        return avgAttackTypeCosts.get(attacktype);
     }
 
     public ReadOnlyDoubleProperty getMinAttackTypeCost(AttackType attacktype) {
-        return minAttackTypeCost;
+        return minAttackTypeCosts.get(attacktype);
     }
 
     public ReadOnlyDoubleProperty getMaxAttackTypeCost(AttackType attacktype) {
-        return maxAttackTypeCost;
+        return maxAttackTypeCosts.get(attacktype);
     }
 }

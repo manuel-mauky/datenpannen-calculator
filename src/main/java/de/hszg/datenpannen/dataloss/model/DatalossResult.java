@@ -1,5 +1,6 @@
 package de.hszg.datenpannen.dataloss.model;
 
+import de.hszg.datenpannen.utils.Helper;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.binding.IntegerBinding;
@@ -10,6 +11,8 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import java.util.EnumMap;
 import java.util.Map;
+
+import static de.hszg.datenpannen.utils.Helper.createEmptyEnumMap;
 
 /**
  * DataModel für die Ergebnisdaten.
@@ -143,18 +146,6 @@ public class DatalossResult {
 
             value.bind(costPerDataset.multiply(property));
         }
-    }
-
-    /**
-     * Erzeugt eine EnumMap für den angegebenen Enum-Typ. Die Map wird mit
-     * SimpleDoubleProperty-Instanzen gefüllt.
-     */
-    private <T extends Enum<T>> Map<T, DoubleProperty> createEmptyEnumMap(Class<T> enumType) {
-        final Map<T, DoubleProperty> map = new EnumMap<T, DoubleProperty>(enumType);
-        for (T enumConstant : enumType.getEnumConstants()) {
-            map.put(enumConstant, new SimpleDoubleProperty(0));
-        }
-        return map;
     }
 
     public ReadOnlyDoubleProperty getMinDistributionCost(CostDistribution distribution) {
