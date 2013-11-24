@@ -37,8 +37,6 @@ public class DatalossDetailsPresenter implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
         avgPerDataset.textProperty().bind(avg(result.avgCostPerDataset()));
         minPerDataset.textProperty().bind(min(result.minCostPerDataset()));
         maxPerDataset.textProperty().bind(max(result.maxCostPerDataset()));

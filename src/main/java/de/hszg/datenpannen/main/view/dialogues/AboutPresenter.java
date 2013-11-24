@@ -15,8 +15,6 @@ public class AboutPresenter implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("AboutPresenter initialized: " + resourceBundle);
         aboutText.setText(resourceBundle.getString("aboutText"));
-
     }
 }

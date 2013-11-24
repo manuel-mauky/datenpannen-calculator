@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
  * Presenter für das Menü. Hier werden alle Aktionen, die über das Menü
  * ausführbar sind, koordiniert.
  */
-public class MenuPresenter implements Initializable {
+public class MenuPresenter{
 
     public void about(){
         System.out.println("about");
@@ -30,10 +30,5 @@ public class MenuPresenter implements Initializable {
 
     public void close(){
         Platform.exit();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("MenuPresenter initialized");
     }
 }

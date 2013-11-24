@@ -11,14 +11,8 @@ import java.util.ResourceBundle;
  */
 public class VirusStatisticsPresenter implements Initializable {
 
-    public VirusStatisticsPresenter() {
-        System.out.println("Statistics Presenter Constructor");
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("DatalossStatisticsPresenter initialized");
-
 
     }
 }

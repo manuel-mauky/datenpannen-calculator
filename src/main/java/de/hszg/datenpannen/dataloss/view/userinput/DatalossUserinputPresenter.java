@@ -36,8 +36,6 @@ public class DatalossUserinputPresenter implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("DatalossUserinputPresenter initialized");
-
         BindingHelper.applyNumberOnlyFilter(numberOfDatasetsField.textProperty());
         numberOfDatasetsField.textProperty().bindBidirectional(userinputModel.numberOfDatasets(), new EmptyToZeroNumberConverter());
 

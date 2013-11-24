@@ -2,7 +2,21 @@ package de.hszg.datenpannen.virus.view.userinput;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import de.hszg.datenpannen.utils.BindingHelper;
+import de.hszg.datenpannen.utils.EmptyToZeroNumberConverter;
+import de.hszg.datenpannen.virus.model.Sector;
+import de.hszg.datenpannen.virus.model.SecurityGovernanceActivity;
+import de.hszg.datenpannen.virus.model.UserInputModel;
+import javafx.beans.binding.Bindings;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
+
+import javax.inject.Inject;
 
 /**
  * Presenter für den Bereich der Nutzereingaben. Hier werden die Input-Elemente
@@ -10,11 +24,40 @@ import javafx.fxml.Initializable;
  */
 public class VirusUserinputPresenter implements Initializable {
 
+    private static final String FORMAT_SELECTED_CLIENTS = "Anteil Infizierter Clients: %d";
+
+    @FXML
+    private TextField numberOfClientsField;
+
+    @FXML
+    private ChoiceBox<Sector> sectorChoiceBox;
+
+    @FXML
+    private ChoiceBox<SecurityGovernanceActivity> securityGovernanceChoiceBox;
+
+    @FXML
+    private Label selectedClientsLabel;
+
+    @FXML
+    private Slider selectedClientsSlider;
+
+    @Inject
+    private UserInputModel userInputModel;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("DatalossUserinputPresenter initialized");
+        BindingHelper.applyNumberOnlyFilter(numberOfClientsField.textProperty());
+        numberOfClientsField.textProperty().bindBidirectional(userInputModel.numberOfClients(), new EmptyToZeroNumberConverter());
 
+        sectorChoiceBox.getItems().addAll(Sector.values());
+        sectorChoiceBox.valueProperty().bindBidirectional(userInputModel.sector());
+
+        securityGovernanceChoiceBox.getItems().addAll(SecurityGovernanceActivity.values());
+        securityGovernanceChoiceBox.valueProperty().bindBidirectional(userInputModel.securityGovernanceActivity());
+
+        selectedClientsSlider.valueProperty().bindBidirectional(userInputModel.selectedNumberOfClientsInChart());
+        selectedClientsSlider.maxProperty().bind(userInputModel.numberOfClients());
+
+        selectedClientsLabel.textProperty().bind(Bindings.format(FORMAT_SELECTED_CLIENTS, userInputModel.selectedNumberOfClientsInChart()));
     }
-
-  
 }

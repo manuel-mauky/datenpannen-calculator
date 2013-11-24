@@ -17,10 +17,6 @@ import java.util.ResourceBundle;
  */
 public class DatalossStatisticsPresenter implements Initializable{
 
-    public DatalossStatisticsPresenter(){
-        System.out.println("Statistics Presenter Constructor");
-    }
-
     /**
      * Das Torten-Diagramm, welches die Aufteilung der Kosten anzeigt.
      */
@@ -41,8 +37,6 @@ public class DatalossStatisticsPresenter implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("DatalossStatisticsPresenter initialized");
-
         costsChart.titleProperty().bindBidirectional(costsChartModel.title());
         costsChart.getData().add(costsChartModel.avgSeries());
         costsChart.getData().add(costsChartModel.minSeries());
