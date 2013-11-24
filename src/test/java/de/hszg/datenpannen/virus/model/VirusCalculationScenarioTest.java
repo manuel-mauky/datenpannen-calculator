@@ -31,7 +31,6 @@ public class VirusCalculationScenarioTest {
 		result = new VirusResult(baseDataModel, userInputModel);
 	}
 
-    @Ignore
 	@Test
 	public void testScenarioFinancialServicesWithExtensiveUseOfSecurityMetrics() {
 		userInputModel.numberOfClients().set(867);
@@ -48,48 +47,48 @@ public class VirusCalculationScenarioTest {
 		assertThat(result.minCostTotal().get()).isEqualTo(279502.388, offset(OFFSET));
 		assertThat(result.maxCostTotal().get()).isEqualTo(4479570.19697581, offset(OFFSET));
 
-		assertThat(result.avgCostSelected().get()).isEqualTo(426603.138, offset(OFFSET));
-		assertThat(result.minCostSelected().get()).isEqualTo(139751.194, offset(OFFSET));
-		assertThat(result.maxCostSelected().get()).isEqualTo(2239785.09848791, offset(OFFSET));
+		assertThat(result.avgCostSelected().get()).isEqualTo(427095.183431358, offset(OFFSET));
+		assertThat(result.minCostSelected().get()).isEqualTo(139912.383483414, offset(OFFSET));
+		assertThat(result.maxCostSelected().get()).isEqualTo(2242368.47230392, offset(OFFSET));
 
 		/**
 		 * Ab hier wird das Kreisdiagramm 1 geprüft.
 		 * Die Werte stehen in Abhängigkeit zur ausgewählten Anzahl an Clients.
 		 */
 		
-		assertCostComponent(result, 110916.816,  36335.3105, 582344.125606855, CostComponent.PRODUCTIVITY_LOSS);
-		assertCostComponent(result, 98118.7218,  32142.7746, 515150.572652218, CostComponent.DIRECT_LABOR);
-		assertCostComponent(result, 89586.659,  29347.7508, 470354.87068246, CostComponent.INDIRECT_LABOR);
-		assertCostComponent(result, 76788.5649,  25155.2149, 403161.317727823, CostComponent.CASH_OUTLAY);
-		assertCostComponent(result, 38394.2824,  12577.6075, 201580.658863911, CostComponent.OVERHEAD);
-		assertCostComponent(result, 12798.0941,  4192.53582, 67193.5529546372, CostComponent.OTHER);
+		assertCostComponent(result, 111044.747692153, 36377.2197056876, 583015.80279902, CostComponent.PRODUCTIVITY_LOSS);
+		assertCostComponent(result, 98231.8921892123, 32179.8482011852, 515744.748629902, CostComponent.DIRECT_LABOR);
+		assertCostComponent(result, 89689.9885205852,  29381.6005315169, 470897.379183824, CostComponent.INDIRECT_LABOR);
+		assertCostComponent(result, 76877.1330176444, 25184.2290270145, 403626.325014706, CostComponent.CASH_OUTLAY);
+		assertCostComponent(result, 38438.5665088222,  12592.1145135073, 201813.162507353, CostComponent.OVERHEAD);
+		assertCostComponent(result, 12812.8555029407,  4197.3715045024, 67271.0541691177, CostComponent.OTHER);
 		
-		assertExternalConsequence(result, 44366.7264,  14534.1242, 232937.650242742, ExternalConsequence.INFORMATION_LOSS);
-		assertExternalConsequence(result, 31056.7085,  10173.8869, 163056.35516992, ExternalConsequence.REVENUE_LOSS);
-		assertExternalConsequence(result, 27729.204,  9083.82762, 145586.031401714, ExternalConsequence.BUSINESS_DISRUPTION);
-		assertExternalConsequence(result, 5545.8408,  1816.76552, 29117.2062803428, ExternalConsequence.EQUIPMENT_DAMAGES);
-		assertExternalConsequence(result, 2218.33632,  726.706209, 11646.8825121371, ExternalConsequence.OTHER_COSTS);
+		assertExternalConsequence(result, 44417.8990768612, 14550.887882275, 233206.321119608, ExternalConsequence.INFORMATION_LOSS);
+		assertExternalConsequence(result, 31092.5293538029, 10185.6215175925, 163244.424783726, ExternalConsequence.REVENUE_LOSS);
+		assertExternalConsequence(result, 27761.1869230383,  9094.3049264219, 145753.950699755, ExternalConsequence.BUSINESS_DISRUPTION);
+		assertExternalConsequence(result, 5552.2373846077,  1818.8609852844, 29150.790139951, ExternalConsequence.EQUIPMENT_DAMAGES);
+		assertExternalConsequence(result, 2220.8949538431,  727.5443941138, 11660.3160559804, ExternalConsequence.OTHER_COSTS);
 		
-		assertInternalActivity(result, 32379.1782,  10607.1156, 169999.688975232, InternalActivity.DETECTION);
-		assertInternalActivity(result, 21586.1188,  7071.41042, 113333.125983488, InternalActivity.RECOVERY);
-		assertInternalActivity(result, 18642.5571,  6107.12718, 97878.6088039215, InternalActivity.INVESTIGATION);
-		assertInternalActivity(result, 11774.2466,  3857.13296, 61818.0687182662, InternalActivity.CONTAINMENT);
-		assertInternalActivity(result, 8830.68496,  2892.84972, 46363.5515386996, InternalActivity.INCIDENT_MANAGMENT);
-		assertInternalActivity(result, 4905.93609,  1607.13873, 25757.5286326109, InternalActivity.EX_POST_RESPONSE);
+		assertInternalActivity(result, 32416.5244224401,  10619.3499063911, 170195.767047868, InternalActivity.DETECTION);
+		assertInternalActivity(result, 21611.0162816267,  7079.5666042608, 113463.844698579, InternalActivity.RECOVERY);
+		assertInternalActivity(result, 18664.0595159503,  6114.1711582252, 97991.5022396815, InternalActivity.INVESTIGATION);
+		assertInternalActivity(result, 11787.8270627055,  3861.5817841422, 61889.3698355883, InternalActivity.CONTAINMENT);
+		assertInternalActivity(result, 8840.8702970291,  2896.1863381067, 46417.0273766912, InternalActivity.INCIDENT_MANAGMENT);
+		assertInternalActivity(result, 4911.5946094606,  1608.9924100593, 25787.2374314951, InternalActivity.EX_POST_RESPONSE);
 		
 		/**
 		 * Kreisdiagramm Kosten bei Angriffen, Werte stehen in Abhängigkeit zur ausgewählten Anzahl an Clients
 		 */
 		
-		assertAttackType(result, 89586.6590,  29347.7507, 470354.87068246, AttackType.MALICIOUS_INSIDERS);
-		assertAttackType(result, 85320.6276,  27950.2388, 447957.019697581, AttackType.DENIAL_OF_SERVICES);
-		assertAttackType(result, 72522.5335,  23757.7029, 380763.466742944, AttackType.WEB_BASED_ATTACKS);
-		assertAttackType(result, 38394.2824,  12577.6074, 201580.658863911, AttackType.VIRUSES_WORMS_TROJANS);
-		assertAttackType(result, 34128.2510,  11180.0955, 179182.807879032, AttackType.MALICIOUS_CODE);
-		assertAttackType(result, 29862.2196,  9782.5835, 156784.956894153, AttackType.STOLEN_DEVICES);
-		assertAttackType(result, 25596.1882,  8385.0716, 134387.105909274, AttackType.MALWARE);
-		assertAttackType(result, 25596.1882,  8385.0716, 134387.105909274, AttackType.PHISHING_AND_SOCIAL_ENGINEERING);
-		assertAttackType(result, 21330.1569,  6987.5597, 111989.254924395, AttackType.BOTNETS);
+		assertAttackType(result, 89689.9885205852,  29381.6005315169, 470897.379183824, AttackType.MALICIOUS_INSIDERS);
+		assertAttackType(result, 85419.0366862716,  27982.4766966828, 448473.694460785, AttackType.DENIAL_OF_SERVICES);
+		assertAttackType(result, 72606.1811833309,  23785.1051921804, 381202.640291667, AttackType.WEB_BASED_ATTACKS);
+		assertAttackType(result, 38438.5665088222,  12592.1145135073, 201813.162507353, AttackType.VIRUSES_WORMS_TROJANS);
+		assertAttackType(result, 34167.6146745086,  11192.9906786731, 179389.477784314, AttackType.MALICIOUS_CODE);
+		assertAttackType(result, 29896.662840195,  9793.866843839, 156965.793061275, AttackType.STOLEN_DEVICES);
+		assertAttackType(result, 25625.7110058815, 8394.7430090048, 134542.108338235, AttackType.MALWARE);
+		assertAttackType(result, 25625.7110058815, 8394.7430090048, 134542.108338235, AttackType.PHISHING_AND_SOCIAL_ENGINEERING);
+		assertAttackType(result, 21354.7591715679,  6995.6191741707, 112118.423615196, AttackType.BOTNETS);
 		
 
 	}
