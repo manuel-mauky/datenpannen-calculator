@@ -16,7 +16,7 @@ import static org.assertj.core.data.Offset.offset;
 @Ignore
 public class VirusCalculationScenarioTest {
 
-    private static final double OFFSET = 0.1;
+    private static final double OFFSET = 0.001;
 
 	private VirusResult result;
 	private BaseDataModel baseDataModel;

@@ -22,6 +22,8 @@ public interface VirusDataProvider {
 
     double getMinCostExponent();
 
+    double getSectorAverageFactor();
+
     Map<Sector, Double> getAttackCostPerSectorMap();
 
     Map<SecurityGovernanceActivity, Double> getSecurityGovernanceActivityDistributionsMap();

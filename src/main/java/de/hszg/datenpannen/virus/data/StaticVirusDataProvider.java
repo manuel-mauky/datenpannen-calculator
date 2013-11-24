@@ -39,7 +39,7 @@ public class StaticVirusDataProvider implements VirusDataProvider {
 
     @Override
     public double getMaxCostBase() {
-        return 38377;
+        return 383775;
     }
 
     @Override
@@ -55,6 +55,11 @@ public class StaticVirusDataProvider implements VirusDataProvider {
     @Override
     public double getMinCostExponent() {
         return -.266;
+    }
+
+    @Override
+    public double getSectorAverageFactor(){
+        return 4.84032;
     }
 
     private void initSecurityGovernanceActivityDistributions() {
@@ -107,21 +112,20 @@ public class StaticVirusDataProvider implements VirusDataProvider {
     }
 
     private void initAttackCostPerSector() {
-        attackCostPerSector.put(Sector.FINANCIAL_SERVICES, 1.5392);
-        attackCostPerSector.put(Sector.UTILITIES_AND_ENERGY, 1.345);
-        attackCostPerSector.put(Sector.PHARMACEUTICAL, 1.1404);
-        attackCostPerSector.put(Sector.TECHNOLOGY, 1.0867);
-        attackCostPerSector.put(Sector.PUBLIC_SECTOR, .9524);
-        attackCostPerSector.put(Sector.EDUCATION_AND_RESEARCH, .9442);
-        attackCostPerSector.put(Sector.INDUSTRIAL, .94);
-        attackCostPerSector.put(Sector.TRANSPORTATION, .8822);
-        attackCostPerSector.put(Sector.SERVICES, .7809);
-        attackCostPerSector.put(Sector.HOSPITALITY, .7169);
-        attackCostPerSector.put(Sector.CONSUMER_PRODUCTS, .7004);
-        attackCostPerSector.put(Sector.AUTOMOTIVE, .6281);
-        attackCostPerSector.put(Sector.MEDIA, .6012);
-        attackCostPerSector.put(Sector.RETAIL, .3946);
-
+        attackCostPerSector.put(Sector.FINANCIAL_SERVICES, 7.45);
+        attackCostPerSector.put(Sector.UTILITIES_AND_ENERGY, 6.51);
+        attackCostPerSector.put(Sector.PHARMACEUTICAL, 5.52);
+        attackCostPerSector.put(Sector.TECHNOLOGY, 5.26);
+        attackCostPerSector.put(Sector.PUBLIC_SECTOR, 4.61);
+        attackCostPerSector.put(Sector.EDUCATION_AND_RESEARCH, 4.57);
+        attackCostPerSector.put(Sector.INDUSTRIAL, 4.55);
+        attackCostPerSector.put(Sector.TRANSPORTATION, 4.27);
+        attackCostPerSector.put(Sector.SERVICES, 3.78);
+        attackCostPerSector.put(Sector.HOSPITALITY, 3.47);
+        attackCostPerSector.put(Sector.CONSUMER_PRODUCTS, 3.38);
+        attackCostPerSector.put(Sector.AUTOMOTIVE, 3.04);
+        attackCostPerSector.put(Sector.MEDIA, 2.91);
+        attackCostPerSector.put(Sector.RETAIL, 1.91);
     }
 
     @Override

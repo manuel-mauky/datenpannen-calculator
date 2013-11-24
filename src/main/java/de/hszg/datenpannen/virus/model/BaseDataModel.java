@@ -19,6 +19,7 @@ public class BaseDataModel {
     private DoubleProperty maxCostExponent = new SimpleDoubleProperty();
     private DoubleProperty minCostBase = new SimpleDoubleProperty();
     private DoubleProperty minCostExponent = new SimpleDoubleProperty();
+    private DoubleProperty sectorAverageFactor = new SimpleDoubleProperty();
     private MapProperty<Sector, Double> attackCostPerSector = new SimpleMapProperty<>();
     private MapProperty<SecurityGovernanceActivity, Double> securityGovernanceActivityDistributions = new SimpleMapProperty<>();
     private MapProperty<CostComponent, Double> costComponentDistributions = new SimpleMapProperty<>();
@@ -43,6 +44,7 @@ public class BaseDataModel {
         maxCostExponent.set(dataProvider.getMaxCostExponent());
         minCostBase.set(dataProvider.getMinCostBase());
         minCostExponent.set(dataProvider.getMinCostExponent());
+        sectorAverageFactor.set(dataProvider.getSectorAverageFactor());
 
         attackCostPerSector.set(FXCollections.observableMap(dataProvider.getAttackCostPerSectorMap()));
         attackTypeDistributions.set(FXCollections.observableMap(dataProvider.getAttackTypeDistributionsMap()));
@@ -75,6 +77,10 @@ public class BaseDataModel {
 
     public ReadOnlyDoubleProperty minCostExponent() {
         return minCostExponent;
+    }
+
+    public ReadOnlyDoubleProperty sectorAverageFactor(){
+        return sectorAverageFactor;
     }
 
     public ReadOnlyMapProperty<Sector, Double> attackCostPerSector() {

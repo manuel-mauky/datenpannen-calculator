@@ -3,6 +3,7 @@ package de.hszg.datenpannen.virus.model;
 import de.hszg.datenpannen.utils.MathBindings;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.DoubleBinding;
+import javafx.beans.binding.NumberBinding;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ReadOnlyDoubleProperty;
@@ -58,7 +59,9 @@ public class VirusResult {
         IntegerProperty numberOfClients = userInputModel.numberOfClients();
 
         DoubleBinding activityFactor = Bindings.doubleValueAt(baseDataModel.securityGovernanceActivityDistributions(), userInputModel.securityGovernanceActivity());
-        DoubleBinding sectorFactor = Bindings.doubleValueAt(baseDataModel.attackCostPerSector(), userInputModel.sector());
+        DoubleBinding sectorBase = Bindings.doubleValueAt(baseDataModel.attackCostPerSector(), userInputModel.sector());
+
+        NumberBinding sectorFactor = Bindings.divide(sectorBase,baseDataModel.sectorAverageFactor());
 
         avgCostPerClient.bind(
                 baseDataModel.avgCostBase()
@@ -86,6 +89,19 @@ public class VirusResult {
                                         baseDataModel.maxCostExponent()))
                         .multiply(activityFactor)
                         .multiply(sectorFactor));
+
+
+        avgCostTotal.bind(numberOfClients.multiply(avgCostPerClient));
+        minCostTotal.bind(numberOfClients.multiply(minCostPerClient));
+        maxCostTotal.bind(numberOfClients.multiply(maxCostPerClient));
+
+
+        IntegerProperty selectedNumberOfClients = userInputModel.selectedNumberOfClientsInChart();
+
+        avgCostSelected.bind(selectedNumberOfClients.multiply(avgCostPerClient));
+        minCostSelected.bind(selectedNumberOfClients.multiply(minCostPerClient));
+        maxCostSelected.bind(selectedNumberOfClients.multiply(maxCostPerClient));
+
     }
 
     public ReadOnlyDoubleProperty avgCostPerClient() {
