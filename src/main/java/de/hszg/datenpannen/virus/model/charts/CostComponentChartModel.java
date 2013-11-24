@@ -28,7 +28,7 @@ public class CostComponentChartModel implements PieChartModel{
         title.set("Kostenkomponenten");
 
         for (CostComponent costComponent : CostComponent.values()) {
-            PieChart.Data element = new PieChart.Data(costComponent.name(), 0);
+            PieChart.Data element = new PieChart.Data(costComponent.toString(), 0);
             element.pieValueProperty().bind(result.getAvgCostComponentCost(costComponent));
 
             data.add(element);

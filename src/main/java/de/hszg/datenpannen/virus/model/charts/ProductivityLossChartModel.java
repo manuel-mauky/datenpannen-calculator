@@ -26,7 +26,7 @@ public class ProductivityLossChartModel implements  PieChartModel {
         title.set("Intern");
 
         for (ExternalConsequence externalConsequence : ExternalConsequence.values()) {
-            PieChart.Data element = new PieChart.Data(externalConsequence.name(),0);
+            PieChart.Data element = new PieChart.Data(externalConsequence.toString(),0);
             element.pieValueProperty().bind(result.getAvgExternalConsequenceCost(externalConsequence));
             data.add(element);
         }

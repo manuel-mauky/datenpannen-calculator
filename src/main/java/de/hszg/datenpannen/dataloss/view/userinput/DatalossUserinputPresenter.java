@@ -16,6 +16,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.util.StringConverter;
 
 import javax.inject.Inject;
 
@@ -47,7 +48,7 @@ public class DatalossUserinputPresenter implements Initializable {
 
     private void initInflueningFactorCheckBoxes() {
         for (final InfluencingFactor factor : InfluencingFactor.values()) {
-            CheckBox checkbox = new CheckBox(factor.name());
+            CheckBox checkbox = new CheckBox(factor.toString());
             checkbox.selectedProperty().addListener(new ChangeListener<Boolean>() {
                 @Override
                 public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean selected) {

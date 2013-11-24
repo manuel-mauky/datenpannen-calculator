@@ -35,7 +35,7 @@ public class DistributionChartModel {
         title.set("Aufteilung der Kosten");
 
         for (CostDistribution costDistribution : CostDistribution.values()) {
-            PieChart.Data element = new PieChart.Data(costDistribution.name(), 0);
+            PieChart.Data element = new PieChart.Data(costDistribution.toString(), 0);
             element.pieValueProperty().bind(result.getAvgDistributionCost(costDistribution));
 
             distribtutionData.add(element);

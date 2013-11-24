@@ -25,7 +25,7 @@ public class DirectLaborChartModel implements  PieChartModel {
         title.set("Extern");
 
         for (InternalActivity internalActivity : InternalActivity.values()) {
-            PieChart.Data element = new PieChart.Data(internalActivity.name(),0);
+            PieChart.Data element = new PieChart.Data(internalActivity.toString(),0);
             element.pieValueProperty().bind(result.getAvgInternalActivityCost(internalActivity));
 
             data.add(element);

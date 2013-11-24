@@ -24,7 +24,7 @@ public class AttackCostsChartModel implements PieChartModel {
         title.set("Kosten verschiedener Angriffsarten");
 
         for (AttackType attackType : AttackType.values()) {
-            PieChart.Data element = new PieChart.Data(attackType.name(),0);
+            PieChart.Data element = new PieChart.Data(attackType.toString(),0);
             element.pieValueProperty().bind(result.getAvgAttackTypeCost(attackType));
             data.add(element);
         }
