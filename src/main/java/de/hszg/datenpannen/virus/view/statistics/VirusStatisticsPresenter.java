@@ -1,14 +1,21 @@
 package de.hszg.datenpannen.virus.view.statistics;
 
 import de.hszg.datenpannen.virus.model.charts.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.chart.Axis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.shape.Line;
 
 import javax.inject.Inject;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 /**
  * Presenter für die Statistik-View. Hier werden die Charts mit den
@@ -27,6 +34,9 @@ public class VirusStatisticsPresenter implements Initializable {
     private PieChart directLaborChart;
     @FXML
     private PieChart attackCostsChart;
+
+    @FXML
+    private Line selectionLine;
 
     @Inject
     private CostsChartModel costsChartModel;
@@ -49,11 +59,22 @@ public class VirusStatisticsPresenter implements Initializable {
         costsChart.getData().add(costsChartModel.minSeries());
         costsChart.getData().add(costsChartModel.maxSeries());
 
+        costsChart.getData().add(costsChartModel.selectionSeries());
 
-        bindPieChart(costComponentChart,costComponentChartModel);
-        bindPieChart(productivityLossChart,productivityLossChartModel);
-        bindPieChart(directLaborChart,directLaborChartModel);
-        bindPieChart(attackCostsChart,attackCostsChartModel);
+
+        for (XYChart.Data<Integer, Double> data : costsChartModel.selectionSeries().getData()) {
+            for (Node node : data.getNode().lookupAll(".chart-line-symbol")) {
+                node.setVisible(false);
+                node.setManaged(false);
+            }
+        }
+
+
+        bindPieChart(costComponentChart, costComponentChartModel);
+        bindPieChart(productivityLossChart, productivityLossChartModel);
+        bindPieChart(directLaborChart, directLaborChartModel);
+        bindPieChart(attackCostsChart, attackCostsChartModel);
+
     }
 
     private void bindPieChart(PieChart chart, PieChartModel model){

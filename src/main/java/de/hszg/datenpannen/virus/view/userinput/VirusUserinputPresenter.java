@@ -68,5 +68,6 @@ public class VirusUserinputPresenter implements Initializable {
                     userInputModel.selectedNumberOfClientsInChart().set(newValue.intValue());
             }
         });
+
     }
 }
