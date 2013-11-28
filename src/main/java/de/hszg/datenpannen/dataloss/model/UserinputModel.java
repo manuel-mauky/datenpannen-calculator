@@ -2,12 +2,7 @@ package de.hszg.datenpannen.dataloss.model;
 
 import java.util.EnumSet;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SetProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleSetProperty;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 
 /**
@@ -31,6 +26,11 @@ public class UserinputModel {
      */
     private ObjectProperty<Sector> sector = new SimpleObjectProperty<>(Sector.FINANCIAL);
 
+    /**
+     * Die tatsächlich verloren gegangen Datensätze.
+     */
+    private IntegerProperty numberOfLostDatasets = new SimpleIntegerProperty();
+
     public SetProperty<InfluencingFactor> influencingFactors() {
         return influencingFactors;
     }
@@ -41,5 +41,9 @@ public class UserinputModel {
 
     public ObjectProperty<Sector> sector() {
         return sector;
+    }
+
+    public IntegerProperty numberOfLostDatasets(){
+        return numberOfLostDatasets;
     }
 }

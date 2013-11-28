@@ -8,13 +8,12 @@ import java.util.ResourceBundle;
 
 import de.hszg.datenpannen.utils.BindingHelper;
 import de.hszg.datenpannen.utils.EmptyToZeroNumberConverter;
+import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
 
@@ -26,14 +25,24 @@ import javax.inject.Inject;
  */
 public class DatalossUserinputPresenter implements Initializable {
 
+
+    private static final String FORMAT_SELECTED_CLIENTS = "Anzahl verlorener Datensätze: %d";
+
+
     @FXML
     private VBox influencingFactorBox;
     @FXML
     private TextField numberOfDatasetsField;
     @FXML
     private ChoiceBox<Sector> sectorChoiceBox;
+    @FXML
+    private Label numberOfLostDatasetsLabel;
+    @FXML
+    private Slider numberOfLostDatasets;
+
     @Inject
     private UserinputModel userinputModel;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -44,6 +53,20 @@ public class DatalossUserinputPresenter implements Initializable {
         sectorChoiceBox.valueProperty().bindBidirectional(userinputModel.sector());
 
         initInflueningFactorCheckBoxes();
+
+        numberOfLostDatasets.valueProperty().bindBidirectional(userinputModel.numberOfLostDatasets());
+        numberOfLostDatasets.maxProperty().bind(userinputModel.numberOfDatasets());
+
+        numberOfLostDatasetsLabel.textProperty().bind(Bindings.format(FORMAT_SELECTED_CLIENTS,userinputModel.numberOfLostDatasets()));
+
+        userinputModel.numberOfDatasets().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
+                userinputModel.numberOfLostDatasets().set(number2.intValue());
+            }
+        });
+
+
     }
 
     private void initInflueningFactorCheckBoxes() {

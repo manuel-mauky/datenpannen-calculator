@@ -1,5 +1,6 @@
 package de.hszg.datenpannen.virus.view.statistics;
 
+import de.hszg.datenpannen.utils.Helper;
 import de.hszg.datenpannen.virus.model.charts.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -62,13 +63,8 @@ public class VirusStatisticsPresenter implements Initializable {
         costsChart.getData().add(costsChartModel.selectionSeries());
 
 
-        for (XYChart.Data<Integer, Double> data : costsChartModel.selectionSeries().getData()) {
-            for (Node node : data.getNode().lookupAll(".chart-line-symbol")) {
-                node.setVisible(false);
-                node.setManaged(false);
-            }
-        }
-
+        Helper.removeLineChartSymbol(costsChartModel.selectionSeries());
+        Helper.fixTickFormatterForChart(costsChart);
 
         bindPieChart(costComponentChart, costComponentChartModel);
         bindPieChart(productivityLossChart, productivityLossChartModel);

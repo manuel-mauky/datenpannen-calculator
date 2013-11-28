@@ -21,6 +21,8 @@ public class CostsChartModel {
     private XYChart.Series minSeries = new XYChart.Series<>();
     private XYChart.Series maxSeries = new XYChart.Series<>();
 
+    private XYChart.Series selectionSeries = new XYChart.Series<>();
+
     @Inject
     private DatalossResult result;
 
@@ -42,6 +44,7 @@ public class CostsChartModel {
         avgSeries.setName("Durchschnitt");
         minSeries.setName("Min");
         maxSeries.setName("Max");
+        selectionSeries.setName("Anzahl verlorener Datensätze");
 
         avgSeriesData().add(new XYChart.Data<>(0,0.0));
         minSeriesData().add(new XYChart.Data<>(0,0.0));
@@ -63,6 +66,19 @@ public class CostsChartModel {
         maxTotal.XValueProperty().bind(asObjectBinding(userinputModel.numberOfDatasets()));
         maxTotal.YValueProperty().bind(asObjectBinding(result.maxCostTotal()));
         maxSeriesData().add(maxTotal);
+
+
+        XYChart.Data<Integer,Double> selectionStart = new XYChart.Data<>();
+        selectionStart.XValueProperty().bind(asObjectBinding(userinputModel.numberOfLostDatasets()));
+        selectionStart.YValueProperty().set(0d);
+
+        XYChart.Data<Integer,Double> selectionEnd = new XYChart.Data<>();
+        selectionEnd.XValueProperty().bind(asObjectBinding(userinputModel.numberOfLostDatasets()));
+        selectionEnd.YValueProperty().bind(asObjectBinding(result.maxCostTotal()));
+
+        selectionSeries.getData().add(selectionStart);
+        selectionSeries.getData().add(selectionEnd);
+
     }
 
     public StringProperty title(){
@@ -92,5 +108,9 @@ public class CostsChartModel {
 
     public XYChart.Series<Integer,Double> maxSeries(){
         return maxSeries;
+    }
+
+    public XYChart.Series<Integer,Double> selectionSeries(){
+        return selectionSeries;
     }
 }

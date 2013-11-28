@@ -16,7 +16,7 @@
             <NumberAxis minorTickVisible="false" side="BOTTOM" upperBound="32.0" />
           </xAxis>
           <yAxis>
-            <NumberAxis side="LEFT" upperBound="12000.0" />
+            <NumberAxis id="xNumberAxis" forceZeroInRange="false" minorTickVisible="false" side="LEFT" upperBound="12000.0" />
           </yAxis>
         </LineChart>
         <PieChart id="PieChart" fx:id="distributionChart" clockwise="true" legendSide="RIGHT" startAngle="90.0" titleSide="TOP" />
