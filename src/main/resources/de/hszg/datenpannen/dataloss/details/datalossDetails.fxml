@@ -27,12 +27,12 @@
             <Insets left="5.0" fx:id="x2" />
           </padding>
         </VBox>
-        <Label font="$x1" text="Gesamt" />
+        <Label fx:id="totalLossLabel" font="$x1" text="Gesamt bei x% verlorenen Daten" />
         <VBox fillWidth="false" padding="$x2" prefHeight="-1.0" prefWidth="-1.0" spacing="2.0">
           <children>
-            <Label fx:id="avgTotal" text="Durchschnitt: 1203 €" />
-            <Label fx:id="minTotal" text="Minimal: 600 €" />
-            <Label fx:id="maxTotal" text="Maximal 1600 €" />
+            <Label fx:id="avgTotal" text="Durchschnitt: x €" />
+            <Label fx:id="minTotal" text="Minimal: x €" />
+            <Label fx:id="maxTotal" text="Maximal x €" />
           </children>
         </VBox>
       </children>

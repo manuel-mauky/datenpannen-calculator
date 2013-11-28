@@ -1,18 +1,17 @@
 package de.hszg.datenpannen.dataloss.model;
 
-import de.hszg.datenpannen.utils.Helper;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.binding.IntegerBinding;
+import javafx.beans.binding.NumberBinding;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import java.util.EnumMap;
 import java.util.Map;
 
-import static de.hszg.datenpannen.utils.Helper.createEmptyEnumMap;
+import static de.hszg.datenpannen.utils.Helper.*;
 
 /**
  * DataModel für die Ergebnisdaten.
@@ -20,18 +19,15 @@ import static de.hszg.datenpannen.utils.Helper.createEmptyEnumMap;
 public class DatalossResult {
 
     /**
-     * Die tatsächlichen (d.h. für den Industriezweig) Durchschnittskosten pro
-     * Datensatz.
+     * Die tatsächlichen (d.h. für den Industriezweig) Durchschnittskosten pro Datensatz.
      */
     private DoubleProperty avgCostPerDataset = new SimpleDoubleProperty();
     /**
-     * Die tatsächlichen (d.h. für den Industriezweig) Minimalen Kosten pro
-     * Datensatz.
+     * Die tatsächlichen (d.h. für den Industriezweig) Minimalen Kosten pro Datensatz.
      */
     private DoubleProperty minCostPerDataset = new SimpleDoubleProperty();
     /**
-     * Die tatsächlichen (d.h. für den Industriezweig) Maximalen Kosten pro
-     * Datensatz.
+     * Die tatsächlichen (d.h. für den Industriezweig) Maximalen Kosten pro Datensatz.
      */
     private DoubleProperty maxCostPerDataset = new SimpleDoubleProperty();
     /**
@@ -58,6 +54,12 @@ public class DatalossResult {
      * Die Aufteilung der Maximalen Kosten.
      */
     private MapProperty<CostDistribution, DoubleProperty> maxDistributionCosts = new SimpleMapProperty<>();
+    /**
+     * Prozent-Anteil der aktuell ausgewählten Datensätze.
+     */
+    private NumberBinding selectionPercentage;
+
+
     @Inject
     private BaseDataModel baseDataModel;
     @Inject
@@ -70,11 +72,10 @@ public class DatalossResult {
     }
 
     /**
-     * Der Parametrisierte Konstruktor ist zum Testen der Klasse gedacht.
-     * Darüber können die Abhängigkeiten direkt injeziert werden.
+     * Der Parametrisierte Konstruktor ist zum Testen der Klasse gedacht. Darüber können die Abhängigkeiten direkt
+     * injeziert werden.
      * <p/>
-     * Im Realen Betrieb wird dies durch das Dependency-Injection-Framework
-     * übernommen.
+     * Im Realen Betrieb wird dies durch das Dependency-Injection-Framework übernommen.
      */
     protected DatalossResult(BaseDataModel baseDataModel, UserinputModel userinputModel) {
         this();
@@ -85,9 +86,8 @@ public class DatalossResult {
     }
 
     /**
-     * Stellt sämtliche Bindings her. Diese Methode wird dank der
-     * {@link PostConstruct} Annotation durch das DI-Framework nach
-     * Initialisierung der Klasse aufgerufen.
+     * Stellt sämtliche Bindings her. Diese Methode wird dank der {@link PostConstruct} Annotation durch das
+     * DI-Framework nach Initialisierung der Klasse aufgerufen.
      */
     @PostConstruct
     protected void initialize() {
@@ -129,12 +129,24 @@ public class DatalossResult {
         initDistributionCostBinding(minDistributionCosts, minCostPerDataset);
         initDistributionCostBinding(maxDistributionCosts, maxCostPerDataset);
 
+        IntegerProperty all = userinputModel.numberOfDatasets();
+        IntegerProperty selected = userinputModel.numberOfLostDatasets();
+
+        selectionPercentage =
+                Bindings.when(
+                        all.isEqualTo(0))
+                        .then(0)
+                        .otherwise(
+                                selected
+                                        .multiply(100)
+                                        .divide(all.add(0.0001)));
+
+
     }
 
     /**
-     * Erzeugt für sämtliche DoubleProperty-Values der Map ein Binding, welches
-     * die angegebenen "costPerDataset" (je avg,min, max) mit dem dazugehörigen
-     * Faktor (aus {@link BaseDataModel} multipliziert.
+     * Erzeugt für sämtliche DoubleProperty-Values der Map ein Binding, welches die angegebenen "costPerDataset" (je
+     * avg,min, max) mit dem dazugehörigen Faktor (aus {@link BaseDataModel} multipliziert.
      */
     private void initDistributionCostBinding(Map<CostDistribution, DoubleProperty> map, DoubleProperty costPerDataset) {
         for (Map.Entry<CostDistribution, DoubleProperty> entry : map.entrySet()) {
@@ -182,5 +194,9 @@ public class DatalossResult {
 
     public ReadOnlyDoubleProperty maxCostTotal() {
         return maxCostTotal;
+    }
+
+    public NumberBinding selectionPercentage() {
+        return selectionPercentage;
     }
 }

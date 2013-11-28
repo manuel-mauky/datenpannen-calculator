@@ -17,6 +17,7 @@ public class DatalossDetailsPresenter implements Initializable{
     private static final String FORMAT_AVG = "Durchschnitt: %.0f€";
     private static final String FORMAT_MIN = "Min: %.0f€";
     private static final String FORMAT_MAX = "Max: %.0f€";
+    private static final String FORMAT_TOTAL_LABEL = "Gesamt bei %.0f%%\n verlorene Daten";
 
     @FXML
     private Label avgPerDataset;
@@ -32,6 +33,9 @@ public class DatalossDetailsPresenter implements Initializable{
     @FXML
     private Label maxTotal;
 
+    @FXML
+    private Label totalLossLabel;
+
     @Inject
     private DatalossResult result;
 
@@ -44,6 +48,8 @@ public class DatalossDetailsPresenter implements Initializable{
         avgTotal.textProperty().bind(avg(result.avgCostTotal()));
         minTotal.textProperty().bind(min(result.minCostTotal()));
         maxTotal.textProperty().bind(max(result.maxCostTotal()));
+
+        totalLossLabel.textProperty().bind(Bindings.format(FORMAT_TOTAL_LABEL,result.selectionPercentage()));
     }
 
     private StringExpression avg(ReadOnlyDoubleProperty value){

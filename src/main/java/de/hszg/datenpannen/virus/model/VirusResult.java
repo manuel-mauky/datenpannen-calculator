@@ -45,6 +45,8 @@ public class VirusResult {
     private MapProperty<AttackType,DoubleProperty> minAttackTypeCosts = new SimpleMapProperty<>();
     private MapProperty<AttackType,DoubleProperty> maxAttackTypeCosts = new SimpleMapProperty<>();
 
+    private NumberBinding selectedPercentage;
+
     @Inject
     private BaseDataModel baseDataModel;
     @Inject
@@ -67,7 +69,6 @@ public class VirusResult {
         avgAttackTypeCosts.set(FXCollections.observableMap(createEmptyEnumMap(AttackType.class)));
         minAttackTypeCosts.set(FXCollections.observableMap(createEmptyEnumMap(AttackType.class)));
         maxAttackTypeCosts.set(FXCollections.observableMap(createEmptyEnumMap(AttackType.class)));
-
     }
 
     public VirusResult(BaseDataModel baseDataModel, UserInputModel userInputModel) {
@@ -146,6 +147,18 @@ public class VirusResult {
         initAttackTypeCosts(avgAttackTypeCosts,avgCostSelected);
         initAttackTypeCosts(minAttackTypeCosts,minCostSelected);
         initAttackTypeCosts(maxAttackTypeCosts, maxCostSelected);
+
+
+        IntegerProperty all = userInputModel.numberOfClients();
+        IntegerProperty selected = userInputModel.selectedNumberOfClientsInChart();
+
+        selectedPercentage = Bindings.when(
+                all.isEqualTo(0))
+                .then(0.0)
+                .otherwise(
+                        selected.
+                                multiply(100)
+                                .divide(all.add(0.0001)));
     }
 
     private void initCostComponentCosts(MapProperty<CostComponent, DoubleProperty> map, DoubleProperty perClient) {
@@ -282,5 +295,9 @@ public class VirusResult {
 
     public ReadOnlyDoubleProperty getMaxAttackTypeCost(AttackType attacktype) {
         return BindingHelper.nanOrInfinity(maxAttackTypeCosts.get(attacktype));
+    }
+
+    public NumberBinding selectedPercentage(){
+        return selectedPercentage;
     }
 }

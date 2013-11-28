@@ -51,20 +51,7 @@ public class VirusDetailsPresenter  implements Initializable{
 
         maxLoss.textProperty().bind(Bindings.format(FORMAT_EURO, result.maxCostTotal()));
 
-
-        IntegerProperty all = userInputModel.numberOfClients();
-        IntegerProperty selected = userInputModel.selectedNumberOfClientsInChart();
-
-
-        NumberBinding percentageBinding = Bindings.when(
-                all.isEqualTo(0))
-                .then(0.0)
-                .otherwise(
-                        selected.
-                                multiply(100)
-                                .divide(all.add(0.0001)));
-
-        lossWithXPercentLabel.textProperty().bind(Bindings.format(FORMAT_LOSS_PERCENTAGE_LABEL,percentageBinding));
+        lossWithXPercentLabel.textProperty().bind(Bindings.format(FORMAT_LOSS_PERCENTAGE_LABEL, result.selectedPercentage()));
 
         lossWithXPercentValue.textProperty().bind(Bindings.format(FORMAT_EURO,result.avgCostSelected()));
     }
