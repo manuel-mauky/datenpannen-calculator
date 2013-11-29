@@ -1,18 +1,14 @@
 package de.hszg.datenpannen.dataloss.model;
 
-import de.hszg.datenpannen.utils.Helper;
+import static de.hszg.datenpannen.utils.Helper.createEmptyEnumMap;
+import java.util.Map;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.binding.IntegerBinding;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import java.util.EnumMap;
-import java.util.Map;
-
-import static de.hszg.datenpannen.utils.Helper.createEmptyEnumMap;
 
 /**
  * DataModel für die Ergebnisdaten.
@@ -158,6 +154,18 @@ public class DatalossResult {
 
     public ReadOnlyDoubleProperty getMaxDistributionCost(CostDistribution distribution) {
         return maxDistributionCosts.get(distribution);
+    }
+
+    public ReadOnlyDoubleProperty getDistributionPercentage(CostDistribution distribution) {
+        return getAvgDistributionCost(distribution);
+    }
+
+    public ReadOnlyDoubleProperty getDistributionCost(CostDistribution distribution) {
+        SimpleDoubleProperty value = new SimpleDoubleProperty();
+        value.bind(avgCostTotal().multiply(getDistributionPercentage(distribution).
+                divide(100.0)).multiply(userinputModel.numberOfLostDatasets().divide(
+                Bindings.when(userinputModel.numberOfDatasets().isEqualTo(0)).then(1.0).otherwise(userinputModel.numberOfDatasets()))));
+        return (ReadOnlyDoubleProperty) value;
     }
 
     public ReadOnlyDoubleProperty avgCostPerDataset() {

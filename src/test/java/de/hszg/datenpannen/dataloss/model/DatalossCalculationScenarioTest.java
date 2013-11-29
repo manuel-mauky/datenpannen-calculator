@@ -1,12 +1,10 @@
 package de.hszg.datenpannen.dataloss.model;
 
-import static de.hszg.datenpannen.dataloss.model.InfluencingFactor.*;
+import de.hszg.datenpannen.dataloss.data.StaticDatalossDataProvider;
 import static de.hszg.datenpannen.dataloss.model.CostDistribution.*;
+import static de.hszg.datenpannen.dataloss.model.InfluencingFactor.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.data.Offset.offset;
-
-
-import de.hszg.datenpannen.dataloss.data.StaticDatalossDataProvider;
 import org.junit.Before;
 import org.junit.Test;
 

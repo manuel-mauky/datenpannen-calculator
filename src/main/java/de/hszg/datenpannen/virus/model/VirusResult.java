@@ -1,20 +1,16 @@
 package de.hszg.datenpannen.virus.model;
 
 import de.hszg.datenpannen.utils.BindingHelper;
+import static de.hszg.datenpannen.utils.Helper.createEmptyEnumMap;
 import de.hszg.datenpannen.utils.MathBindings;
+import java.util.Map;
 import javafx.beans.binding.Bindings;
-import javafx.beans.binding.BooleanBinding;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.binding.NumberBinding;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import java.util.Map;
-
-
-import static de.hszg.datenpannen.utils.Helper.createEmptyEnumMap;
 
 public class VirusResult {
 

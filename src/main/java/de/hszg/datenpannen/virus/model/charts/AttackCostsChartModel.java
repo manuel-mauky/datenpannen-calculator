@@ -2,13 +2,13 @@ package de.hszg.datenpannen.virus.model.charts;
 
 import de.hszg.datenpannen.virus.model.AttackType;
 import de.hszg.datenpannen.virus.model.VirusResult;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
@@ -26,6 +26,9 @@ public class AttackCostsChartModel implements PieChartModel {
         for (AttackType attackType : AttackType.values()) {
             PieChart.Data element = new PieChart.Data(attackType.toString(),0);
             element.pieValueProperty().bind(result.getAvgAttackTypeCost(attackType));
+             element.nameProperty().bind(Bindings.format("%s%n%,.0f \u20AC",
+                        attackType,
+                        result.getAvgAttackTypeCost(attackType)));
             data.add(element);
         }
     }

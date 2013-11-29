@@ -1,7 +1,6 @@
 package de.hszg.datenpannen.virus.data;
 
 import de.hszg.datenpannen.virus.model.*;
-import de.hszg.datenpannen.virus.model.SecurityGovernanceActivity;
 import java.util.Map;
 
 /**

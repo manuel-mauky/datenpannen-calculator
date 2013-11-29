@@ -1,14 +1,12 @@
 package de.hszg.datenpannen.dataloss.model;
 
+import static de.hszg.datenpannen.utils.BindingHelper.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-
-import static de.hszg.datenpannen.utils.BindingHelper.*;
 
 /**
  * DataModel für das Kosten-Line-Chart.
@@ -44,7 +42,7 @@ public class CostsChartModel {
         avgSeries.setName("Durchschnitt");
         minSeries.setName("Min");
         maxSeries.setName("Max");
-        selectionSeries.setName("Anzahl verlorener Datensätze");
+        selectionSeries.setName("Anzahl verlorener Datens\u00E4tze");
 
         avgSeriesData().add(new XYChart.Data<>(0,0.0));
         minSeriesData().add(new XYChart.Data<>(0,0.0));

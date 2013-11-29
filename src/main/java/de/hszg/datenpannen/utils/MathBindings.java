@@ -2,7 +2,6 @@ package de.hszg.datenpannen.utils;
 
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.binding.IntegerBinding;
-import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.value.ObservableNumberValue;
 

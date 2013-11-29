@@ -3,15 +3,12 @@ package de.hszg.datenpannen.dataloss.view.statistics;
 import de.hszg.datenpannen.dataloss.model.CostsChartModel;
 import de.hszg.datenpannen.dataloss.model.DistributionChartModel;
 import de.hszg.datenpannen.utils.Helper;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
-import javafx.util.StringConverter;
-import javafx.util.converter.IntegerStringConverter;
-
 import javax.inject.Inject;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * Presenter für die Statistik-View. Hier werden die Charts mit den darzustellenden Daten verbunden.

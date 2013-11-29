@@ -1,22 +1,21 @@
 package de.hszg.datenpannen.dataloss.view.details;
 
 import de.hszg.datenpannen.dataloss.model.DatalossResult;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringExpression;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-
 import javax.inject.Inject;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class DatalossDetailsPresenter implements Initializable{
 
-    private static final String FORMAT_AVG = "Durchschnitt: %.0f€";
-    private static final String FORMAT_MIN = "Min: %.0f€";
-    private static final String FORMAT_MAX = "Max: %.0f€";
+    private static final String FORMAT_AVG = "Durchschnitt: %,.0f \u20AC";
+    private static final String FORMAT_MIN = "Min: %,.0f \u20AC";
+    private static final String FORMAT_MAX = "Max: %,.0f \u20AC";
 
     @FXML
     private Label avgPerDataset;

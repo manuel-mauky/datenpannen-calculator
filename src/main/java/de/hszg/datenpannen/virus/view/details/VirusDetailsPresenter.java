@@ -2,27 +2,21 @@ package de.hszg.datenpannen.virus.view.details;
 
 import de.hszg.datenpannen.virus.model.UserInputModel;
 import de.hszg.datenpannen.virus.model.VirusResult;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
-import javafx.beans.binding.DoubleBinding;
 import javafx.beans.binding.NumberBinding;
 import javafx.beans.property.IntegerProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-
 import javax.inject.Inject;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class VirusDetailsPresenter  implements Initializable{
 
-    private static final String FORMAT_AVG = "Durchschnitt: %.0f€";
-    private static final String FORMAT_MIN = "Min: %.0f€";
-    private static final String FORMAT_MAX = "Max: %.0f€";
+    private static final String FORMAT_EURO = "%,.0f \u20AC";
 
-    private static final String FORMAT_EURO = "%.0f€";
-
-    private static final String FORMAT_LOSS_PERCENTAGE_LABEL = "Verlust bei %.0f%%";
+    private static final String FORMAT_LOSS_PERCENTAGE_LABEL = "Verlust bei %,.0f%%";
 
     @FXML
     private Label perClient;

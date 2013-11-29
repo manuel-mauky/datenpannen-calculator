@@ -4,7 +4,6 @@ package de.hszg.datenpannen.dataloss.data;
 import de.hszg.datenpannen.dataloss.model.CostDistribution;
 import de.hszg.datenpannen.dataloss.model.InfluencingFactor;
 import de.hszg.datenpannen.dataloss.model.Sector;
-
 import java.util.Map;
 
 /**

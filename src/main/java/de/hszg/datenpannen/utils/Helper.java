@@ -1,14 +1,12 @@
 package de.hszg.datenpannen.utils;
 
+import java.util.EnumMap;
+import java.util.Map;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.chart.*;
 import javafx.util.StringConverter;
-
-import java.util.EnumMap;
-import java.util.Map;
 
 public class Helper {
 
