@@ -34,9 +34,9 @@ public class DistributionChartModel {
 
         for (CostDistribution costDistribution : CostDistribution.values()) {
             PieChart.Data element = new PieChart.Data(costDistribution.toString(), 0);
-            element.pieValueProperty().bind(result.getDistributionPercentage(costDistribution));
+            element.pieValueProperty().bind(result.getAvgDistributionCost(costDistribution));
             element.nameProperty().bind(Bindings.format("%s (%,.0f \u20AC)",
-                    costDistribution, result.getDistributionCost(costDistribution)));
+                    costDistribution, result.getSelectedDistributionCost(costDistribution)));
             distribtutionData.add(element);
         }
     }

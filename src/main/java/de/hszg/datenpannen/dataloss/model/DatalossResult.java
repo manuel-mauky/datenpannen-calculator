@@ -157,15 +157,12 @@ public class DatalossResult {
         return maxDistributionCosts.get(distribution);
     }
 
-    public ReadOnlyDoubleProperty getDistributionPercentage(CostDistribution distribution) {
-        return getAvgDistributionCost(distribution);
-    }
+  
 
-    public ReadOnlyDoubleProperty getDistributionCost(CostDistribution distribution) {
+    public ReadOnlyDoubleProperty getSelectedDistributionCost(CostDistribution distribution) {
         SimpleDoubleProperty value = new SimpleDoubleProperty();
-        value.bind(avgCostPerDataset().multiply(getDistributionPercentage(distribution).
-                divide(100.0)).multiply(userinputModel.numberOfLostDatasets()));
-        return (ReadOnlyDoubleProperty) value;
+        value.bind(getAvgDistributionCost(distribution).multiply(userinputModel.numberOfLostDatasets()));
+        return value;
     }
 
     public ReadOnlyDoubleProperty avgCostPerDataset() {
@@ -195,18 +192,18 @@ public class DatalossResult {
     public ReadOnlyDoubleProperty avgCostSelected() {
         DoubleProperty value = new SimpleDoubleProperty();
         value.bind(avgCostPerDataset().multiply(userinputModel.numberOfLostDatasets()));
-        return (ReadOnlyDoubleProperty)value;
+        return value;
     }
 
     public ReadOnlyDoubleProperty minCostSelected() {
         DoubleProperty value = new SimpleDoubleProperty();
         value.bind(minCostPerDataset().multiply(userinputModel.numberOfLostDatasets()));
-        return (ReadOnlyDoubleProperty)value;
+        return value;
     }
 
     public ReadOnlyDoubleProperty maxCostSelected() {
         DoubleProperty value = new SimpleDoubleProperty();
         value.bind(maxCostPerDataset().multiply(userinputModel.numberOfLostDatasets()));
-        return (ReadOnlyDoubleProperty)value;
+        return value;
     }
 }
