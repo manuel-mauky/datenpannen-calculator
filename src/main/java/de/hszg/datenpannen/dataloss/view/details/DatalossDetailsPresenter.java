@@ -65,7 +65,7 @@ public class DatalossDetailsPresenter implements Initializable {
                 userInputModel.numberOfLostDatasets().
                 multiply(100)
                 .divide(userInputModel.numberOfDatasets().add(0.000001))));
-        return DoubleProperty.readOnlyDoubleProperty(value);
+        return (ReadOnlyDoubleProperty)value;
     }
 
     private StringExpression avg(ReadOnlyDoubleProperty value) {

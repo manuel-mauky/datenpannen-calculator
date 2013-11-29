@@ -195,18 +195,18 @@ public class DatalossResult {
     public ReadOnlyDoubleProperty avgCostSelected() {
         DoubleProperty value = new SimpleDoubleProperty();
         value.bind(avgCostPerDataset().multiply(userinputModel.numberOfLostDatasets()));
-        return ReadOnlyDoubleProperty.readOnlyDoubleProperty(value);
+        return (ReadOnlyDoubleProperty)value;
     }
 
     public ReadOnlyDoubleProperty minCostSelected() {
         DoubleProperty value = new SimpleDoubleProperty();
         value.bind(minCostPerDataset().multiply(userinputModel.numberOfLostDatasets()));
-        return ReadOnlyDoubleProperty.readOnlyDoubleProperty(value);
+        return (ReadOnlyDoubleProperty)value;
     }
 
     public ReadOnlyDoubleProperty maxCostSelected() {
         DoubleProperty value = new SimpleDoubleProperty();
         value.bind(maxCostPerDataset().multiply(userinputModel.numberOfLostDatasets()));
-        return ReadOnlyDoubleProperty.readOnlyDoubleProperty(value);
+        return (ReadOnlyDoubleProperty)value;
     }
 }
