@@ -118,6 +118,7 @@ public class DatalossCalculationScenarioTest {
     @Test
     public void testScenarioMiniPublicSector(){
     	userinputModel.numberOfDatasets().set(50);
+    	userinputModel.numberOfLostDatasets().set(25);
     	userinputModel.sector().set(Sector.PUBLIC_SECTOR);
     	userinputModel.influencingFactors().add(CONSULTANTS_ENGAGED);
     	userinputModel.influencingFactors().add(CISO_APPOINTMENT);
@@ -132,6 +133,10 @@ public class DatalossCalculationScenarioTest {
     	assertThat(result.minCostTotal().get()).isEqualTo(1013.58, offset(0.01));
     	assertThat(result.maxCostTotal().get()).isEqualTo(6248.68, offset(0.01));
     	
+    	assertThat(result.avgCostSelected().get()).isEqualTo(1600.00, offset(0.01));
+    	assertThat(result.minCostSelected().get()).isEqualTo(506.79, offset(0.01));
+    	assertThat(result.maxCostSelected().get()).isEqualTo(3124.34, offset(0.01));
+    	
     	/*
     	 * Da im Scenario-Test kleines Energieunternehmen bereits alle Distributionen getestet wurden,
     	 * werden in diesem Test nur Stichprobenartig die Werte auf ihre Korrektheit geprüft.
@@ -141,6 +146,11 @@ public class DatalossCalculationScenarioTest {
     	assertDistribution(result, 1.82, 5.76, 11.25, AUDIT_AND_CONSULTING_SERVICES);
     	assertDistribution(result, 0.41, 1.28, 2.50, FREE_OR_DISCOUNTED_SERVICES);
     	assertDistribution(result, 0.20, 0.64, 1.25, IDENTITY_PROTECTION_SERVICES);
+    	
+    	assertThat(result.getSelectedDistributionCost(INVESTIGATIONS_AND_FORENSICS).get()).isEqualTo(544.00, offset(0.01));
+    	assertThat(result.getSelectedDistributionCost(LOST_CUSTOMER_BUSINESS).get()).isEqualTo(464.00, offset(0.01));
+    	assertThat(result.getSelectedDistributionCost(AUDIT_AND_CONSULTING_SERVICES).get()).isEqualTo(144.00, offset(0.01));
+    	assertThat(result.getSelectedDistributionCost(FREE_OR_DISCOUNTED_SERVICES).get()).isEqualTo(32.00, offset(0.01));
     	
     }
     
