@@ -5,6 +5,7 @@ import java.util.Map;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.binding.IntegerBinding;
+import javafx.beans.binding.NumberBinding;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javax.annotation.PostConstruct;
@@ -162,9 +163,8 @@ public class DatalossResult {
 
     public ReadOnlyDoubleProperty getDistributionCost(CostDistribution distribution) {
         SimpleDoubleProperty value = new SimpleDoubleProperty();
-        value.bind(avgCostTotal().multiply(getDistributionPercentage(distribution).
-                divide(100.0)).multiply(userinputModel.numberOfLostDatasets().divide(
-                Bindings.when(userinputModel.numberOfDatasets().isEqualTo(0)).then(1.0).otherwise(userinputModel.numberOfDatasets()))));
+        value.bind(avgCostPerDataset().multiply(getDistributionPercentage(distribution).
+                divide(100.0)).multiply(userinputModel.numberOfLostDatasets()));
         return (ReadOnlyDoubleProperty) value;
     }
 
@@ -190,5 +190,23 @@ public class DatalossResult {
 
     public ReadOnlyDoubleProperty maxCostTotal() {
         return maxCostTotal;
+    }
+
+    public ReadOnlyDoubleProperty avgCostSelected() {
+        DoubleProperty value = new SimpleDoubleProperty();
+        value.bind(avgCostPerDataset().multiply(userinputModel.numberOfLostDatasets()));
+        return ReadOnlyDoubleProperty.readOnlyDoubleProperty(value);
+    }
+
+    public ReadOnlyDoubleProperty minCostSelected() {
+        DoubleProperty value = new SimpleDoubleProperty();
+        value.bind(minCostPerDataset().multiply(userinputModel.numberOfLostDatasets()));
+        return ReadOnlyDoubleProperty.readOnlyDoubleProperty(value);
+    }
+
+    public ReadOnlyDoubleProperty maxCostSelected() {
+        DoubleProperty value = new SimpleDoubleProperty();
+        value.bind(maxCostPerDataset().multiply(userinputModel.numberOfLostDatasets()));
+        return ReadOnlyDoubleProperty.readOnlyDoubleProperty(value);
     }
 }
