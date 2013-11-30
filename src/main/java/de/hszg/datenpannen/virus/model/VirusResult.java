@@ -80,7 +80,37 @@ public class VirusResult {
      */
     @PostConstruct
     private void initialize() {
+        initPerClientBindings();
 
+        initTotalBindings();
+
+        initSelectedBindings();
+
+
+
+        initCostComponentCosts(avgCostComponentCosts,avgCostSelected);
+        initCostComponentCosts(minCostComponentCosts,minCostSelected);
+        initCostComponentCosts(maxCostComponentCosts,maxCostSelected);
+
+        initInternalActivityCosts(avgInternalActivityCosts,avgCostSelected);
+        initInternalActivityCosts(minInternalActivityCosts,minCostSelected);
+        initInternalActivityCosts(maxInternalActivityCosts, maxCostSelected);
+
+        initExternalConsequencesCosts(avgExternalConsequenceCosts,avgCostSelected);
+        initExternalConsequencesCosts(minExternalConsequenceCosts,minCostSelected);
+        initExternalConsequencesCosts(maxExternalConsequenceCosts, maxCostSelected);
+
+        initAttackTypeCosts(avgAttackTypeCosts,avgCostSelected);
+        initAttackTypeCosts(minAttackTypeCosts,minCostSelected);
+        initAttackTypeCosts(maxAttackTypeCosts, maxCostSelected);
+
+        initSelectedPercentageBinding();
+    }
+
+    /**
+     * Initialisiert alle Bindings die pro Client existieren.
+     */
+    private void initPerClientBindings() {
         IntegerProperty numberOfClients = userInputModel.numberOfClients();
 
         DoubleBinding activityFactor = Bindings.doubleValueAt(baseDataModel.securityGovernanceActivityDistributions(), userInputModel.securityGovernanceActivity());
@@ -114,37 +144,34 @@ public class VirusResult {
                                         baseDataModel.maxCostExponent()))
                         .multiply(activityFactor)
                         .multiply(sectorFactor));
+    }
 
 
-        avgCostTotal.bind(numberOfClients.multiply(avgCostPerClient));
-        minCostTotal.bind(numberOfClients.multiply(minCostPerClient));
-        maxCostTotal.bind(numberOfClients.multiply(maxCostPerClient));
-
-
+    /**
+     * Initialisiert alle Bindings, die mit der aktuellen Auswahl an tatsächlich infizierten Clients zu tun haben.
+     */
+    private void initSelectedBindings() {
         IntegerProperty selectedNumberOfClients = userInputModel.selectedNumberOfClientsInChart();
         avgCostSelected.bind(selectedNumberOfClients.multiply(avgCostPerClient));
         minCostSelected.bind(selectedNumberOfClients.multiply(minCostPerClient));
         maxCostSelected.bind(selectedNumberOfClients.multiply(maxCostPerClient));
+    }
 
+    /**
+     * Initialisiert alle Bindings, die mit den Totalen Kosten zu tun haben.
+     */
+    private void initTotalBindings() {
+        IntegerProperty numberOfClients = userInputModel.numberOfClients();
 
+        avgCostTotal.bind(numberOfClients.multiply(avgCostPerClient));
+        minCostTotal.bind(numberOfClients.multiply(minCostPerClient));
+        maxCostTotal.bind(numberOfClients.multiply(maxCostPerClient));
+    }
 
-        initCostComponentCosts(avgCostComponentCosts,avgCostSelected);
-        initCostComponentCosts(minCostComponentCosts,minCostSelected);
-        initCostComponentCosts(maxCostComponentCosts,maxCostSelected);
-
-        initInternalActivityCosts(avgInternalActivityCosts,avgCostSelected);
-        initInternalActivityCosts(minInternalActivityCosts,minCostSelected);
-        initInternalActivityCosts(maxInternalActivityCosts, maxCostSelected);
-
-        initExternalConsequencesCosts(avgExternalConsequenceCosts,avgCostSelected);
-        initExternalConsequencesCosts(minExternalConsequenceCosts,minCostSelected);
-        initExternalConsequencesCosts(maxExternalConsequenceCosts, maxCostSelected);
-
-        initAttackTypeCosts(avgAttackTypeCosts,avgCostSelected);
-        initAttackTypeCosts(minAttackTypeCosts,minCostSelected);
-        initAttackTypeCosts(maxAttackTypeCosts, maxCostSelected);
-
-
+    /**
+     * Initialisiert das Binding für den Prozentsatz aktuell ausgewählter Clients.
+     */
+    private void initSelectedPercentageBinding() {
         IntegerProperty all = userInputModel.numberOfClients();
         IntegerProperty selected = userInputModel.selectedNumberOfClientsInChart();
 
@@ -156,6 +183,7 @@ public class VirusResult {
                                 multiply(100)
                                 .divide(all.add(0.0001)));
     }
+
 
     private void initCostComponentCosts(MapProperty<CostComponent, DoubleProperty> map, DoubleProperty perClient) {
         for(Map.Entry<CostComponent,DoubleProperty> entry : map.entrySet()){
