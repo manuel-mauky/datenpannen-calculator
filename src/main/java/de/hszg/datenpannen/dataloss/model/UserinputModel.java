@@ -1,7 +1,6 @@
 package de.hszg.datenpannen.dataloss.model;
 
 import java.util.EnumSet;
-
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 

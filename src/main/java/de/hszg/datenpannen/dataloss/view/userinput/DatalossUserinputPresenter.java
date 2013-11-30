@@ -10,6 +10,10 @@ import de.hszg.datenpannen.main.view.main.MainView;
 import de.hszg.datenpannen.utils.BindingHelper;
 import de.hszg.datenpannen.utils.EmptyToZeroNumberConverter;
 import de.hszg.datenpannen.utils.ResourceBundleWrapper;
+import de.hszg.datenpannen.utils.BindingHelper;
+import de.hszg.datenpannen.utils.EmptyToZeroNumberConverter;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -27,6 +31,7 @@ import javax.inject.Inject;
  * mit dem ViewModel verbunden.
  */
 public class DatalossUserinputPresenter{
+
 
     private static final String RESOURCE_KEY_FORMAT_SELECTED_CLIENTS = "dataloss.input.format.selectedClients";
 

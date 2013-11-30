@@ -9,7 +9,6 @@ import javafx.scene.chart.XYChart;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-
 import java.util.ResourceBundle;
 
 import static de.hszg.datenpannen.utils.BindingHelper.*;

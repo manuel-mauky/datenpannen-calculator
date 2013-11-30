@@ -2,6 +2,7 @@ package de.hszg.datenpannen.dataloss.model;
 
 import de.hszg.datenpannen.main.view.main.MainView;
 import de.hszg.datenpannen.utils.ResourceBundleWrapper;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -18,9 +19,7 @@ import java.util.ResourceBundle;
 public class DistributionChartModel {
 
     private StringProperty title = new SimpleStringProperty();
-
     private ObservableList<PieChart.Data> distribtutionData = FXCollections.observableArrayList();
-
     @Inject
     private DatalossResult result;
 
@@ -34,7 +33,7 @@ public class DistributionChartModel {
         initialize();
     }
 
-    public DistributionChartModel(){
+    public DistributionChartModel() {
     }
 
     @PostConstruct
@@ -44,7 +43,8 @@ public class DistributionChartModel {
         for (CostDistribution costDistribution : CostDistribution.values()) {
             PieChart.Data element = new PieChart.Data(costDistribution.toString(), 0);
             element.pieValueProperty().bind(result.getAvgDistributionCost(costDistribution));
-
+            element.nameProperty().bind(Bindings.format("%s (%,.0f \u20AC)",
+                    costDistribution, result.getSelectedDistributionCost(costDistribution)));
             distribtutionData.add(element);
         }
     }
@@ -58,7 +58,7 @@ public class DistributionChartModel {
         return title;
     }
 
-    public ObservableList<PieChart.Data> distribtutionData(){
+    public ObservableList<PieChart.Data> distribtutionData() {
         return distribtutionData;
     }
 }

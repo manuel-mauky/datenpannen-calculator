@@ -1,18 +1,19 @@
 package de.hszg.datenpannen.dataloss.view.details;
 
 import de.hszg.datenpannen.dataloss.model.DatalossResult;
+import de.hszg.datenpannen.dataloss.model.UserinputModel;
 import de.hszg.datenpannen.main.view.main.MainView;
 import de.hszg.datenpannen.utils.ResourceBundleWrapper;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringExpression;
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ReadOnlyDoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import java.net.URL;
 import java.util.ResourceBundle;
 
 public class DatalossDetailsPresenter{
@@ -21,25 +22,27 @@ public class DatalossDetailsPresenter{
     public static final String RESOURCE_KEY_FORMAT_AVG = "dataloss.details.format.avg";
     public static final String RESOURCE_KEY_FORMAT_MAX = "dataloss.details.format.max";
     public static final String RESOURCE_KEY_FORMAT_MIN = "dataloss.details.format.min";
+
     @FXML
     private Label avgPerDataset;
     @FXML
     private Label minPerDataset;
     @FXML
     private Label maxPerDataset;
+    @FXML
+    private Label avgSelected;
+    @FXML
+    private Label minSelected;
+    @FXML
+    private Label maxSelected;
 
     @FXML
-    private Label avgTotal;
-    @FXML
-    private Label minTotal;
-    @FXML
-    private Label maxTotal;
-
-    @FXML
-    private Label totalLossLabel;
+    private Label captionSelected;
 
     @Inject
     private DatalossResult result;
+    @Inject
+    private UserinputModel userInputModel;
 
     @Inject
     private ResourceBundleWrapper resourceBundleWrapper;
@@ -52,14 +55,14 @@ public class DatalossDetailsPresenter{
         minPerDataset.textProperty().bind(min(result.minCostPerDataset()));
         maxPerDataset.textProperty().bind(max(result.maxCostPerDataset()));
 
-        avgTotal.textProperty().bind(avg(result.avgCostTotal()));
-        minTotal.textProperty().bind(min(result.minCostTotal()));
-        maxTotal.textProperty().bind(max(result.maxCostTotal()));
+        avgSelected.textProperty().bind(avg(result.avgCostSelected()));
+        minSelected.textProperty().bind(min(result.minCostSelected()));
+        maxSelected.textProperty().bind(max(result.maxCostSelected()));
 
 
         String formatTotal = bundle.getString(RESOURCE_KEY_FORMAT_TOTAL);
 
-        totalLossLabel.textProperty().bind(Bindings.format(formatTotal,result.selectionPercentage()));
+        captionSelected.textProperty().bind(Bindings.format(formatTotal,result.selectionPercentage()));
     }
 
     private StringExpression avg(ReadOnlyDoubleProperty value){
@@ -71,5 +74,4 @@ public class DatalossDetailsPresenter{
     private StringExpression min(ReadOnlyDoubleProperty value){
         return Bindings.format(bundle.getString(RESOURCE_KEY_FORMAT_MIN),value);
     }
-
 }

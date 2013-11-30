@@ -1,7 +1,5 @@
 package de.hszg.datenpannen.utils;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.binding.ObjectBinding;

@@ -3,7 +3,6 @@ package de.hszg.datenpannen.dataloss.model;
 import de.hszg.datenpannen.dataloss.data.StaticDatalossDataProvider;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 

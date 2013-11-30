@@ -22,8 +22,6 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        Locale.setDefault(Locale.ENGLISH);
-
         ResourceBundleWrapper resourceBundleWrapper = new ResourceBundleWrapper();
         ResourceBundle bundle = resourceBundleWrapper.getResourceBundleFor(MainView.class);
 

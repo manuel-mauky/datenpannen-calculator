@@ -1,17 +1,14 @@
 package de.hszg.datenpannen.virus.model.charts;
 
+import static de.hszg.datenpannen.utils.BindingHelper.*;
 import de.hszg.datenpannen.virus.model.UserInputModel;
 import de.hszg.datenpannen.virus.model.VirusResult;
 import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.chart.XYChart;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-
-
-import static de.hszg.datenpannen.utils.BindingHelper.*;
 
 /**
  * DataModel für das Kosten-Linien-Diagramm für den Virenbefall.
@@ -35,7 +32,7 @@ public class CostsChartModel {
 
     @PostConstruct
     void initialize(){
-        title.set("Kostenübersicht");
+        title.set("Kosten\u00FCbersicht");
 
         avgSeries.setName("Durchschnitt");
         minSeries.setName("Min");

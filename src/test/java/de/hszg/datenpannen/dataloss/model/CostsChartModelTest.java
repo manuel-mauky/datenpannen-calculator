@@ -1,7 +1,5 @@
 package de.hszg.datenpannen.dataloss.model;
 
-import de.hszg.datenpannen.main.view.main.MainView;
-import de.hszg.datenpannen.utils.ResourceBundleWrapper;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -11,9 +9,7 @@ import javafx.scene.chart.XYChart;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ResourceBundle;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class CostsChartModelTest {

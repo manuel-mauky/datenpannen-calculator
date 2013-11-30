@@ -1,8 +1,5 @@
 package de.hszg.datenpannen.virus.view.userinput;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import de.hszg.datenpannen.utils.BindingHelper;
 import de.hszg.datenpannen.utils.EmptyToZeroNumberConverter;
 import de.hszg.datenpannen.virus.model.Sector;
@@ -12,13 +9,11 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 /**

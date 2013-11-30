@@ -172,6 +172,14 @@ public class DatalossResult {
         return maxDistributionCosts.get(distribution);
     }
 
+  
+
+    public ReadOnlyDoubleProperty getSelectedDistributionCost(CostDistribution distribution) {
+        SimpleDoubleProperty value = new SimpleDoubleProperty();
+        value.bind(getAvgDistributionCost(distribution).multiply(userinputModel.numberOfLostDatasets()));
+        return value;
+    }
+
     public ReadOnlyDoubleProperty avgCostPerDataset() {
         return avgCostPerDataset;
     }
@@ -198,5 +206,23 @@ public class DatalossResult {
 
     public NumberBinding selectionPercentage() {
         return selectionPercentage;
+    }
+
+    public ReadOnlyDoubleProperty avgCostSelected() {
+        DoubleProperty value = new SimpleDoubleProperty();
+        value.bind(avgCostPerDataset().multiply(userinputModel.numberOfLostDatasets()));
+        return value;
+    }
+
+    public ReadOnlyDoubleProperty minCostSelected() {
+        DoubleProperty value = new SimpleDoubleProperty();
+        value.bind(minCostPerDataset().multiply(userinputModel.numberOfLostDatasets()));
+        return value;
+    }
+
+    public ReadOnlyDoubleProperty maxCostSelected() {
+        DoubleProperty value = new SimpleDoubleProperty();
+        value.bind(maxCostPerDataset().multiply(userinputModel.numberOfLostDatasets()));
+        return value;
     }
 }

@@ -8,16 +8,16 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="-1.0" prefWidth="-1.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.hszg.datenpannen.dataloss.view.details.DatalossDetailsPresenter">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns:fx="http://javafx.com/fxml" fx:controller="de.hszg.datenpannen.dataloss.view.details.DatalossDetailsPresenter">
   <children>
-    <VBox alignment="TOP_LEFT" fillWidth="true" prefHeight="-1.0" prefWidth="-1.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <VBox spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
         <Label text="%dataloss.details.perDataset" underline="false">
           <font>
             <Font name="System Bold" size="13.0" fx:id="x1" />
           </font>
         </Label>
-        <VBox fillWidth="false" prefHeight="-1.0" prefWidth="-1.0" spacing="2.0">
+        <VBox fillWidth="false" spacing="2.0">
           <children>
             <Label id="avgPerD" fx:id="avgPerDataset" text="format" />
             <Label fx:id="minPerDataset" text="format" />
@@ -27,12 +27,12 @@
             <Insets left="5.0" fx:id="x2" />
           </padding>
         </VBox>
-        <Label fx:id="totalLossLabel" font="$x1" text="format" />
-        <VBox fillWidth="false" padding="$x2" prefHeight="-1.0" prefWidth="-1.0" spacing="2.0">
+        <Label fx:id="captionSelected" font="$x1" text="format" />
+        <VBox fillWidth="false" padding="$x2" spacing="2.0">
           <children>
-            <Label fx:id="avgTotal" text="format" />
-            <Label fx:id="minTotal" text="format" />
-            <Label fx:id="maxTotal" text="format" />
+            <Label fx:id="avgSelected" text="format" />
+            <Label fx:id="minSelected" text="format" />
+            <Label fx:id="maxSelected" text="format" />
           </children>
         </VBox>
       </children>

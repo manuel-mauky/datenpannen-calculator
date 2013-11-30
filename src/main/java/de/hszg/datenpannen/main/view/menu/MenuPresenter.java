@@ -2,13 +2,9 @@ package de.hszg.datenpannen.main.view.menu;
 
 import de.hszg.datenpannen.main.view.dialogues.AboutView;
 import javafx.application.Platform;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * Presenter für das Menü. Hier werden alle Aktionen, die über das Menü
