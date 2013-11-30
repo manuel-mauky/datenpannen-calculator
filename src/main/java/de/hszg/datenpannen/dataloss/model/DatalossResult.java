@@ -170,13 +170,10 @@ public class DatalossResult {
         IntegerProperty selected = userinputModel.numberOfLostDatasets();
 
         selectionPercentage =
-                Bindings.when(
+                selected.divide(Bindings.when(
                         all.isEqualTo(0))
-                        .then(0)
-                        .otherwise(
-                                selected
-                                        .multiply(100)
-                                        .divide(all.add(0.0001)));
+                        .then(1.0)
+                        .otherwise(all)).multiply(100.0);
 
 
         avgCostSelected.bind(avgCostPerDataset.multiply(userinputModel.numberOfLostDatasets()));

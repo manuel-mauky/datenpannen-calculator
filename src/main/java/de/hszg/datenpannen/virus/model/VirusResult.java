@@ -175,13 +175,11 @@ public class VirusResult {
         IntegerProperty all = userInputModel.numberOfClients();
         IntegerProperty selected = userInputModel.selectedNumberOfClientsInChart();
 
-        selectedPercentage = Bindings.when(
-                all.isEqualTo(0))
-                .then(0.0)
-                .otherwise(
-                        selected.
-                                multiply(100)
-                                .divide(all.add(0.0001)));
+        selectedPercentage = 
+              selected.divide(Bindings.when(
+                        all.isEqualTo(0))
+                        .then(1.0)
+                        .otherwise(all)).multiply(100.0);
     }
 
 

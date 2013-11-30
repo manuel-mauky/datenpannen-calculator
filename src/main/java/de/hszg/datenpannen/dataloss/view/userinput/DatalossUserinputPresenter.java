@@ -3,27 +3,17 @@ package de.hszg.datenpannen.dataloss.view.userinput;
 import de.hszg.datenpannen.dataloss.model.InfluencingFactor;
 import de.hszg.datenpannen.dataloss.model.Sector;
 import de.hszg.datenpannen.dataloss.model.UserinputModel;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import de.hszg.datenpannen.main.view.main.MainView;
 import de.hszg.datenpannen.utils.BindingHelper;
 import de.hszg.datenpannen.utils.EmptyToZeroNumberConverter;
 import de.hszg.datenpannen.utils.ResourceBundleWrapper;
-import de.hszg.datenpannen.utils.BindingHelper;
-import de.hszg.datenpannen.utils.EmptyToZeroNumberConverter;
-import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import javafx.util.StringConverter;
-
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 /**

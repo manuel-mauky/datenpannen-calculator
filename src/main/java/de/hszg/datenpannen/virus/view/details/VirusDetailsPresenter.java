@@ -4,16 +4,10 @@ import de.hszg.datenpannen.main.view.main.MainView;
 import de.hszg.datenpannen.utils.ResourceBundleWrapper;
 import de.hszg.datenpannen.virus.model.UserInputModel;
 import de.hszg.datenpannen.virus.model.VirusResult;
-import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
-import javafx.beans.binding.NumberBinding;
-import javafx.beans.property.IntegerProperty;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 public class VirusDetailsPresenter{
@@ -34,9 +28,6 @@ public class VirusDetailsPresenter{
 
     @Inject
     private VirusResult result;
-
-    @Inject
-    private UserInputModel userInputModel;
 
     @Inject
     private ResourceBundleWrapper resourceBundleWrapper;
