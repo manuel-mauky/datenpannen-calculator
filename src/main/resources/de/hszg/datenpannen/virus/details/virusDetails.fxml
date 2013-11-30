@@ -12,7 +12,7 @@
   <children>
     <VBox alignment="TOP_LEFT" fillWidth="true" prefHeight="-1.0" prefWidth="-1.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-        <Label text="je Client" underline="false">
+        <Label text="%virus.details.perClient" underline="false">
           <font>
             <Font name="System Bold" size="13.0" fx:id="x1" />
           </font>
@@ -25,7 +25,7 @@
             <Insets left="5.0" fx:id="x2" />
           </padding>
         </VBox>
-        <Label font="$x1" text="Max. Verlust" />
+        <Label font="$x1" text="%virus.details.maxLost" />
         <VBox fillWidth="false" padding="$x2" prefHeight="-1.0" prefWidth="-1.0" spacing="2.0">
           <children>
             <Label id="avgTotal" fx:id="maxLoss" text="Durchschnitt: 1203 €" />

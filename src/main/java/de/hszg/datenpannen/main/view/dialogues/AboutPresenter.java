@@ -1,20 +1,19 @@
 package de.hszg.datenpannen.main.view.dialogues;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AboutPresenter implements Initializable {
+public class AboutPresenter{
 
     @FXML
     private Label aboutText;
 
+    @FXML
+    private ResourceBundle resources;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        aboutText.setText(resourceBundle.getString("aboutText"));
+    public void initialize() {
+        aboutText.setText(resources.getString("aboutText"));
     }
 }

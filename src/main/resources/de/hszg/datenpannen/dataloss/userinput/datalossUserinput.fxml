@@ -14,24 +14,24 @@
       <children>
         <VBox spacing="5.0">
           <children>
-            <Label text="Wie viele Datensätze haben Sie?" VBox.vgrow="SOMETIMES" />
+            <Label text="%dataloss.input.numberOfDatasets" VBox.vgrow="SOMETIMES" />
             <TextField fx:id="numberOfDatasetsField" prefWidth="200.0" text="42" />
           </children>
         </VBox>
         <VBox spacing="5.0">
           <children>
-            <Label text="Industriezweig auswählen:" />
+            <Label text="%dataloss.input.sectorChoice" />
             <ChoiceBox fx:id="sectorChoiceBox" maxWidth="1.7976931348623157E308" />
           </children>
         </VBox>
         <VBox id="inf" fx:id="influencingFactorBox" spacing="5.0">
           <children>
-            <Label text="Zutreffendes auswählen:" />
+            <Label text="%dataloss.input.influencingFactor" />
           </children>
         </VBox>
         <VBox prefHeight="-1.0" prefWidth="-1.0" spacing="5.0">
           <children>
-            <Label fx:id="numberOfLostDatasetsLabel" text="label" />
+            <Label fx:id="numberOfLostDatasetsLabel" text="format" />
             <Slider id="numberOfDatasets" fx:id="numberOfLostDatasets" />
           </children>
         </VBox>

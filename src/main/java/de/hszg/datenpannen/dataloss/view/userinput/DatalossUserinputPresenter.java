@@ -6,8 +6,10 @@ import de.hszg.datenpannen.dataloss.model.UserinputModel;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import de.hszg.datenpannen.main.view.main.MainView;
 import de.hszg.datenpannen.utils.BindingHelper;
 import de.hszg.datenpannen.utils.EmptyToZeroNumberConverter;
+import de.hszg.datenpannen.utils.ResourceBundleWrapper;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -17,17 +19,16 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 /**
  * Presenter für den Bereich der Nutzereingaben. Hier werden die Input-Elemente
  * mit dem ViewModel verbunden.
  */
-public class DatalossUserinputPresenter implements Initializable {
+public class DatalossUserinputPresenter{
 
-
-    private static final String FORMAT_SELECTED_CLIENTS = "Anzahl verlorener Datensätze: %d";
-
+    private static final String RESOURCE_KEY_FORMAT_SELECTED_CLIENTS = "dataloss.input.format.selectedClients";
 
     @FXML
     private VBox influencingFactorBox;
@@ -43,9 +44,10 @@ public class DatalossUserinputPresenter implements Initializable {
     @Inject
     private UserinputModel userinputModel;
 
+    @Inject
+    private ResourceBundleWrapper resourceBundleWrapper;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize() {
         BindingHelper.applyNumberOnlyFilter(numberOfDatasetsField.textProperty());
         numberOfDatasetsField.textProperty().bindBidirectional(userinputModel.numberOfDatasets(), new EmptyToZeroNumberConverter());
 
@@ -57,7 +59,11 @@ public class DatalossUserinputPresenter implements Initializable {
         numberOfLostDatasets.valueProperty().bindBidirectional(userinputModel.numberOfLostDatasets());
         numberOfLostDatasets.maxProperty().bind(userinputModel.numberOfDatasets());
 
-        numberOfLostDatasetsLabel.textProperty().bind(Bindings.format(FORMAT_SELECTED_CLIENTS,userinputModel.numberOfLostDatasets()));
+
+        ResourceBundle resourceBundleFor = resourceBundleWrapper.getResourceBundleFor(MainView.class);
+        String formatSelectedClients = resourceBundleFor.getString(RESOURCE_KEY_FORMAT_SELECTED_CLIENTS);
+
+        numberOfLostDatasetsLabel.textProperty().bind(Bindings.format(formatSelectedClients,userinputModel.numberOfLostDatasets()));
 
         userinputModel.numberOfDatasets().addListener(new ChangeListener<Number>() {
             @Override

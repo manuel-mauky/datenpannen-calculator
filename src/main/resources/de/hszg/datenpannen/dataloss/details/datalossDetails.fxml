@@ -12,27 +12,27 @@
   <children>
     <VBox alignment="TOP_LEFT" fillWidth="true" prefHeight="-1.0" prefWidth="-1.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-        <Label text="Pro Datensatz" underline="false">
+        <Label text="%dataloss.details.perDataset" underline="false">
           <font>
             <Font name="System Bold" size="13.0" fx:id="x1" />
           </font>
         </Label>
         <VBox fillWidth="false" prefHeight="-1.0" prefWidth="-1.0" spacing="2.0">
           <children>
-            <Label id="avgPerD" fx:id="avgPerDataset" text="Durchschnitt: 123 €" />
-            <Label fx:id="minPerDataset" text="Minimal: 60 €" />
-            <Label fx:id="maxPerDataset" text="Maximal 160 €" />
+            <Label id="avgPerD" fx:id="avgPerDataset" text="format" />
+            <Label fx:id="minPerDataset" text="format" />
+            <Label fx:id="maxPerDataset" text="format" />
           </children>
           <padding>
             <Insets left="5.0" fx:id="x2" />
           </padding>
         </VBox>
-        <Label fx:id="totalLossLabel" font="$x1" text="Gesamt bei x% verlorenen Daten" />
+        <Label fx:id="totalLossLabel" font="$x1" text="format" />
         <VBox fillWidth="false" padding="$x2" prefHeight="-1.0" prefWidth="-1.0" spacing="2.0">
           <children>
-            <Label fx:id="avgTotal" text="Durchschnitt: x €" />
-            <Label fx:id="minTotal" text="Minimal: x €" />
-            <Label fx:id="maxTotal" text="Maximal x €" />
+            <Label fx:id="avgTotal" text="format" />
+            <Label fx:id="minTotal" text="format" />
+            <Label fx:id="maxTotal" text="format" />
           </children>
         </VBox>
       </children>

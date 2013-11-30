@@ -13,6 +13,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.shape.Line;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,7 +23,7 @@ import java.util.Set;
  * Presenter für die Statistik-View. Hier werden die Charts mit den
  * darzustellenden Daten verbunden.
  */
-public class VirusStatisticsPresenter implements Initializable {
+public class VirusStatisticsPresenter {
 
     @FXML
     private LineChart<Integer,Double> costsChart;
@@ -51,8 +52,7 @@ public class VirusStatisticsPresenter implements Initializable {
     @Inject
     private AttackCostsChartModel attackCostsChartModel;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize() {
         costsChart.titleProperty().bind(costsChartModel.title());
 
 

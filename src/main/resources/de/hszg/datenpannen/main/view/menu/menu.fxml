@@ -5,19 +5,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
+<?scenebuilder-preview-i18n-resource ../main/main_de.properties?>
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="-1.0" prefWidth="-1.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.hszg.datenpannen.main.view.menu.MenuPresenter">
   <children>
     <MenuBar prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <menus>
-        <Menu mnemonicParsing="false" text="File">
+        <Menu mnemonicParsing="false" text="%menu.file">
           <items>
-            <MenuItem mnemonicParsing="false" onAction="#close" text="Close" />
+            <MenuItem mnemonicParsing="false" onAction="#close" text="%menu.file.close" />
           </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="Help">
+        <Menu mnemonicParsing="false" text="%menu.help">
           <items>
-            <MenuItem mnemonicParsing="false" onAction="#about" text="About" />
+            <MenuItem mnemonicParsing="false" onAction="#about" text="%menu.help.about" />
           </items>
         </Menu>
       </menus>

@@ -18,13 +18,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 /**
  * Presenter für den Bereich der Nutzereingaben. Hier werden die Input-Elemente
  * mit dem ViewModel verbunden.
  */
-public class VirusUserinputPresenter implements Initializable {
+public class VirusUserinputPresenter {
 
     private static final String FORMAT_SELECTED_CLIENTS = "Anteil Infizierter Clients: %d";
 
@@ -46,8 +47,7 @@ public class VirusUserinputPresenter implements Initializable {
     @Inject
     private UserInputModel userInputModel;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize() {
         BindingHelper.applyNumberOnlyFilter(numberOfClientsField.textProperty());
         numberOfClientsField.textProperty().bindBidirectional(userInputModel.numberOfClients(), new EmptyToZeroNumberConverter());
 

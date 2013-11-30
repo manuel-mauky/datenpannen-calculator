@@ -17,15 +17,12 @@ import java.util.ResourceBundle;
 public class MenuPresenter{
 
     public void about(){
-        System.out.println("about");
-
         AboutView aboutView = new AboutView();
         Parent aboutNode = aboutView.getView();
 
         Stage aboutStage = new Stage();
         aboutStage.setScene(new Scene(aboutNode));
         aboutStage.show();
-
     }
 
     public void close(){

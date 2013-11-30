@@ -9,6 +9,7 @@ import javafx.scene.chart.*;
 import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,7 +17,7 @@ import java.util.ResourceBundle;
 /**
  * Presenter für die Statistik-View. Hier werden die Charts mit den darzustellenden Daten verbunden.
  */
-public class DatalossStatisticsPresenter implements Initializable {
+public class DatalossStatisticsPresenter{
 
     /**
      * Das Torten-Diagramm, welches die Aufteilung der Kosten anzeigt.
@@ -33,8 +34,7 @@ public class DatalossStatisticsPresenter implements Initializable {
     @Inject
     private DistributionChartModel distributionChartModel;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize() {
         costsChart.titleProperty().bindBidirectional(costsChartModel.title());
         costsChart.getData().add(costsChartModel.avgSeries());
         costsChart.getData().add(costsChartModel.minSeries());

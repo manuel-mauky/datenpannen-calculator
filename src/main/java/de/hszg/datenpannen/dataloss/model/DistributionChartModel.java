@@ -1,5 +1,7 @@
 package de.hszg.datenpannen.dataloss.model;
 
+import de.hszg.datenpannen.main.view.main.MainView;
+import de.hszg.datenpannen.utils.ResourceBundleWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -8,6 +10,7 @@ import javafx.scene.chart.PieChart;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import java.util.ResourceBundle;
 
 /**
  * DataModel für das Verteilungs-Pie-Chart.
@@ -21,6 +24,10 @@ public class DistributionChartModel {
     @Inject
     private DatalossResult result;
 
+    @Inject
+    private ResourceBundleWrapper resourceBundleWrapper;
+
+
     DistributionChartModel(DatalossResult result){
         this();
         this.result = result;
@@ -32,7 +39,7 @@ public class DistributionChartModel {
 
     @PostConstruct
     void initialize(){
-        title.set("Aufteilung der Kosten");
+        title.set(resourceString("dataloss.statistics.distributionChart.title"));
 
         for (CostDistribution costDistribution : CostDistribution.values()) {
             PieChart.Data element = new PieChart.Data(costDistribution.toString(), 0);
@@ -40,6 +47,11 @@ public class DistributionChartModel {
 
             distribtutionData.add(element);
         }
+    }
+
+    String resourceString(String key){
+        ResourceBundle bundle = resourceBundleWrapper.getResourceBundleFor(MainView.class);
+        return bundle.getString(key);
     }
 
     public StringProperty title(){

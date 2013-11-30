@@ -1,5 +1,7 @@
 package de.hszg.datenpannen.dataloss.model;
 
+import de.hszg.datenpannen.main.view.main.MainView;
+import de.hszg.datenpannen.utils.ResourceBundleWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
@@ -8,12 +10,16 @@ import javafx.scene.chart.XYChart;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import java.util.ResourceBundle;
+
 import static de.hszg.datenpannen.utils.BindingHelper.*;
 
 /**
  * DataModel für das Kosten-Line-Chart.
  */
 public class CostsChartModel {
+
+    private static final String RESOURCE_KEY_PREFIX = "dataloss.statistics.costsChart.";
 
     private StringProperty title = new SimpleStringProperty();
 
@@ -29,9 +35,14 @@ public class CostsChartModel {
     @Inject
     private UserinputModel userinputModel;
 
+    @Inject
+    private ResourceBundleWrapper resourceBundleWrapper;
+
     CostsChartModel(DatalossResult result, UserinputModel userinputModel){
         this.result = result;
         this.userinputModel = userinputModel;
+
+        initialize();
     }
 
     public CostsChartModel(){
@@ -39,12 +50,11 @@ public class CostsChartModel {
 
     @PostConstruct
     void initialize(){
-        this.title.set("Kosten");
-
-        avgSeries.setName("Durchschnitt");
-        minSeries.setName("Min");
-        maxSeries.setName("Max");
-        selectionSeries.setName("Anzahl verlorener Datensätze");
+        this.title.set(resourceString("title"));
+        avgSeries.setName(resourceString("avg"));
+        minSeries.setName(resourceString("min"));
+        maxSeries.setName(resourceString("max"));
+        selectionSeries.setName(resourceString("selection"));
 
         avgSeriesData().add(new XYChart.Data<>(0,0.0));
         minSeriesData().add(new XYChart.Data<>(0,0.0));
@@ -79,6 +89,11 @@ public class CostsChartModel {
         selectionSeries.getData().add(selectionStart);
         selectionSeries.getData().add(selectionEnd);
 
+    }
+
+    String resourceString(String key){
+        ResourceBundle bundle = resourceBundleWrapper.getResourceBundleFor(MainView.class);
+        return bundle.getString(RESOURCE_KEY_PREFIX + key);
     }
 
     public StringProperty title(){

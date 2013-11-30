@@ -1,5 +1,7 @@
 package de.hszg.datenpannen.dataloss.model;
 
+import de.hszg.datenpannen.main.view.main.MainView;
+import de.hszg.datenpannen.utils.ResourceBundleWrapper;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -9,6 +11,8 @@ import javafx.scene.chart.XYChart;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ResourceBundle;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
@@ -17,34 +21,41 @@ public class CostsChartModelTest {
     public static final double AVG_TOTAL = 103936.00;
     public static final double MIN_TOTAL = 55546.91;
     public static final double MAX_TOTAL = 171408.11;
-    private CostsChartModel model;
 
-    private DatalossResult resultMock;
-    private UserinputModel userinputModelMock;
+    private CostsChartModel model;
 
     private DoubleProperty avgCostTotal = new SimpleDoubleProperty();
     private DoubleProperty minCostTotal = new SimpleDoubleProperty();
     private DoubleProperty maxCostTotal = new SimpleDoubleProperty();
     private IntegerProperty numberOfDatasets = new SimpleIntegerProperty();
+    private IntegerProperty numberOfLostDatasets = new SimpleIntegerProperty();
 
     @Before
     public void setup(){
-        resultMock = mock(DatalossResult.class);
+        DatalossResult resultMock = mock(DatalossResult.class);
         when(resultMock.avgCostTotal()).thenReturn(avgCostTotal);
         when(resultMock.minCostTotal()).thenReturn(minCostTotal);
         when(resultMock.maxCostTotal()).thenReturn(maxCostTotal);
 
-        userinputModelMock = mock(UserinputModel.class);
+        UserinputModel userinputModelMock = mock(UserinputModel.class);
         when(userinputModelMock.numberOfDatasets()).thenReturn(numberOfDatasets);
+        when(userinputModelMock.numberOfLostDatasets()).thenReturn(numberOfLostDatasets);
 
-        model = new CostsChartModel(resultMock,userinputModelMock);
+
+        model = new CostsChartModel(resultMock,userinputModelMock){
+            /**
+             * Resolution of ResourceBundle-Strings isn't part of this test.
+             * Therefore this method is overloaded so that I doesn't need a complicated Mocking of ResouceBundle loading mechanisms.
+             */
+            @Override
+            String resourceString(String key) {
+                return "";
+            }
+        };
     }
 
     @Test
     public void test(){
-        model.initialize();
-
-
         numberOfDatasets.set(512);
 
         avgCostTotal.set(AVG_TOTAL);
@@ -75,11 +86,5 @@ public class CostsChartModelTest {
 
         assertThat(maxData.get(1).getXValue()).isEqualTo(512);
         assertThat(maxData.get(1).getYValue()).isEqualTo(MAX_TOTAL);
-
-
-
-
     }
-
-
 }

@@ -14,26 +14,26 @@
       <children>
         <VBox spacing="5.0">
           <children>
-            <Label text="Wie viele Clients haben Sie?" VBox.vgrow="SOMETIMES" />
+            <Label text="%virus.input.numberOfClients" VBox.vgrow="SOMETIMES" />
             <TextField fx:id="numberOfClientsField" prefWidth="200.0" text="42" />
           </children>
         </VBox>
         <VBox spacing="5.0">
           <children>
-            <Label text="Industriezweig auswählen:" />
+            <Label text="%virus.input.sectorChoice" />
             <ChoiceBox fx:id="sectorChoiceBox" maxWidth="1.7976931348623157E308" />
           </children>
         </VBox>
         <VBox id="inf" fx:id="influencingFactorBox" spacing="5.0">
           <children>
-            <Label text="Sicherheitsvorkehrungen auswählen:" />
+            <Label text="%virus.input.securityGovernance" />
             <ChoiceBox id="governance" fx:id="securityGovernanceChoiceBox" maxWidth="1.7976931348623157E308" />
           </children>
         </VBox>
         <Separator prefWidth="200.0" />
         <VBox prefHeight="-1.0" prefWidth="-1.0" spacing="5.0">
           <children>
-            <Label fx:id="selectedClientsLabel" text="Anteil Infizierter Clients" />
+            <Label fx:id="selectedClientsLabel" text="%virus.input.selectedClients" />
             <Slider fx:id="selectedClientsSlider" value="50.0" />
           </children>
         </VBox>

@@ -11,12 +11,12 @@
             <center>
                 <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
-                        <Tab text="Datenverlust">
+                        <Tab text="%main.tabs.dataloss">
                             <content>
                                 <fx:include source="../../../dataloss/layout.fxml"/>
                             </content>
                         </Tab>
-                        <Tab text="Virus">
+                        <Tab text="%main.tabs.virus">
                             <content>
                                 <fx:include source="../../../virus/layout.fxml"/>
                             </content>
