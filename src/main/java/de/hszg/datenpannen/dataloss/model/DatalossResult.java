@@ -42,6 +42,22 @@ public class DatalossResult {
      * Die gesamten Maximalen Kosten über alle Datensätze.
      */
     private DoubleProperty maxCostTotal = new SimpleDoubleProperty();
+
+    /**
+     * Die durchschnittlichen Kosten der selektierten Datensätze.
+     */
+    private DoubleProperty avgCostSelected = new SimpleDoubleProperty();
+
+    /**
+     * Die minimalen Kosten der selektierten Datensätze.
+     */
+    private DoubleProperty minCostSelected = new SimpleDoubleProperty();
+
+    /**
+     * Die maximalen Kosten der selektierten Datensätze.
+     */
+    private DoubleProperty maxCostSelected = new SimpleDoubleProperty();
+
     /**
      * Die Aufteilung der Durchschnittlichen Kosten.
      */
@@ -54,6 +70,13 @@ public class DatalossResult {
      * Die Aufteilung der Maximalen Kosten.
      */
     private MapProperty<CostDistribution, DoubleProperty> maxDistributionCosts = new SimpleMapProperty<>();
+
+    /**
+     * Die Aufteilung der durchschnittlichen Kosten der selektierten Datensätze.
+     */
+    private MapProperty<CostDistribution, DoubleProperty> selectedAvgDistributionCosts = new SimpleMapProperty<>();
+
+
     /**
      * Prozent-Anteil der aktuell ausgewählten Datensätze.
      */
@@ -69,6 +92,7 @@ public class DatalossResult {
         avgDistributionCosts.set(FXCollections.observableMap(createEmptyEnumMap(CostDistribution.class)));
         minDistributionCosts.set(FXCollections.observableMap(createEmptyEnumMap(CostDistribution.class)));
         maxDistributionCosts.set(FXCollections.observableMap(createEmptyEnumMap(CostDistribution.class)));
+        selectedAvgDistributionCosts.set(FXCollections.observableMap(createEmptyEnumMap(CostDistribution.class)));
     }
 
     /**
@@ -91,6 +115,24 @@ public class DatalossResult {
      */
     @PostConstruct
     protected void initialize() {
+        initPerDatasetBindings();
+
+        avgCostTotal.bind(avgCostPerDataset.multiply(userinputModel.numberOfDatasets()));
+        minCostTotal.bind(minCostPerDataset.multiply(userinputModel.numberOfDatasets()));
+        maxCostTotal.bind(maxCostPerDataset.multiply(userinputModel.numberOfDatasets()));
+
+
+        initDistributionCostBinding(avgDistributionCosts, avgCostPerDataset);
+        initDistributionCostBinding(minDistributionCosts, minCostPerDataset);
+        initDistributionCostBinding(maxDistributionCosts, maxCostPerDataset);
+
+        initSelectionBindings();
+    }
+
+    /**
+     * Initialisiert alle Bindings die pro einzelnen Datensatz existieren.
+     */
+    private void initPerDatasetBindings() {
         IntegerBinding lossCostPerSector = Bindings.integerValueAt(baseDataModel.lossCostPerSector(), userinputModel.sector());
 
         DoubleBinding sumOfInfluencingFactors = new DoubleBinding() {
@@ -118,17 +160,12 @@ public class DatalossResult {
 
         minCostPerDataset.bind(minFactor.multiply(lossCostPerSector).add(sumOfInfluencingFactors));
         maxCostPerDataset.bind(maxFactor.multiply(lossCostPerSector).add(sumOfInfluencingFactors));
+    }
 
-
-        avgCostTotal.bind(avgCostPerDataset.multiply(userinputModel.numberOfDatasets()));
-        minCostTotal.bind(minCostPerDataset.multiply(userinputModel.numberOfDatasets()));
-        maxCostTotal.bind(maxCostPerDataset.multiply(userinputModel.numberOfDatasets()));
-
-
-        initDistributionCostBinding(avgDistributionCosts, avgCostPerDataset);
-        initDistributionCostBinding(minDistributionCosts, minCostPerDataset);
-        initDistributionCostBinding(maxDistributionCosts, maxCostPerDataset);
-
+    /**
+     * Initialisiert alle Bindings die mit der aktuellen Auswahl an tatsächlich verlorenen Daten zutun hat.
+     */
+    private void initSelectionBindings() {
         IntegerProperty all = userinputModel.numberOfDatasets();
         IntegerProperty selected = userinputModel.numberOfLostDatasets();
 
@@ -142,6 +179,17 @@ public class DatalossResult {
                                         .divide(all.add(0.0001)));
 
 
+        avgCostSelected.bind(avgCostPerDataset.multiply(userinputModel.numberOfLostDatasets()));
+        minCostSelected.bind(minCostPerDataset.multiply(userinputModel.numberOfLostDatasets()));
+        maxCostSelected.bind(maxCostPerDataset.multiply(userinputModel.numberOfLostDatasets()));
+
+
+        for(Map.Entry<CostDistribution, DoubleProperty> entry : selectedAvgDistributionCosts.entrySet()){
+            CostDistribution key = entry.getKey();
+            DoubleProperty value = entry.getValue();
+
+            value.bind(getAvgDistributionCost(key).multiply(userinputModel.numberOfLostDatasets()));
+        }
     }
 
     /**
@@ -173,11 +221,8 @@ public class DatalossResult {
     }
 
   
-
     public ReadOnlyDoubleProperty getSelectedDistributionCost(CostDistribution distribution) {
-        SimpleDoubleProperty value = new SimpleDoubleProperty();
-        value.bind(getAvgDistributionCost(distribution).multiply(userinputModel.numberOfLostDatasets()));
-        return value;
+        return selectedAvgDistributionCosts.get(distribution);
     }
 
     public ReadOnlyDoubleProperty avgCostPerDataset() {
@@ -209,20 +254,14 @@ public class DatalossResult {
     }
 
     public ReadOnlyDoubleProperty avgCostSelected() {
-        DoubleProperty value = new SimpleDoubleProperty();
-        value.bind(avgCostPerDataset().multiply(userinputModel.numberOfLostDatasets()));
-        return value;
+        return avgCostSelected;
     }
 
     public ReadOnlyDoubleProperty minCostSelected() {
-        DoubleProperty value = new SimpleDoubleProperty();
-        value.bind(minCostPerDataset().multiply(userinputModel.numberOfLostDatasets()));
-        return value;
+        return minCostSelected;
     }
 
     public ReadOnlyDoubleProperty maxCostSelected() {
-        DoubleProperty value = new SimpleDoubleProperty();
-        value.bind(maxCostPerDataset().multiply(userinputModel.numberOfLostDatasets()));
-        return value;
+        return maxCostSelected;
     }
 }
