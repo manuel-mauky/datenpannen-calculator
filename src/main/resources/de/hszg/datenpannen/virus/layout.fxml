@@ -20,7 +20,7 @@
           <content>
             <VBox prefHeight="-1.0" prefWidth="-1.0">
               <children>
-                <fx:include source="statistics/virusStatistics.fxml" />
+                <fx:include source="statistics/virusStatistics.fxml" VBox.vgrow="ALWAYS" />
               </children>
             </VBox>
           </content>
