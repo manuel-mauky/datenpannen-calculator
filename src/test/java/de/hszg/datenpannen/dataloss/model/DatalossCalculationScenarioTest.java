@@ -1,12 +1,13 @@
 package de.hszg.datenpannen.dataloss.model;
 
 import de.hszg.datenpannen.dataloss.data.StaticDatalossDataProvider;
-import static de.hszg.datenpannen.dataloss.model.CostDistribution.*;
-import static de.hszg.datenpannen.dataloss.model.InfluencingFactor.*;
-import static org.assertj.core.api.Assertions.*;
-import static org.assertj.core.data.Offset.offset;
 import org.junit.Before;
 import org.junit.Test;
+
+import static de.hszg.datenpannen.dataloss.model.CostDistribution.*;
+import static de.hszg.datenpannen.dataloss.model.InfluencingFactor.*;
+import static eu.lestard.assertj.javafx.api.Assertions.*;
+import static org.assertj.core.data.Offset.*;
 
 /**
  * Dieser Test überprüft die Gesamtberechnung.
@@ -39,13 +40,14 @@ public class DatalossCalculationScenarioTest {
         userinputModel.influencingFactors().add(STRONG_SECURITY_POSTURE);
 
 
-        assertThat(result.avgCostPerDataset().get()).isEqualTo(203);
-        assertThat(result.minCostPerDataset().get()).isEqualTo(108.490066, offset(0.001));
-        assertThat(result.maxCostPerDataset().get()).isEqualTo(334.781457, offset(0.001));
+        assertThat(result.avgCostPerDataset()).hasValue(203);
+        assertThat(result.avgCostPerDataset()).hasValue(203);
+        assertThat(result.minCostPerDataset()).hasValue(108.490066, offset(0.001));
+        assertThat(result.maxCostPerDataset()).hasValue(334.781457, offset(0.001));
 
-        assertThat(result.avgCostTotal().get()).isEqualTo(103936.00, offset(0.01));
-        assertThat(result.minCostTotal().get()).isEqualTo(55546.91, offset(0.01));
-        assertThat(result.maxCostTotal().get()).isEqualTo(171408.11, offset(0.01));
+        assertThat(result.avgCostTotal()).hasValue(103936.00, offset(0.01));
+        assertThat(result.minCostTotal()).hasValue(55546.91, offset(0.01));
+        assertThat(result.maxCostTotal()).hasValue(171408.11, offset(0.01));
 
         assertDistribution(result, 36.89, 69.02, 113.83, INVESTIGATIONS_AND_FORENSICS);
         assertDistribution(result, 31.46, 58.87, 97.09, LOST_CUSTOMER_BUSINESS);
@@ -68,13 +70,13 @@ public class DatalossCalculationScenarioTest {
     	userinputModel.influencingFactors().add(CONSULTANTS_ENGAGED);
     	userinputModel.influencingFactors().add(INCIDENT_MANAGEMENT_PLAN);
     	
-    	assertThat(result.avgCostPerDataset().get()).isEqualTo(115);
-    	assertThat(result.minCostPerDataset().get()).isEqualTo(58.5761589, offset(0.001));
-    	assertThat(result.maxCostPerDataset().get()).isEqualTo(193.675497, offset(0.001));
+    	assertThat(result.avgCostPerDataset()).hasValue(115);
+    	assertThat(result.minCostPerDataset()).hasValue(58.5761589, offset(0.001));
+    	assertThat(result.maxCostPerDataset()).hasValue(193.675497, offset(0.001));
     	
-    	assertThat(result.avgCostTotal().get()).isEqualTo(575000000.00, offset(0.01));
-    	assertThat(result.minCostTotal().get()).isEqualTo(292880794.70, offset(0.01));
-    	assertThat(result.maxCostTotal().get()).isEqualTo(968377483.44, offset(0.01));
+    	assertThat(result.avgCostTotal()).hasValue(575000000.00, offset(0.01));
+    	assertThat(result.minCostTotal()).hasValue(292880794.70, offset(0.01));
+    	assertThat(result.maxCostTotal()).hasValue(968377483.44, offset(0.01));
     	
     	/*
     	 * Da im Scenario-Test kleines Energieunternehmen bereits alle Distributionen getestet wurden,
@@ -96,13 +98,13 @@ public class DatalossCalculationScenarioTest {
     	userinputModel.influencingFactors().add(LOST_OR_STOLEN_DEVICES);
     	userinputModel.influencingFactors().add(QUICK_NOTIFICATION);
     	
-    	assertThat(result.avgCostPerDataset().get()).isEqualTo(243);
-    	assertThat(result.minCostPerDataset().get()).isEqualTo(140.966887, offset(0.001));
-    	assertThat(result.maxCostPerDataset().get()).isEqualTo(385.271523, offset(0.001));
+    	assertThat(result.avgCostPerDataset()).hasValue(243);
+    	assertThat(result.minCostPerDataset()).hasValue(140.966887, offset(0.001));
+    	assertThat(result.maxCostPerDataset()).hasValue(385.271523, offset(0.001));
     	
-    	assertThat(result.avgCostTotal().get()).isEqualTo(486000000000.00, offset(0.01));
-    	assertThat(result.minCostTotal().get()).isEqualTo(281933774834.44, offset(0.01));
-    	assertThat(result.maxCostTotal().get()).isEqualTo(770543046357.62, offset(0.01));
+    	assertThat(result.avgCostTotal()).hasValue(486000000000.00, offset(0.01));
+    	assertThat(result.minCostTotal()).hasValue(281933774834.44, offset(0.01));
+    	assertThat(result.maxCostTotal()).hasValue(770543046357.62, offset(0.01));
     	
     	/*
     	 * Da im Scenario-Test kleines Energieunternehmen bereits alle Distributionen getestet wurden,
@@ -125,17 +127,17 @@ public class DatalossCalculationScenarioTest {
     	userinputModel.influencingFactors().add(INCIDENT_MANAGEMENT_PLAN);
     	userinputModel.influencingFactors().add(STRONG_SECURITY_POSTURE);
     	
-    	assertThat(result.avgCostPerDataset().get()).isEqualTo(64);
-    	assertThat(result.minCostPerDataset().get()).isEqualTo(20.2715232, offset(0.001));
-    	assertThat(result.maxCostPerDataset().get()).isEqualTo(124.97351, offset(0.001));
+    	assertThat(result.avgCostPerDataset()).hasValue(64);
+    	assertThat(result.minCostPerDataset()).hasValue(20.2715232, offset(0.001));
+    	assertThat(result.maxCostPerDataset()).hasValue(124.97351, offset(0.001));
     	
-    	assertThat(result.avgCostTotal().get()).isEqualTo(3200.00, offset(0.01));
-    	assertThat(result.minCostTotal().get()).isEqualTo(1013.58, offset(0.01));
-    	assertThat(result.maxCostTotal().get()).isEqualTo(6248.68, offset(0.01));
+    	assertThat(result.avgCostTotal()).hasValue(3200.00, offset(0.01));
+    	assertThat(result.minCostTotal()).hasValue(1013.58, offset(0.01));
+    	assertThat(result.maxCostTotal()).hasValue(6248.68, offset(0.01));
     	
-    	assertThat(result.avgCostSelected().get()).isEqualTo(1600.00, offset(0.01));
-    	assertThat(result.minCostSelected().get()).isEqualTo(506.79, offset(0.01));
-    	assertThat(result.maxCostSelected().get()).isEqualTo(3124.34, offset(0.01));
+    	assertThat(result.avgCostSelected()).hasValue(1600.00, offset(0.01));
+    	assertThat(result.minCostSelected()).hasValue(506.79, offset(0.01));
+    	assertThat(result.maxCostSelected()).hasValue(3124.34, offset(0.01));
     	
     	/*
     	 * Da im Scenario-Test kleines Energieunternehmen bereits alle Distributionen getestet wurden,
@@ -147,16 +149,16 @@ public class DatalossCalculationScenarioTest {
     	assertDistribution(result, 0.41, 1.28, 2.50, FREE_OR_DISCOUNTED_SERVICES);
     	assertDistribution(result, 0.20, 0.64, 1.25, IDENTITY_PROTECTION_SERVICES);
     	
-    	assertThat(result.getSelectedDistributionCost(INVESTIGATIONS_AND_FORENSICS).get()).isEqualTo(544.00, offset(0.01));
-    	assertThat(result.getSelectedDistributionCost(LOST_CUSTOMER_BUSINESS).get()).isEqualTo(464.00, offset(0.01));
-    	assertThat(result.getSelectedDistributionCost(AUDIT_AND_CONSULTING_SERVICES).get()).isEqualTo(144.00, offset(0.01));
-    	assertThat(result.getSelectedDistributionCost(FREE_OR_DISCOUNTED_SERVICES).get()).isEqualTo(32.00, offset(0.01));
+    	assertThat(result.getSelectedDistributionCost(INVESTIGATIONS_AND_FORENSICS)).hasValue(544.00, offset(0.01));
+    	assertThat(result.getSelectedDistributionCost(LOST_CUSTOMER_BUSINESS)).hasValue(464.00, offset(0.01));
+    	assertThat(result.getSelectedDistributionCost(AUDIT_AND_CONSULTING_SERVICES)).hasValue(144.00, offset(0.01));
+    	assertThat(result.getSelectedDistributionCost(FREE_OR_DISCOUNTED_SERVICES)).hasValue(32.00, offset(0.01));
     	
     }
     
     private void assertDistribution(DatalossResult result, double min, double avg, double max, CostDistribution distribution) {
-        assertThat(result.getMinDistributionCost(distribution).get()).isEqualTo(min, offset(0.01));
-        assertThat(result.getAvgDistributionCost(distribution).get()).isEqualTo(avg, offset(0.01));
-        assertThat(result.getMaxDistributionCost(distribution).get()).isEqualTo(max, offset(0.01));
+        assertThat(result.getMinDistributionCost(distribution)).hasValue(min, offset(0.01));
+        assertThat(result.getAvgDistributionCost(distribution)).hasValue(avg, offset(0.01));
+        assertThat(result.getMaxDistributionCost(distribution)).hasValue(max, offset(0.01));
     }
 }

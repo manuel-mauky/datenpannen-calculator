@@ -1,11 +1,11 @@
 package de.hszg.datenpannen.virus.model;
 
 import de.hszg.datenpannen.virus.data.StaticVirusDataProvider;
-import static org.assertj.core.api.Assertions.*;
-import static org.assertj.core.data.Offset.offset;
 import org.junit.Before;
 import org.junit.Test;
 
+import static eu.lestard.assertj.javafx.api.Assertions.*;
+import static org.assertj.core.data.Offset.*;
 /**
  * 
  * Dieser Test beschreibt die Berechnungen im Virenbefall-Abschnitt der Anwendung.
@@ -13,7 +13,7 @@ import org.junit.Test;
  */
 public class VirusCalculationScenarioTest {
 
-    private static final double OFFSET = 0.001;
+    private static final double OFFSET = 0.01;
 
 	private VirusResult result;
 	private BaseDataModel baseDataModel;
@@ -37,17 +37,17 @@ public class VirusCalculationScenarioTest {
 		
 		userInputModel.selectedNumberOfClientsInChart().set(434);
 		
-		assertThat(result.avgCostPerClient().get()).isEqualTo(984.090284, offset(OFFSET));
-		assertThat(result.minCostPerClient().get()).isEqualTo(322.378764, offset(OFFSET));
-		assertThat(result.maxCostPerClient().get()).isEqualTo(5166.7476320367, offset(OFFSET));
+		assertThat(result.avgCostPerClient()).hasValue(984.090284, offset(OFFSET));
+		assertThat(result.minCostPerClient()).hasValue(322.378764, offset(OFFSET));
+		assertThat(result.maxCostPerClient()).hasValue(5166.7476320367, offset(OFFSET));
 
-		assertThat(result.avgCostTotal().get()).isEqualTo(853206.277, offset(OFFSET));
-		assertThat(result.minCostTotal().get()).isEqualTo(279502.388, offset(OFFSET));
-		assertThat(result.maxCostTotal().get()).isEqualTo(4479570.19697581, offset(OFFSET));
+		assertThat(result.avgCostTotal()).hasValue(853206.277, offset(OFFSET));
+		assertThat(result.minCostTotal()).hasValue(279502.388, offset(OFFSET));
+		assertThat(result.maxCostTotal()).hasValue(4479570.19697581, offset(OFFSET));
 
-		assertThat(result.avgCostSelected().get()).isEqualTo(427095.183431358, offset(OFFSET));
-		assertThat(result.minCostSelected().get()).isEqualTo(139912.383483414, offset(OFFSET));
-		assertThat(result.maxCostSelected().get()).isEqualTo(2242368.47230392, offset(OFFSET));
+		assertThat(result.avgCostSelected()).hasValue(427095.183431358, offset(OFFSET));
+		assertThat(result.minCostSelected()).hasValue(139912.383483414, offset(OFFSET));
+		assertThat(result.maxCostSelected()).hasValue(2242368.47230392, offset(OFFSET));
 
 		/**
 		 * Ab hier wird das Kreisdiagramm 1 geprüft.
@@ -102,17 +102,17 @@ public class VirusCalculationScenarioTest {
 		
 		userInputModel.selectedNumberOfClientsInChart().set(10024);
 		
-		assertThat(result.avgCostPerClient().get()).isEqualTo(66.90337921, offset(OFFSET));
-		assertThat(result.minCostPerClient().get()).isEqualTo(44.57924185, offset(OFFSET));
-		assertThat(result.maxCostPerClient().get()).isEqualTo(148.0200455731, offset(OFFSET));
+		assertThat(result.avgCostPerClient()).hasValue(66.90337921, offset(OFFSET));
+		assertThat(result.minCostPerClient()).hasValue(44.57924185, offset(OFFSET));
+		assertThat(result.maxCostPerClient()).hasValue(148.0200455731, offset(OFFSET));
 
-		assertThat(result.avgCostTotal().get()).isEqualTo(3353398.076, offset(OFFSET));
-		assertThat(result.minCostTotal().get()).isEqualTo(2234445.339, offset(OFFSET));
-		assertThat(result.maxCostTotal().get()).isEqualTo(7419208.74425876, offset(OFFSET));
+		assertThat(result.avgCostTotal()).hasValue(3353398.076, offset(OFFSET));
+		assertThat(result.minCostTotal()).hasValue(2234445.339, offset(OFFSET));
+		assertThat(result.maxCostTotal()).hasValue(7419208.74425876, offset(OFFSET));
 
-		assertThat(result.avgCostSelected().get()).isEqualTo(670639.4732, offset(OFFSET));
-		assertThat(result.minCostSelected().get()).isEqualTo(446862.3203, offset(OFFSET));
-		assertThat(result.maxCostSelected().get()).isEqualTo(1483752.93682441, offset(OFFSET));
+		assertThat(result.avgCostSelected()).hasValue(670639.4732, offset(OFFSET));
+		assertThat(result.minCostSelected()).hasValue(446862.3203, offset(OFFSET));
+		assertThat(result.maxCostSelected()).hasValue(1483752.93682441, offset(OFFSET));
 
 		/**
 		 * Kreisdiagramm 1
@@ -158,29 +158,29 @@ public class VirusCalculationScenarioTest {
 
 	private void assertCostComponent(VirusResult result, double avg, double min,
 			double max, CostComponent costComponent) {
-		assertThat(result.getAvgCostComponentCost(costComponent).get()).isEqualTo(avg, offset(OFFSET));
-		assertThat(result.getMinCostComponentCost(costComponent).get()).isEqualTo(min, offset(OFFSET));
-		assertThat(result.getMaxCostComponentCost(costComponent).get()).isEqualTo(max, offset(OFFSET));
+		assertThat(result.getAvgCostComponentCost(costComponent)).hasValue(avg, offset(OFFSET));
+		assertThat(result.getMinCostComponentCost(costComponent)).hasValue(min, offset(OFFSET));
+		assertThat(result.getMaxCostComponentCost(costComponent)).hasValue(max, offset(OFFSET));
 	}
 	
 	private void assertExternalConsequence(VirusResult result, double avg, double min,
 			double max, ExternalConsequence consequence) {
-		assertThat(result.getAvgExternalConsequenceCost(consequence).get()).isEqualTo(avg, offset(OFFSET));
-		assertThat(result.getMinExternalConsequenceCost(consequence).get()).isEqualTo(min, offset(OFFSET));
-		assertThat(result.getMaxExternalConsequenceCost(consequence).get()).isEqualTo(max, offset(OFFSET));
+		assertThat(result.getAvgExternalConsequenceCost(consequence)).hasValue(avg, offset(OFFSET));
+		assertThat(result.getMinExternalConsequenceCost(consequence)).hasValue(min, offset(OFFSET));
+		assertThat(result.getMaxExternalConsequenceCost(consequence)).hasValue(max, offset(OFFSET));
 	}
 
 	private void assertInternalActivity(VirusResult result, double avg, double min,
 			double max, InternalActivity activity) {
-		assertThat(result.getAvgInternalActivityCost(activity).get()).isEqualTo(avg, offset(OFFSET));
-		assertThat(result.getMinInternalActivityCost(activity).get()).isEqualTo(min, offset(OFFSET));
-		assertThat(result.getMaxInternalActivityCost(activity).get()).isEqualTo(max, offset(OFFSET));
+		assertThat(result.getAvgInternalActivityCost(activity)).hasValue(avg, offset(OFFSET));
+		assertThat(result.getMinInternalActivityCost(activity)).hasValue(min, offset(OFFSET));
+		assertThat(result.getMaxInternalActivityCost(activity)).hasValue(max, offset(OFFSET));
 	}
 	
 	private void assertAttackType(VirusResult result, double avg, double min,
 			double max, AttackType attacktype){
-		assertThat(result.getAvgAttackTypeCost(attacktype).get()).isEqualTo(avg, offset(OFFSET));
-		assertThat(result.getMinAttackTypeCost(attacktype).get()).isEqualTo(min, offset(OFFSET));
-		assertThat(result.getMaxAttackTypeCost(attacktype).get()).isEqualTo(max, offset(OFFSET));
+		assertThat(result.getAvgAttackTypeCost(attacktype)).hasValue(avg, offset(OFFSET));
+		assertThat(result.getMinAttackTypeCost(attacktype)).hasValue(min, offset(OFFSET));
+		assertThat(result.getMaxAttackTypeCost(attacktype)).hasValue(max, offset(OFFSET));
 	}
 }
