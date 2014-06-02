@@ -43,7 +43,7 @@ public class VirusUserinputPresenter {
     private UserInputModel userInputModel;
 
     public void initialize() {
-        BindingHelper.applyNumberOnlyFilter(numberOfClientsField.textProperty());
+        BindingHelper.applyNumberOnlyFilter(numberOfClientsField.textProperty(), 5);
         numberOfClientsField.textProperty().bindBidirectional(userInputModel.numberOfClients(), new EmptyToZeroNumberConverter());
 
         sectorChoiceBox.getItems().addAll(Sector.values());

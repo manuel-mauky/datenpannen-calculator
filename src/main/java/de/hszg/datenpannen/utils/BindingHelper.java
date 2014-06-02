@@ -43,11 +43,11 @@ public class BindingHelper {
     }
 
 
-    public static void applyNumberOnlyFilter(final StringProperty target){
+    public static void applyNumberOnlyFilter(final StringProperty target, final int maxLength){
         target.addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
-                if (!(newValue.matches("\\d*") && newValue.length() < 9)) {
+                if (!(newValue.matches("\\d*") && newValue.length() <= maxLength)) {
                     target.set(oldValue);
                 }
             }

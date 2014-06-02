@@ -9,6 +9,7 @@ out
 # IntelliJ Idea
 .idea
 *.iml
+classes/
 
 # Eclipse
 .classpath

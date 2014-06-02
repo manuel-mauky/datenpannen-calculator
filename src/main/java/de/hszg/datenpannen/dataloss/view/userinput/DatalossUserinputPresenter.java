@@ -7,14 +7,15 @@ import de.hszg.datenpannen.main.view.main.MainView;
 import de.hszg.datenpannen.utils.BindingHelper;
 import de.hszg.datenpannen.utils.EmptyToZeroNumberConverter;
 import de.hszg.datenpannen.utils.ResourceBundleWrapper;
-import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+
 import javax.inject.Inject;
+import java.util.ResourceBundle;
 
 /**
  * Presenter für den Bereich der Nutzereingaben. Hier werden die Input-Elemente
@@ -43,7 +44,7 @@ public class DatalossUserinputPresenter{
     private ResourceBundleWrapper resourceBundleWrapper;
 
     public void initialize() {
-        BindingHelper.applyNumberOnlyFilter(numberOfDatasetsField.textProperty());
+        BindingHelper.applyNumberOnlyFilter(numberOfDatasetsField.textProperty(), 8);
         numberOfDatasetsField.textProperty().bindBidirectional(userinputModel.numberOfDatasets(), new EmptyToZeroNumberConverter());
 
         sectorChoiceBox.getItems().addAll(Sector.values());
