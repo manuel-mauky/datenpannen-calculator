@@ -23,6 +23,9 @@ task "create-dirs" << {
 
 repositories {
 	mavenCentral()
+    maven{
+        url "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
 }
 
 
@@ -41,6 +44,8 @@ dependencies {
 
     // UI-Bibliothek für JavaFX
     compile "com.airhacks:afterburner.fx:1.2"
+
+    compile "eu.lestard:advanced-bindings:0.1.0-SNAPSHOT"
 
     // testing
     testCompile "junit:junit:4.11"

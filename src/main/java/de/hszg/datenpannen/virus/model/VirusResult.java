@@ -1,16 +1,18 @@
 package de.hszg.datenpannen.virus.model;
 
 import de.hszg.datenpannen.utils.BindingHelper;
-import static de.hszg.datenpannen.utils.Helper.createEmptyEnumMap;
-import de.hszg.datenpannen.utils.MathBindings;
-import java.util.Map;
+import eu.lestard.advanced_bindings.api.MathBindings;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.binding.NumberBinding;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import java.util.Map;
+
+import static de.hszg.datenpannen.utils.Helper.*;
 
 public class VirusResult {
 
@@ -111,7 +113,7 @@ public class VirusResult {
      * Initialisiert alle Bindings die pro Client existieren.
      */
     private void initPerClientBindings() {
-        IntegerProperty numberOfClients = userInputModel.numberOfClients();
+        DoubleBinding numberOfClients = userInputModel.numberOfClients().multiply(1.0);
 
         DoubleBinding activityFactor = Bindings.doubleValueAt(baseDataModel.securityGovernanceActivityDistributions(), userInputModel.securityGovernanceActivity());
         DoubleBinding sectorBase = Bindings.doubleValueAt(baseDataModel.attackCostPerSector(), userInputModel.sector());
@@ -131,7 +133,7 @@ public class VirusResult {
                 baseDataModel.minCostBase()
                         .multiply(
                                 MathBindings.pow(
-                                        numberOfClients,
+                                        numberOfClients.multiply(1.0),
                                         baseDataModel.minCostExponent()))
                         .multiply(activityFactor)
                         .multiply(sectorFactor));
