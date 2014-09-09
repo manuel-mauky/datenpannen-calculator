@@ -22,11 +22,11 @@ public class CostsChartModel {
 
     private StringProperty title = new SimpleStringProperty();
 
-    private XYChart.Series avgSeries = new XYChart.Series<>();
-    private XYChart.Series minSeries = new XYChart.Series<>();
-    private XYChart.Series maxSeries = new XYChart.Series<>();
+    private XYChart.Series<Integer,Double> avgSeries = new XYChart.Series<>();
+    private XYChart.Series<Integer,Double> minSeries = new XYChart.Series<>();
+    private XYChart.Series<Integer,Double> maxSeries = new XYChart.Series<>();
 
-    private XYChart.Series selectionSeries = new XYChart.Series<>();
+    private XYChart.Series<Integer,Double> selectionSeries = new XYChart.Series<>();
 
     @Inject
     private DatalossResult result;

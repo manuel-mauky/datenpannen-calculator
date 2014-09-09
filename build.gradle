@@ -12,14 +12,14 @@ buildscript {
 }
 
 
-sourceCompatibility= 1.7
+sourceCompatibility= 1.8
 def javaHome = "${System.properties['java.home']}"
 
 
 // Die Haupt-Klasse. Zum Starten: 'gradle run'
 mainClassName = "de.hszg.datenpannen.Main"
 
-manifest.mainAttributes("Main-Class" : mainClassName)
+jar.manifest.attributes("Main-Class" : mainClassName)
 
 
 // Task zum Erzeugen der Verzeichnis-Struktur für Java-Projekte.
@@ -39,25 +39,19 @@ repositories {
 
 dependencies {
 
-    // JavaFX ist erst ab Java 7 vernünftig verfügbar. Ältere Versionen von Java werden deshalb nicht unterstützt.
-    if(!JavaVersion.current().isJava7Compatible()){
-        throw new GradleException("Java wird mindestens in Version 7 benötigt. Gefunden wurde: ${System.getProperty('java.version')}");
-    }
-
-    // Bei Java 7 wird JavaFX beim JDK mitgeliefert, jedoch nicht automatisch auf den Classpath gelegt.
-    // Es muss deshalb per Hand als Abhängigkeit hinzugefügt werden.
-    if(JavaVersion.current().isJava7()){
-        compile files("$javaHome/lib/jfxrt.jar")
-    }
 
     // UI-Bibliothek für JavaFX
-    compile "com.airhacks:afterburner.fx:1.2"
+    compile "com.airhacks:afterburner.fx:1.6.0"
 
-    compile "eu.lestard:advanced-bindings:0.1.0-SNAPSHOT"
+    compile "eu.lestard:advanced-bindings:0.1.1"
 
     // testing
     testCompile "junit:junit:4.11"
     testCompile "org.assertj:assertj-core:1.6.0"
     testCompile "eu.lestard:assertj-javafx:0.1.0"
     testCompile "org.mockito:mockito-core:1.9.5"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
 }

@@ -1,12 +1,16 @@
 package de.hszg.datenpannen.utils;
 
-import java.util.EnumMap;
-import java.util.Map;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.Node;
-import javafx.scene.chart.*;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.ValueAxis;
+import javafx.scene.chart.XYChart;
 import javafx.util.StringConverter;
+
+import java.util.EnumMap;
+import java.util.Map;
 
 public class Helper {
 
@@ -42,6 +46,7 @@ public class Helper {
      * Diese Methode fixt dieses Problem indem ein anderer StringConverter für beide Achsen
      * gesetzt wird.
      */
+    @SuppressWarnings("unchecked")
     public static void fixTickFormatterForChart(LineChart<? extends Number, ? extends Number> chart){
         ValueAxis<Number> yAxis = (ValueAxis)chart.getYAxis();
         ValueAxis<Number> xAxis = (ValueAxis)chart.getXAxis();

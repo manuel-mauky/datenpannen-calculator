@@ -1,13 +1,11 @@
 package de.hszg.datenpannen;
 
-import com.airhacks.afterburner.injection.InjectionProvider;
 import de.hszg.datenpannen.main.view.main.MainView;
 import de.hszg.datenpannen.utils.ResourceBundleWrapper;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -32,10 +30,5 @@ public class Main extends Application {
 
         stage.setScene(scene);
         stage.show();
-    }
-
-    @Override
-    public void stop() throws Exception {
-        InjectionProvider.forgetAll();
     }
 }
